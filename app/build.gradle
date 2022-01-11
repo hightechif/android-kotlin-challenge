@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -24,6 +25,9 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+    dataBinding {
+        enabled = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

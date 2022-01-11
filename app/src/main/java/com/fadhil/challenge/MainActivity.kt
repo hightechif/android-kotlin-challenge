@@ -1,8 +1,9 @@
 package com.fadhil.challenge
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import androidx.appcompat.app.AppCompatActivity
 import com.fadhil.challenge.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,15 +16,22 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        buttonOnClickHandler()
+        binding.btnCalculatorCTA.setOnClickListener {
+            openCalculator()
+        }
+
+        binding.btnCameraCTA.setOnClickListener {
+            openCamera()
+        }
     }
 
-    private fun buttonOnClickHandler() {
-        val button = binding.btnCalculatorCTA
-        button.setOnClickListener {
-            // Toast.makeText(applicationContext,"Button clicked", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@MainActivity, BarCalculatorActivity::class.java)
-            startActivity(intent)
-        }
+    private fun openCalculator() {
+        val activityIntent = Intent(this, BarCalculatorActivity::class.java)
+        startActivity(activityIntent)
+    }
+
+    private fun openCamera() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivity(takePictureIntent)
     }
 }

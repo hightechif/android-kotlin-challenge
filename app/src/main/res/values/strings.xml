@@ -10,4 +10,5 @@
     <string name="depthHint">Input depth value</string>
     <string name="btnCalculatorCTA">Open bar calculator</string>
     <string name="tvResultText">Result :</string>
+    <string name="btnCameraCTA">Open Camera</string>
 </resources>
