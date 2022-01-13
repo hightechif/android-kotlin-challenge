@@ -30,6 +30,14 @@
                 <action android:name="android.intent.action.EDIT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MyViewActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@
         android:text="@string/btnCalculatorCTA"
         app:layout_constraintBottom_toTopOf="@+id/btnCameraCTA"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,10 +22,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnCameraCTA"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnMyViewAppCTA"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCalculatorCTA" />
+
+    <Button
+        android:id="@+id/btnMyViewAppCTA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnMyViewAppCTA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCameraCTA" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

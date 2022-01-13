@@ -23,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnCameraCTA.setOnClickListener {
             openCamera()
         }
+
+        binding.btnMyViewAppCTA.setOnClickListener {
+            openMyViewApp()
+        }
     }
 
     private fun openCalculator() {
@@ -33,5 +37,10 @@ class MainActivity : AppCompatActivity() {
     private fun openCamera() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivity(takePictureIntent)
+    }
+
+    private fun openMyViewApp() {
+        val myViewIntent = Intent(this, MyViewActivity::class.java)
+        startActivity(myViewIntent)
     }
 }

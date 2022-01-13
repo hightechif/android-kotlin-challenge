@@ -6,4 +6,11 @@
         <item name="colorPrimaryVariant" >@color/purple_500</item>
         <item name="colorOnPrimary" >@color/white</item>
     </style>
+
+    <!-- Base My View App Style -->
+    <style name="myViewStyle">
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+    </style>
 </resources>

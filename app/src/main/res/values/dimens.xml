@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textParagraph">12sp</dimen>
+    <dimen name="textLabel">10sp</dimen>
+    <dimen name="textH3">24sp</dimen>
+    <dimen name="defaultMargin">16sp</dimen>
+    <dimen name="smallMargin">5sp</dimen>
+    <dimen name="defaultPadding">5sp</dimen>
+</resources>
