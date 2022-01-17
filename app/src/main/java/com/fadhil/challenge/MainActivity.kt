@@ -3,6 +3,7 @@ package com.fadhil.challenge
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.fadhil.challenge.databinding.ActivityMainBinding
 
@@ -15,15 +16,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+    }
 
-        binding.btnCalculatorCTA.setOnClickListener {
+    override fun onResume() {
+        super.onResume()
+        binding.btnCalculatorCTA.setOnClickListener{
             openCalculator()
         }
-
         binding.btnCameraCTA.setOnClickListener {
             openCamera()
         }
-
         binding.btnMyViewAppCTA.setOnClickListener {
             openMyViewApp()
         }

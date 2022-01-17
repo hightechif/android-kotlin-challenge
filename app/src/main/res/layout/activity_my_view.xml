@@ -102,7 +102,7 @@
 
                     <TextView
                         android:id="@+id/tvDisplay"
-                        android:layout_width="54dp"
+                        android:layout_width="74dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:text="@string/display"

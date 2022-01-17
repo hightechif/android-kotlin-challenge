@@ -22,12 +22,14 @@ class BarCalculatorActivity : AppCompatActivity() {
             bar.depth = savedInstanceState.getDouble("depth")
             bar.volume = savedInstanceState.getDouble("volume")
         }
+        binding.bar = bar
+    }
 
+    override fun onResume() {
+        super.onResume()
         binding.btnCalculate.setOnClickListener {
             calculate()
         }
-
-        binding.bar = bar
     }
 
     private fun calculate() {
