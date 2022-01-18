@@ -28,4 +28,10 @@
     <string name="avatarCaption">profile picture</string>
     <string name="btnBuy">Beli</string>
     <string name="totalPhotos">6 photos</string>
+    <string name="btnHeroesAppCTA">Open Heroes App</string>
+    <string name="heroes_name">Nama Pahlawan</string>
+    <string name="heroes_detail">Detail</string>
+    <string name="list">List</string>
+    <string name="grid">Grid</string>
+    <string name="cardView">CardView</string>
 </resources>

@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fadhil.challenge">
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.CAMERA"
-        android:maxSdkVersion="18"/>
+
+    <uses-permission
+        android:name="android.permission.CAMERA"
+        android:maxSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -14,28 +18,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".BarCalculatorActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.EDIT" />
-            </intent-filter>
-        </activity>
+            android:name=".HeroesActivity"
+            android:exported="true"
+            android:label="Heroes App"/>
         <activity
             android:name=".MyViewActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="My View App"/>
+        <activity
+            android:name=".BarCalculatorActivity"
+            android:exported="true"
+            android:label="Bar Calculator"/>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="Challenge App">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.EDIT" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

@@ -40,7 +40,7 @@
                     android:id="@+id/tvTotalPhotos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="bottom|end"
                     android:gravity="center_vertical"
                     android:layout_marginStart="@dimen/defaultMargin"
                     android:layout_marginBottom="@dimen/defaultMargin"

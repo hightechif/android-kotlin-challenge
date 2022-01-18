@@ -16,10 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-    }
 
-    override fun onResume() {
-        super.onResume()
         binding.btnCalculatorCTA.setOnClickListener{
             openCalculator()
         }
@@ -28,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnMyViewAppCTA.setOnClickListener {
             openMyViewApp()
+        }
+        binding.btnHeroesCTA.setOnClickListener {
+            openHeroesApp()
         }
     }
 
@@ -44,5 +44,10 @@ class MainActivity : AppCompatActivity() {
     private fun openMyViewApp() {
         val myViewIntent = Intent(this, MyViewActivity::class.java)
         startActivity(myViewIntent)
+    }
+
+    private fun openHeroesApp() {
+        val heroesIntent = Intent(this, HeroesActivity::class.java)
+        startActivity(heroesIntent)
     }
 }
