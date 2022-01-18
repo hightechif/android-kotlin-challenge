@@ -32,7 +32,7 @@ class BarCalculatorActivity : AppCompatActivity() {
     }
 
     private fun calculate() {
-        if (binding.etLength.text.isNotEmpty() && binding.etWidth.text.isNotEmpty() && binding.etDepth.text.toString().isNotEmpty()) {
+        if (binding.etLength.text.isNotEmpty() && binding.etWidth.text.isNotEmpty() && binding.etDepth.text.isNotEmpty()) {
             bar.length = binding.etLength.text.toString().toDouble()
             bar.width = binding.etWidth.text.toString().toDouble()
             bar.depth = binding.etDepth.text.toString().toDouble()
@@ -44,10 +44,18 @@ class BarCalculatorActivity : AppCompatActivity() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putDouble("length", binding.etLength.text.toString().toDouble())
-        outState.putDouble("width", binding.etWidth.text.toString().toDouble())
-        outState.putDouble("depth", binding.etDepth.text.toString().toDouble())
-        outState.putDouble("volume", binding.tvResultValue.text.toString().toDouble())
+        if (binding.etLength.text.isNotEmpty()) {
+            outState.putDouble("length", binding.etLength.text.toString().toDouble())
+        }
+        if (binding.etWidth.text.isNotEmpty()) {
+            outState.putDouble("width", binding.etWidth.text.toString().toDouble())
+        }
+        if (binding.etDepth.text.isNotEmpty()) {
+            outState.putDouble("depth", binding.etDepth.text.toString().toDouble())
+        }
+        if (binding.tvResultValue.text.isNotEmpty()) {
+            outState.putDouble("volume", binding.tvResultValue.text.toString().toDouble())
+        }
         super.onSaveInstanceState(outState)
     }
 }

@@ -54,8 +54,8 @@
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:hint="@string/lengthHint"
-                android:inputType="number"
-                android:text='@{(bar.length == null) ? "" : Double.toString(bar.length)}'
+                android:inputType="number|numberDecimal"
+                android:text='@{(bar.length == null || bar.length == 0.0) ? "" : Double.toString(bar.length)}'
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLength"
@@ -83,8 +83,8 @@
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:hint="@string/widthHint"
-                android:inputType="number"
-                android:text='@{(bar.width == null) ? "" : Double.toString(bar.width)}'
+                android:inputType="number|numberDecimal"
+                android:text='@{(bar.width == null || bar.width == 0.0) ? "" : Double.toString(bar.width)}'
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvWidth" />
@@ -110,8 +110,8 @@
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:hint="@string/depthHint"
-                android:inputType="number"
-                android:text='@{(bar.depth == null) ? "" : Double.toString(bar.depth)}'
+                android:inputType="number|numberDecimal"
+                android:text='@{(bar.depth == null || bar.depth == 0.0) ? "" : Double.toString(bar.depth)}'
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvDepth" />
@@ -148,7 +148,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:text='@{(bar.volume == null) ? "" : Double.toString(bar.volume)}'
+                android:text='@{(bar.volume == null) || bar.volume == 0.0 ? "" : Double.toString(bar.volume)}'
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
