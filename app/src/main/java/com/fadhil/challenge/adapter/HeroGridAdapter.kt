@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -13,9 +12,9 @@ import com.fadhil.challenge.model.Hero
 
 class HeroGridAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<HeroGridAdapter.GridViewHolder>() {
 
-    private lateinit var onItemClickedCallback: OnItemClickedCallback
+    private lateinit var onItemClickedCallback: HeroCallbackInterface
 
-    fun setOnClickedCallback(callback: OnItemClickedCallback) {
+    fun setOnClickedCallback(callback: HeroCallbackInterface) {
         this.onItemClickedCallback = callback
     }
 

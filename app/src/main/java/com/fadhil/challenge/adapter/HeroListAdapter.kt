@@ -13,9 +13,9 @@ import com.fadhil.challenge.model.Hero
 
 class HeroListAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<HeroListAdapter.ListViewHolder>() {
 
-    private lateinit var onItemClickedCallback: OnItemClickedCallback
+    private lateinit var onItemClickedCallback: HeroCallbackInterface
 
-    fun setOnClickedCallback(callback: OnItemClickedCallback) {
+    fun setOnClickedCallback(callback: HeroCallbackInterface) {
         this.onItemClickedCallback = callback
     }
 

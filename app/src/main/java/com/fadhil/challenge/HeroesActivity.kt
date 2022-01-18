@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.adapter.HeroGridAdapter
 import com.fadhil.challenge.adapter.HeroListAdapter
-import com.fadhil.challenge.adapter.OnItemClickedCallback
+import com.fadhil.challenge.adapter.HeroCallbackInterface
+import com.fadhil.challenge.adapter.HeroCardViewAdapter
 import com.fadhil.challenge.data.HeroesData
 import com.fadhil.challenge.databinding.ActivityHeroesBinding
 import com.fadhil.challenge.model.Hero
@@ -38,7 +39,7 @@ class HeroesActivity : AppCompatActivity() {
 
         val heroListAdapter = HeroListAdapter(list)
         binding.rvHeroes.adapter = heroListAdapter
-        heroListAdapter.setOnClickedCallback(object : OnItemClickedCallback {
+        heroListAdapter.setOnClickedCallback(object : HeroCallbackInterface {
             override fun onItemClicked(data: Hero) {
                 showSelectedHero(data)
             }
@@ -46,7 +47,7 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun showSelectedHero(hero: Hero) {
-        Toast.makeText(this, "Anda memilih " + hero.name, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Kamu memilih " + hero.name, Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -82,7 +83,7 @@ class HeroesActivity : AppCompatActivity() {
         val heroGridAdapter = HeroGridAdapter(list)
         binding.rvHeroes.adapter = heroGridAdapter
 
-        heroGridAdapter.setOnClickedCallback(object : OnItemClickedCallback {
+        heroGridAdapter.setOnClickedCallback(object : HeroCallbackInterface {
             override fun onItemClicked(data: Hero) {
                 showSelectedHero(data)
             }
@@ -90,9 +91,10 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerCardView() {
-        TODO("Not yet implemented")
+        binding.rvHeroes.layoutManager = LinearLayoutManager(this)
+        val heroCardViewAdapter = HeroCardViewAdapter(list)
+        binding.rvHeroes.adapter = heroCardViewAdapter
     }
-
 
     private fun setActionBarTitle(title: String) {
         supportActionBar?.title = title

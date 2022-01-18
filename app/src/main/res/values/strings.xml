@@ -34,4 +34,6 @@
     <string name="list">List</string>
     <string name="grid">Grid</string>
     <string name="cardView">CardView</string>
+    <string name="favorite">Favorite</string>
+    <string name="share">Share</string>
 </resources>
