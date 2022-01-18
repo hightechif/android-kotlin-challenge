@@ -1,4 +1,4 @@
-package com.fadhil.challenge
+package com.fadhil.challenge.model
 
 data class Bar(
     var length: Double?,

@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Hero
 
-class HeroListAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<HeroListAdapter.ListViewHolder>() {
+class HeroGridAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<HeroGridAdapter.GridViewHolder>() {
 
     private lateinit var onItemClickedCallback: OnItemClickedCallback
 
@@ -19,25 +19,21 @@ class HeroListAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adap
         this.onItemClickedCallback = callback
     }
 
-    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
-        var tvDetail: TextView = itemView.findViewById(R.id.tv_item_detail)
+    inner class GridViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_row_hero, parent, false)
-        return ListViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GridViewHolder {
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_grid_hero, parent, false)
+        return GridViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GridViewHolder, position: Int) {
         val hero = heroList[position]
         Glide.with(holder.itemView.context)
             .load(hero.photo)
-            .apply(RequestOptions().override(55,55))
+            .apply(RequestOptions().override(350,550))
             .into(holder.imgPhoto)
-        holder.tvName.text = hero.name
-        holder.tvDetail.text = hero.detail
 
         holder.itemView.setOnClickListener {
             onItemClickedCallback.onItemClicked(heroList[holder.bindingAdapterPosition])
