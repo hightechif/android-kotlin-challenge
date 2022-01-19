@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.model.Hero
 
-abstract class HeroAdapter<VH : RecyclerView.ViewHolder>(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<VH>() {
+abstract class HeroRVAdapter<VH : RecyclerView.ViewHolder>(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<VH>() {
 
     lateinit var onItemClickedCallback: HeroCallbackInterface
 

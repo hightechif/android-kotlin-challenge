@@ -11,13 +11,7 @@ import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Hero
 import timber.log.Timber
 
-class HeroGridAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<HeroGridAdapter.GridViewHolder>() {
-
-    private lateinit var onItemClickedCallback: HeroCallbackInterface
-
-    fun setOnClickedCallback(callback: HeroCallbackInterface) {
-        this.onItemClickedCallback = callback
-    }
+class HeroGridAdapter(private val heroList: ArrayList<Hero>) : HeroRVAdapter<HeroGridAdapter.GridViewHolder>(heroList) {
 
     inner class GridViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
@@ -39,9 +33,5 @@ class HeroGridAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adap
         holder.itemView.setOnClickListener {
             onItemClickedCallback.onItemClicked(heroList[holder.bindingAdapterPosition])
         }
-    }
-
-    override fun getItemCount(): Int {
-        return heroList.size
     }
 }

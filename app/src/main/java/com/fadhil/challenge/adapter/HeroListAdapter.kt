@@ -1,6 +1,5 @@
 package com.fadhil.challenge.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Hero
 import timber.log.Timber
 
-class HeroListAdapter(private val heroList: ArrayList<Hero>) : HeroAdapter<HeroListAdapter.ListViewHolder>(heroList) {
+class HeroListAdapter(private val heroList: ArrayList<Hero>) : HeroRVAdapter<HeroListAdapter.ListViewHolder>(heroList) {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)

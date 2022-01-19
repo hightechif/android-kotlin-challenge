@@ -14,7 +14,7 @@ import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Hero
 import timber.log.Timber
 
-class HeroCardViewAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<HeroCardViewAdapter.CardViewHolder>() {
+class HeroCardViewAdapter(private val heroList: ArrayList<Hero>) : HeroRVAdapter<HeroCardViewAdapter.CardViewHolder>(heroList) {
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
@@ -50,9 +50,5 @@ class HeroCardViewAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.
         holder.btnShare.setOnClickListener {
             Toast.makeText(holder.itemView.context, "Share " + heroList[holder.bindingAdapterPosition].name, Toast.LENGTH_SHORT).show()
         }
-    }
-
-    override fun getItemCount(): Int {
-        return heroList.size
     }
 }

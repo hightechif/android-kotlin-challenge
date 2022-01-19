@@ -134,13 +134,26 @@ class HeroesActivity : AppCompatActivity() {
         listView = findViewById(R.id.lv_heroes)
         val heroListViewAdapter = HeroListViewAdapter(this, list)
         listView.adapter = heroListViewAdapter
+
+        heroListViewAdapter.setOnClickedCallback(object : HeroCallbackInterface {
+            override fun onItemClicked(data: Hero) {
+                showSelectedHero(data)
+            }
+        })
     }
 
     private fun showGridView() {
         setVisibility(ViewMode.GRID_VIEW)
         gridView = findViewById(R.id.gv_heroes)
+        gridView.numColumns = 2
         val heroGridViewAdapter = HeroGridViewAdapter(this, list)
         gridView.adapter = heroGridViewAdapter
+
+        heroGridViewAdapter.setOnClickedCallback(object : HeroCallbackInterface {
+            override fun onItemClicked(data: Hero) {
+                showSelectedHero(data)
+            }
+        })
     }
 
     private fun setActionBarTitle(title: String) {
