@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnHeroesCTA.setOnClickListener {
             openHeroesApp()
         }
+        binding.btnSampleAPI.setOnClickListener {
+            openSampleAPI()
+        }
     }
 
     private fun openCalculator() {
@@ -50,4 +53,10 @@ class MainActivity : AppCompatActivity() {
         val heroesIntent = Intent(this, HeroesActivity::class.java)
         startActivity(heroesIntent)
     }
+
+    private fun openSampleAPI() {
+        val sampleApiIntent = Intent(this, SampleApiActivity::class.java)
+        startActivity(sampleApiIntent)
+    }
+
 }

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fadhil.challenge">
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
-    <uses-permission
-        android:name="android.permission.CAMERA"
-        android:maxSdkVersion="18" />
-
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".TimberLogger"
         android:allowBackup="true"
@@ -19,17 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
         <activity
+            android:name=".SampleApiActivity"
+            android:exported="true"
+            android:label="Sample API"/>
+        <activity
             android:name=".HeroesActivity"
             android:exported="true"
-            android:label="Heroes App"/>
+            android:label="Heroes App" />
         <activity
             android:name=".MyViewActivity"
             android:exported="true"
-            android:label="My View App"/>
+            android:label="My View App" />
         <activity
             android:name=".BarCalculatorActivity"
             android:exported="true"
-            android:label="Bar Calculator"/>
+            android:label="Bar Calculator" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -40,5 +40,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

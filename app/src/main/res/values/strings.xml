@@ -38,4 +38,6 @@
     <string name="cardView">CardView</string>
     <string name="favorite">Favorite</string>
     <string name="share">Share</string>
+    <string name="responseCode">Response Code</string>
+    <string name="btnSampleAPI">Open Sample API</string>
 </resources>

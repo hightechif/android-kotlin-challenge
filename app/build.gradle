@@ -57,6 +57,9 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     // Timber Logger
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
     // Testing
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
