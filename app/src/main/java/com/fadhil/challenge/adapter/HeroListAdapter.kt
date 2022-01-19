@@ -1,5 +1,6 @@
 package com.fadhil.challenge.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +11,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Hero
+import timber.log.Timber
 
-class HeroListAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<HeroListAdapter.ListViewHolder>() {
-
-    private lateinit var onItemClickedCallback: HeroCallbackInterface
-
-    fun setOnClickedCallback(callback: HeroCallbackInterface) {
-        this.onItemClickedCallback = callback
-    }
+class HeroListAdapter(private val heroList: ArrayList<Hero>) : HeroAdapter<HeroListAdapter.ListViewHolder>(heroList) {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
@@ -32,19 +28,15 @@ class HeroListAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val hero = heroList[position]
+        Timber.i("Data Hero: $position")
         Glide.with(holder.itemView.context)
             .load(hero.photo)
             .apply(RequestOptions().override(55,55))
             .into(holder.imgPhoto)
         holder.tvName.text = hero.name
         holder.tvDetail.text = hero.detail
-
         holder.itemView.setOnClickListener {
             onItemClickedCallback.onItemClicked(heroList[holder.bindingAdapterPosition])
         }
-    }
-
-    override fun getItemCount(): Int {
-        return heroList.size
     }
 }

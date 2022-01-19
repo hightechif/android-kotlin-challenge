@@ -33,6 +33,8 @@
     <string name="heroes_detail">Detail</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
+    <string name="listView">ListView</string>
+    <string name="gridView">GridView</string>
     <string name="cardView">CardView</string>
     <string name="favorite">Favorite</string>
     <string name="share">Share</string>

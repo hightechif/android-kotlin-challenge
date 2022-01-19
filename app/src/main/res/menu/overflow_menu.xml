@@ -13,4 +13,12 @@
         android:id="@+id/action_cardView"
         android:title="@string/cardView"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_listView"
+        android:title="@string/listView"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_gridView"
+        android:title="@string/gridView"
+        app:showAsAction="never"/>
 </menu>

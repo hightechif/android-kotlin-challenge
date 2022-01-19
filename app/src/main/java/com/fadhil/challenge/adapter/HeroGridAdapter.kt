@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Hero
+import timber.log.Timber
 
 class HeroGridAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<HeroGridAdapter.GridViewHolder>() {
 
@@ -29,6 +30,7 @@ class HeroGridAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: GridViewHolder, position: Int) {
         val hero = heroList[position]
+        Timber.i("Data Hero: $position")
         Glide.with(holder.itemView.context)
             .load(hero.photo)
             .apply(RequestOptions().override(350,550))
