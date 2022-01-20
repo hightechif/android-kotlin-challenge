@@ -1,5 +1,17 @@
 <resources>
+    <!-- Main App -->
     <string name="app_name">Challenge</string>
+    <string name="btnCalculatorCTA">Open bar calculator</string>
+    <string name="btnCameraCTA">Open Camera</string>
+    <string name="btnMyViewAppCTA">Open My View App</string>
+    <string name="btnHeroesAppCTA">Open Heroes App</string>
+    <string name="btnMoviesCTA">Open Movies App</string>
+
+    <!-- Common String -->
+    <string name="favorite">Favorite</string>
+    <string name="share">Share</string>
+
+    <!-- Bar Volume Calculator -->
     <string name="calculatorTitle">Bar Volume Calculator</string>
     <string name="length">Length</string>
     <string name="width">Width</string>
@@ -8,10 +20,9 @@
     <string name="lengthHint">Input length value</string>
     <string name="widthHint">Input width value</string>
     <string name="depthHint">Input depth value</string>
-    <string name="btnCalculatorCTA">Open bar calculator</string>
     <string name="tvResultText">Result :</string>
-    <string name="btnCameraCTA">Open Camera</string>
-    <string name="btnMyViewAppCTA">Open My View App</string>
+
+    <!-- My View App -->
     <string name="imageCaption">sample image</string>
     <string name="price">$735</string>
     <string name="stock">Stock hanya 5 buah</string>
@@ -28,16 +39,20 @@
     <string name="avatarCaption">profile picture</string>
     <string name="btnBuy">Beli</string>
     <string name="totalPhotos">6 photos</string>
-    <string name="btnHeroesAppCTA">Open Heroes App</string>
+
+    <!-- Heroes App -->
     <string name="heroes_name">Nama Pahlawan</string>
-    <string name="heroes_detail">Detail</string>
+    <string name="heroes_detail">Detail Pahlawan</string>
     <string name="list">List</string>
     <string name="grid">Grid</string>
     <string name="listView">ListView</string>
     <string name="gridView">GridView</string>
     <string name="cardView">CardView</string>
-    <string name="favorite">Favorite</string>
-    <string name="share">Share</string>
+
+    <!-- Movies App-->
     <string name="responseCode">Response Code</string>
-    <string name="btnSampleAPI">Open Sample API</string>
+    <string name="movies_title">Movie Title</string>
+    <string name="release_date">12–01–2021</string>
+    <string name="movies_overview">Movie Overview: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="vote_average">9.9</string>
 </resources>

@@ -3,6 +3,7 @@
     <dimen name="textParagraph">18sp</dimen>
     <dimen name="textLabel">14sp</dimen>
     <dimen name="textH3">24sp</dimen>
+    <dimen name="textRating">9sp</dimen>
     <dimen name="defaultMargin">16dp</dimen>
     <dimen name="smallMargin">5dp</dimen>
     <dimen name="defaultPadding">5dp</dimen>

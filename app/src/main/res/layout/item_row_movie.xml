@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp">
+
+        <ImageView
+            android:id="@+id/img_item_poster"
+            android:layout_width="165dp"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            tools:src="@tools:sample/avatars" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_margin="4dp"
+            android:src="@color/darkgreen" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="5dp"
+            android:src="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_item_rating"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="9dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textRating"
+            tools:text="@string/vote_average" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="@string/movies_title" />
+
+        <TextView
+            android:id="@+id/tv_item_release"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            tools:text="@string/release_date" />
+
+        <TextView
+            android:id="@+id/tv_item_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/movies_overview" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         binding.btnHeroesCTA.setOnClickListener {
             openHeroesApp()
         }
-        binding.btnSampleAPI.setOnClickListener {
-            openSampleAPI()
+        binding.btnMoviesCTA.setOnClickListener {
+            openMoviesApp()
         }
     }
 
@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(heroesIntent)
     }
 
-    private fun openSampleAPI() {
-        val sampleApiIntent = Intent(this, SampleApiActivity::class.java)
-        startActivity(sampleApiIntent)
+    private fun openMoviesApp() {
+        val moviesIntent = Intent(this, MoviesActivity::class.java)
+        startActivity(moviesIntent)
     }
 
 }

@@ -45,17 +45,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnHeroesAppCTA"
-        app:layout_constraintBottom_toBottomOf="@+id/btnSampleAPI"
+        app:layout_constraintBottom_toBottomOf="@+id/btnMoviesCTA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMyViewAppCTA" />
 
     <Button
-        android:id="@+id/btnSampleAPI"
+        android:id="@+id/btnMoviesCTA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnSampleAPI"
+        android:text="@string/btnMoviesCTA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
