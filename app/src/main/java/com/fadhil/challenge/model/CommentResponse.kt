@@ -1,4 +1,4 @@
-package com.fadhil.challenge.repository
+package com.fadhil.challenge.model
 
 data class CommentResponse (
     val postId: Int,

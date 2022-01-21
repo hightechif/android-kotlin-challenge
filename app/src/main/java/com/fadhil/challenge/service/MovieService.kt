@@ -1,11 +1,11 @@
-package com.fadhil.challenge.repository
+package com.fadhil.challenge.service
 
 import com.fadhil.challenge.model.BaseResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface MovieRepository {
+interface MovieService {
 
     @GET("/3/discover/movie")
     fun getMovieList(
