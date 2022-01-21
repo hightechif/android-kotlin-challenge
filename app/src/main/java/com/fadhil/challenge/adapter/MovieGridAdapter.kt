@@ -12,27 +12,21 @@ import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Movie
 import timber.log.Timber
 
-class MovieListAdapter(private val movieList: ArrayList<Movie>) : MovieRVAdapter<MovieListAdapter.ListViewHolder>(movieList) {
+class MovieGridAdapter(private val movieList: ArrayList<Movie>) : MovieRVAdapter<MovieGridAdapter.GridViewHolder>(movieList) {
 
-    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvTitle: TextView = itemView.findViewById(R.id.tv_item_title)
-        val tvRelease: TextView = itemView.findViewById(R.id.tv_item_release)
+    inner class GridViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgPoster: ImageView = itemView.findViewById(R.id.img_item_poster)
         val tvRating: TextView = itemView.findViewById(R.id.tv_item_rating)
-        val tvOverview: TextView = itemView.findViewById(R.id.tv_item_overview)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_row_movie, parent, false)
-        return ListViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GridViewHolder {
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_grid_movie, parent, false)
+        return GridViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GridViewHolder, position: Int) {
         val movie = movieList[position]
         Timber.i("Data Movie: $position")
-        holder.tvTitle.text = movie.title
-        holder.tvRelease.text = movie.release
         /**
          * How to load image with hard coded way
          *    val imgUrl = URL("https://image.tmdb.org/t/p/w200/${movie.poster}")
@@ -44,7 +38,6 @@ class MovieListAdapter(private val movieList: ArrayList<Movie>) : MovieRVAdapter
             .apply(RequestOptions().override(165, 250))
             .into(holder.imgPoster)
         holder.tvRating.text = movie.rating.toString()
-        holder.tvOverview.text = movie.overview
         holder.itemView.setOnClickListener {
             onItemClickedCallback.onItemClicked(movieList[holder.bindingAdapterPosition])
         }

@@ -36,7 +36,7 @@ class HeroGridViewAdapter(private val context: Context, private val heroList: Ar
         Timber.i("Data Hero: $position")
         var gridView = convertView
         if (gridView == null) {
-            gridView = inflater!!.inflate(R.layout.item_grid_hero, parent, false)
+            gridView = inflater.inflate(R.layout.item_grid_hero, parent, false)
         }
         val imgPhoto: ImageView = gridView!!.findViewById(R.id.img_item_photo)
         imgPhoto.setImageResource(hero.photo)

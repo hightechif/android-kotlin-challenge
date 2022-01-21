@@ -12,13 +12,7 @@ import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Hero
 import timber.log.Timber
 
-class HeroListAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<HeroListAdapter.ListViewHolder>() {
-
-    lateinit var onItemClickedCallback: HeroCallbackInterface
-
-    fun setOnClickedCallback(callback: HeroCallbackInterface) {
-        this.onItemClickedCallback = callback
-    }
+class HeroListAdapter(private val heroList: ArrayList<Hero>) : HeroRVAdapter<HeroListAdapter.ListViewHolder>(heroList) {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
@@ -43,9 +37,5 @@ class HeroListAdapter(private val heroList: ArrayList<Hero>) : RecyclerView.Adap
         holder.itemView.setOnClickListener {
             onItemClickedCallback.onItemClicked(heroList[holder.bindingAdapterPosition])
         }
-    }
-
-    override fun getItemCount(): Int {
-        return heroList.size
     }
 }

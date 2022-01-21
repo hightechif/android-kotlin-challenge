@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="textParagraph">18sp</dimen>
-    <dimen name="textLabel">14sp</dimen>
     <dimen name="textH3">24sp</dimen>
-    <dimen name="textRating">9sp</dimen>
+    <dimen name="text_18_sp">18sp</dimen>
+    <dimen name="text_16_sp">16sp</dimen>
+    <dimen name="text_14_sp">14sp</dimen>
+    <dimen name="text_12_sp">12sp</dimen>
     <dimen name="defaultMargin">16dp</dimen>
     <dimen name="smallMargin">5dp</dimen>
-    <dimen name="defaultPadding">5dp</dimen>
+    <dimen name="smallPadding">5dp</dimen>
 </resources>

@@ -6,8 +6,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.adapter.MovieCallbackInterface
+import com.fadhil.challenge.adapter.MovieCardViewAdapter
+import com.fadhil.challenge.adapter.MovieGridAdapter
 import com.fadhil.challenge.adapter.MovieListAdapter
 import com.fadhil.challenge.constant.enum.RequestStatus
 import com.fadhil.challenge.databinding.ActivityMoviesBinding
@@ -79,7 +82,7 @@ class MoviesActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.overflow_menu, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -96,14 +99,31 @@ class MoviesActivity : AppCompatActivity() {
             }
             R.id.action_grid -> {
                 title = "Movies App: Mode Grid"
-//                showMoviesRecyclerGrid()
+                showMoviesRecyclerGrid()
             }
             R.id.action_cardView -> {
                 title = "Movies App: Mode CardView"
-//                showMoviesRecyclerCardView()
+                showMoviesRecyclerCardView()
             }
         }
         setActionBarTitle(title)
+    }
+
+    private fun showMoviesRecyclerGrid() {
+        binding.rvMovies.layoutManager = GridLayoutManager(this, 2)
+        val movieGridAdapter = MovieGridAdapter(list)
+        binding.rvMovies.adapter = movieGridAdapter
+        movieGridAdapter.setOnClickedCallback(object : MovieCallbackInterface {
+            override fun onItemClicked(data: Movie) {
+                showSelectedHero(data)
+            }
+        })
+    }
+
+    private fun showMoviesRecyclerCardView() {
+        binding.rvMovies.layoutManager = LinearLayoutManager(this)
+        val movieCardViewAdapter = MovieCardViewAdapter(list)
+        binding.rvMovies.adapter = movieCardViewAdapter
     }
 
     private fun setActionBarTitle(title: String) {
