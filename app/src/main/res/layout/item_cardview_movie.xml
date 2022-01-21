@@ -14,7 +14,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="235dp"
         android:padding="8dp">
 
         <FrameLayout
@@ -57,12 +57,11 @@
             android:id="@+id/tv_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="@dimen/defaultMargin"
+            android:layout_marginTop="@dimen/defaultMargin"
+            android:layout_marginRight="@dimen/defaultMargin"
             android:layout_marginBottom="8dp"
             android:layout_toEndOf="@id/fl_item_poster"
-            android:layout_toRightOf="@id/fl_item_poster"
             android:textSize="@dimen/text_16_sp"
             android:textStyle="bold"
             tools:text="@string/movies_title" />
@@ -73,10 +72,9 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/layout_button"
             android:layout_below="@id/tv_item_title"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="@dimen/defaultMargin"
+            android:layout_marginRight="@dimen/defaultMargin"
             android:layout_toEndOf="@id/fl_item_poster"
-            android:layout_toRightOf="@id/fl_item_poster"
             android:ellipsize="end"
             android:maxLines="5"
             tools:text="@string/release_date" />
@@ -87,9 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_toEndOf="@id/fl_item_poster"
-            android:layout_toRightOf="@id/fl_item_poster"
             android:orientation="horizontal">
 
             <Button
@@ -99,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/favorite"
-                android:textSize="11sp" />
+                android:textSize="@dimen/text_10_sp" />
 
             <Button
                 android:id="@+id/btn_set_share"
@@ -108,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/share"
-                android:textSize="11sp" />
+                android:textSize="@dimen/text_10_sp" />
 
         </LinearLayout>
     </RelativeLayout>

@@ -24,10 +24,6 @@
             android:exported="true"
             android:label="Movies App" />
         <activity
-            android:name=".SampleApiActivity"
-            android:exported="true"
-            android:label="Sample API" />
-        <activity
             android:name=".HeroesActivity"
             android:exported="true"
             android:label="Heroes App" />
@@ -45,7 +41,6 @@
             android:label="Challenge App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
