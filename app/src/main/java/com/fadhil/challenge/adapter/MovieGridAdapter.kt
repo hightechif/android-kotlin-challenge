@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Movie
-import timber.log.Timber
 
 class MovieGridAdapter(private val movieList: ArrayList<Movie>) : MovieRVAdapter<MovieGridAdapter.GridViewHolder>(movieList) {
 
@@ -26,7 +25,6 @@ class MovieGridAdapter(private val movieList: ArrayList<Movie>) : MovieRVAdapter
 
     override fun onBindViewHolder(holder: GridViewHolder, position: Int) {
         val movie = movieList[position]
-        Timber.i("Data Movie: $position")
         /**
          * How to load image with hard coded way
          *    val imgUrl = URL("https://image.tmdb.org/t/p/w200/${movie.poster}")

@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Movie
-import timber.log.Timber
 
 class MovieListAdapter(private val movieList: ArrayList<Movie>) : MovieRVAdapter<MovieListAdapter.ListViewHolder>(movieList) {
 
@@ -30,7 +29,6 @@ class MovieListAdapter(private val movieList: ArrayList<Movie>) : MovieRVAdapter
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val movie = movieList[position]
-        Timber.i("Data Movie: $position")
         holder.tvTitle.text = movie.title
         holder.tvRelease.text = movie.release
         /**

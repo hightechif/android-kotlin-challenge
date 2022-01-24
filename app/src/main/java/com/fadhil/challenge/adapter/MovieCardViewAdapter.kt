@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Movie
-import timber.log.Timber
 
 class MovieCardViewAdapter(private val movieList: ArrayList<Movie>) : MovieRVAdapter<MovieCardViewAdapter.CardViewHolder>(movieList) {
 
@@ -45,7 +44,6 @@ class MovieCardViewAdapter(private val movieList: ArrayList<Movie>) : MovieRVAda
             .apply(RequestOptions().override(165, 250))
             .into(holder.imgPoster)
         holder.tvRating.text = movie.rating.toString()
-        Timber.i("Data Movie: $position")
 
         holder.itemView.setOnClickListener {
             Toast.makeText(holder.itemView.context, "Kamu memilih " + movieList[holder.bindingAdapterPosition].title, Toast.LENGTH_SHORT).show()

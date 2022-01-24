@@ -17,8 +17,7 @@ import com.fadhil.challenge.databinding.ActivityMoviesBinding
 import com.fadhil.challenge.model.BaseResponse
 import com.fadhil.challenge.model.Movie
 import com.fadhil.challenge.retrofit.MovieRetrofitClient
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,13 +42,15 @@ class MoviesActivity : AppCompatActivity() {
         setActionBarTitle(title)
 
         binding.rvMovies.setHasFixedSize(true)
-        GlobalScope.launch {
-            fetchMovieList()
+        runBlocking {
+            launch {
+                fetchMovieList()
+            }
         }
         showMoviesRecyclerList()
     }
 
-    private suspend fun fetchMovieList() {
+    private fun fetchMovieList() {
         MovieRetrofitClient.instance.getMovieList(page, API_KEY)
             .enqueue(object : Callback<BaseResponse> {
                 override fun onResponse(
@@ -66,7 +67,6 @@ class MoviesActivity : AppCompatActivity() {
                     setVisibility(RequestStatus.ERROR)
                     binding.tvErrorMessage.text = t.message
                 }
-
             })
     }
 

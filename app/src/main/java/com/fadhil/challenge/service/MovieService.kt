@@ -1,6 +1,7 @@
 package com.fadhil.challenge.service
 
 import com.fadhil.challenge.model.BaseResponse
+import com.fadhil.challenge.model.Movie
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -8,7 +9,7 @@ import retrofit2.http.Query
 interface MovieService {
 
     @GET("/3/discover/movie")
-    suspend fun getMovieList(
+    fun getMovieList(
         @Query("page") page: Int,
         @Query("api_key") apiKey: String
     ): Call<BaseResponse>
