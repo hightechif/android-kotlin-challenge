@@ -16,7 +16,7 @@ import com.fadhil.challenge.constant.enum.RequestStatus
 import com.fadhil.challenge.databinding.ActivityMoviesBinding
 import com.fadhil.challenge.model.BaseResponse
 import com.fadhil.challenge.model.Movie
-import com.fadhil.challenge.retrofit.MovieRetrofitClient
+import com.fadhil.challenge.network.MoviesApi
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,7 +51,7 @@ class MoviesActivity : AppCompatActivity() {
     }
 
     private fun fetchMovieList() {
-        MovieRetrofitClient.instance.getMovieList(page, API_KEY)
+        MoviesApi.instance.getMovieList(page, API_KEY)
             .enqueue(object : Callback<BaseResponse> {
                 override fun onResponse(
                     call: Call<BaseResponse>,
