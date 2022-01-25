@@ -57,8 +57,8 @@
             android:id="@+id/tv_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/smallMargin"
-            android:layout_marginRight="@dimen/defaultMargin"
+            android:layout_marginStart="@dimen/smallMargin"
+            android:layout_marginEnd="@dimen/smallMargin"
             android:layout_marginBottom="8dp"
             android:layout_toEndOf="@id/fl_item_poster"
             android:textSize="@dimen/text_16_sp"
@@ -68,15 +68,28 @@
         <TextView
             android:id="@+id/tv_item_release"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/layout_button"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tv_item_title"
-            android:layout_marginLeft="@dimen/smallMargin"
-            android:layout_marginRight="@dimen/defaultMargin"
+            android:layout_marginStart="@dimen/smallMargin"
+            android:layout_marginEnd="@dimen/smallMargin"
             android:layout_toEndOf="@id/fl_item_poster"
-            android:ellipsize="end"
             android:maxLines="5"
             tools:text="@string/release_date" />
+
+        <TextView
+            android:id="@+id/tv_item_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/layout_button"
+            android:layout_below="@id/tv_item_release"
+            android:layout_marginStart="@dimen/smallMargin"
+            android:layout_marginTop="@dimen/smallMargin"
+            android:layout_marginEnd="@dimen/smallMargin"
+            android:layout_marginBottom="@dimen/smallMargin"
+            android:layout_toEndOf="@id/fl_item_poster"
+            android:ellipsize="end"
+            android:textSize="@dimen/text_12_sp"
+            tools:text="@string/movies_overview" />
 
         <LinearLayout
             android:id="@+id/layout_button"

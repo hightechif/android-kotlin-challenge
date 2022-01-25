@@ -21,6 +21,7 @@ class MovieCardViewAdapter(private val movieList: ArrayList<Movie>) : MovieRVAda
         val tvRating: TextView = itemView.findViewById(R.id.tv_item_rating)
         val btnFavorite: TextView = itemView.findViewById(R.id.btn_set_favorite)
         val btnShare: TextView = itemView.findViewById(R.id.btn_set_share)
+        val tvOverview: TextView = itemView.findViewById(R.id.tv_item_overview)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
@@ -33,6 +34,7 @@ class MovieCardViewAdapter(private val movieList: ArrayList<Movie>) : MovieRVAda
         val movie = movieList[position]
         holder.tvTitle.text = movie.title
         holder.tvRelease.text = movie.release
+        holder.tvOverview.text = movie.overview
         /**
          * How to load image with hard coded way
          *    val imgUrl = URL("https://image.tmdb.org/t/p/w200/${movie.poster}")

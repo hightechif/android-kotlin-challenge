@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.adapter.MovieCallbackInterface
@@ -42,10 +43,8 @@ class MoviesActivity : AppCompatActivity() {
         setActionBarTitle(title)
 
         binding.rvMovies.setHasFixedSize(true)
-        runBlocking {
-            launch {
+        lifecycle.coroutineScope.launch {
                 fetchMovieList()
-            }
         }
         showMoviesRecyclerList()
     }

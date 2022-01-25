@@ -66,6 +66,7 @@
             android:id="@+id/tv_item_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:textSize="@dimen/text_12_sp"
             tools:text="@string/movies_overview" />
 
