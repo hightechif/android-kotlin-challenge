@@ -1,4 +1,4 @@
-package com.fadhil.challenge.constant.enum
+package com.fadhil.challenge.constant
 
 enum class ViewMode {
     RECYCLE_VIEW,

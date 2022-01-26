@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnMoviesCTA.setOnClickListener {
             openMoviesApp()
         }
+        binding.btnStudentCTA.setOnClickListener {
+            openStudentApp()
+        }
     }
 
     private fun openCalculator() {
@@ -57,6 +60,11 @@ class MainActivity : AppCompatActivity() {
     private fun openMoviesApp() {
         val moviesIntent = Intent(this, MoviesActivity::class.java)
         startActivity(moviesIntent)
+    }
+
+    private fun openStudentApp() {
+        val studentIntent = Intent(this, StudentActivity::class.java)
+        startActivity(studentIntent)
     }
 
 }

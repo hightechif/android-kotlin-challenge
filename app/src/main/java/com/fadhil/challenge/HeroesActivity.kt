@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.adapter.*
-import com.fadhil.challenge.constant.enum.ViewMode
+import com.fadhil.challenge.constant.ViewMode
 import com.fadhil.challenge.data.HeroesData
 import com.fadhil.challenge.databinding.ActivityHeroesBinding
 import com.fadhil.challenge.model.Hero

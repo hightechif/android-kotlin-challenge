@@ -13,7 +13,7 @@ import com.fadhil.challenge.adapter.MovieCallbackInterface
 import com.fadhil.challenge.adapter.MovieCardViewAdapter
 import com.fadhil.challenge.adapter.MovieGridAdapter
 import com.fadhil.challenge.adapter.MovieListAdapter
-import com.fadhil.challenge.constant.enum.RequestStatus
+import com.fadhil.challenge.constant.RequestStatus
 import com.fadhil.challenge.databinding.ActivityMoviesBinding
 import com.fadhil.challenge.model.BaseResponse
 import com.fadhil.challenge.model.Movie
