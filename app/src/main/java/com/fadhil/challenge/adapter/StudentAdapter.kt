@@ -1,16 +1,14 @@
 package com.fadhil.challenge.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.data.room.student.Student
-import com.fadhil.challenge.databinding.ActivityStudentBinding
 import com.fadhil.challenge.databinding.ItemRowStudentBinding
 
-class StudentAdapter(private val onItemClicked: (Student) -> Unit): ListAdapter<Student, StudentAdapter.StudentViewHolder>(DiffCallback) {
+class StudentAdapter(private val onItemClicked: (Student) -> Unit) : ListAdapter<Student, StudentAdapter.StudentViewHolder>(DiffCallback) {
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Student>() {
@@ -24,7 +22,7 @@ class StudentAdapter(private val onItemClicked: (Student) -> Unit): ListAdapter<
         }
     }
 
-    inner class StudentViewHolder(private var binding: ItemRowStudentBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class StudentViewHolder(private var binding: ItemRowStudentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(student: Student) {
             binding.tvItemId.text = student.id.toString()
             binding.tvItemName.text = student.name
