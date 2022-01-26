@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
@@ -18,6 +19,7 @@ import com.fadhil.challenge.viewmodels.StudentViewModel
 import com.fadhil.challenge.viewmodels.StudentViewModelFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class AllStudentsFragment : Fragment() {
 
@@ -38,8 +40,7 @@ class AllStudentsFragment : Fragment() {
         _binding = FragmentAllStudentsBinding.inflate(inflater, container, false)
 
         binding.btnAddStudent.setOnClickListener {
-            val toast =
-                Toast.makeText(context?.applicationContext, "Button Clicked", Toast.LENGTH_SHORT)
+            val toast = Toast.makeText(context?.applicationContext, "Button Clicked", Toast.LENGTH_SHORT)
             toast.show()
         }
 
@@ -48,15 +49,24 @@ class AllStudentsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnAddStudent.setOnClickListener {
+            val action = AllStudentsFragmentDirections.actionAllStudentsFragmentToAddStudentFragment()
+            view.findNavController().navigate(action)
+        }
         recyclerView = binding.rvStudent
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val studentAdapater = StudentAdapter {
-            val action =
-                AllStudentsFragmentDirections.actionFullScheduleFragmentToAddStudentFragment()
-            view.findNavController().navigate(action)
+        val studentAdapter = StudentAdapter {
+            val bundle = Bundle()
+            bundle.putInt("student_id", it.id)
+            bundle.putString("student_name", it.name)
+            bundle.putSerializable("student_gender", it.gender)
+            bundle.putFloat("student_gpa", it.gpa)
+            val action = AllStudentsFragmentDirections.actionAllStudentsFragmentToStudentDetailFragment()
+            view.findNavController().navigate(action.actionId, bundle)
         }
-        recyclerView.adapter = studentAdapater
+        recyclerView.adapter = studentAdapter
 
         // submitList() is a call that accesses the database. To prevent the
         // call from potentially locking the UI, you should use a
@@ -64,7 +74,7 @@ class AllStudentsFragment : Fragment() {
         // best practice, and in the next step we'll see how to improve this.
         lifecycle.coroutineScope.launch {
             viewModel.allStudents().collect() {
-                studentAdapater.submitList(it)
+                studentAdapter.submitList(it)
             }
         }
     }

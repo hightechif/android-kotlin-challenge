@@ -1,6 +1,7 @@
 package com.fadhil.challenge.data.room.student
 
 import androidx.annotation.NonNull
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.fadhil.challenge.constant.Gender
@@ -9,14 +10,14 @@ import com.fadhil.challenge.constant.Gender
 data class Student(
 
     @PrimaryKey(autoGenerate = true)
-    var id: Int,
-
+    val id: Int = 0,
     @NonNull
-    var name: String,
-
+    @ColumnInfo(name = "name")
+    val name: String,
     @NonNull
-    var gender: Gender,
-
+    @ColumnInfo(name = "gender")
+    val gender: Gender,
     @NonNull
-    var gpa: Float
+    @ColumnInfo(name = "gpa")
+    val gpa: Float
 )

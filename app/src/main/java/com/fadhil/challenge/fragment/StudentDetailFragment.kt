@@ -1,31 +1,32 @@
 package com.fadhil.challenge.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.fadhil.challenge.MainApplication
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
-import com.fadhil.challenge.data.room.student.Student
-import com.fadhil.challenge.databinding.FragmentAddStudentBinding
+import com.fadhil.challenge.databinding.FragmentStudentDetailBinding
+import com.fadhil.challenge.model.StudentDto
 import com.fadhil.challenge.viewmodels.StudentViewModel
 import com.fadhil.challenge.viewmodels.StudentViewModelFactory
 
-class AddStudentFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private var _binding: FragmentAddStudentBinding? = null
+    private var _binding: FragmentStudentDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var spinner: Spinner
     private lateinit var selectedGender: Gender
     private var genderOption = arrayOf(Gender.MALE, Gender.FEMALE)
+    private var studentDto: StudentDto? = null
 
     private val viewModel: StudentViewModel by activityViewModels {
         StudentViewModelFactory(
@@ -34,13 +35,19 @@ class AddStudentFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
     }
 
-    lateinit var student: Student
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAddStudentBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_student_detail, container, false)
+        studentDto = StudentDto(
+            arguments?.getInt("student_id")!!,
+            arguments?.getString("student_name")!!,
+            arguments?.getSerializable("student_gender") as Gender,
+            arguments?.getFloat("student_gpa")!!,
+        )
+        binding.studentDto = studentDto
+        binding.selected = genderOption.indexOf(studentDto?.gender!!)
         spinner = binding.spnStudentGender
         spinner.onItemSelectedListener = this
         val spinnerAdapter = ArrayAdapter.createFromResource(
@@ -55,8 +62,8 @@ class AddStudentFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnSaveStudent.setOnClickListener {
-            addNewStudent()
+        binding.btnUpdateStudent.setOnClickListener {
+            updateStudent()
         }
     }
 
@@ -68,15 +75,15 @@ class AddStudentFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
     }
 
-    private fun addNewStudent() {
+    private fun updateStudent() {
         if (isEntryValid()) {
-            viewModel.addNewStudent(
+            viewModel.updateStudent(
                 binding.etStudentName.text.toString(),
                 selectedGender,
                 binding.etStudentGpa.text.toString().toFloat(),
             )
         }
-        val action = AddStudentFragmentDirections.actionAddStudentFragmentToAllStudentsFragment()
+        val action = StudentDetailFragmentDirections.actionStudentDetailFragmentToAllStudentsFragment()
         findNavController().navigate(action)
     }
 
@@ -85,7 +92,8 @@ class AddStudentFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        selectedGender = Gender.MALE
+        val gender = arguments?.getSerializable("student_gender") as Gender
+        selectedGender = gender
     }
 
     override fun onDestroyView() {
