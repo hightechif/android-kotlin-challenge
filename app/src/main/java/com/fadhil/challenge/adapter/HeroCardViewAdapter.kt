@@ -19,7 +19,7 @@ class HeroCardViewAdapter(private val heroList: ArrayList<Hero>) : HeroRVAdapter
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
-        var tvDetail: TextView = itemView.findViewById(R.id.tv_item_detail)
+        var tvDetail: TextView = itemView.findViewById(R.id.tv_item_gpa)
         var btnFavorite: Button = itemView.findViewById(R.id.btn_set_favorite)
         var btnShare: Button = itemView.findViewById(R.id.btn_set_share)
     }

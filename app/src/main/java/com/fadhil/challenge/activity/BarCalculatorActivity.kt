@@ -1,9 +1,10 @@
-package com.fadhil.challenge
+package com.fadhil.challenge.activity
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.fadhil.challenge.R
 import com.fadhil.challenge.databinding.ActivityBarCalculatorBinding
 import com.fadhil.challenge.model.Bar
 

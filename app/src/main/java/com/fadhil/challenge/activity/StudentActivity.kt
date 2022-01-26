@@ -1,7 +1,8 @@
-package com.fadhil.challenge
+package com.fadhil.challenge.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.fadhil.challenge.R
 
 class StudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

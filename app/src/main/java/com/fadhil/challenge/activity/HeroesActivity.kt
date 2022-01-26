@@ -1,4 +1,4 @@
-package com.fadhil.challenge
+package com.fadhil.challenge.activity
 
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fadhil.challenge.R
 import com.fadhil.challenge.adapter.*
 import com.fadhil.challenge.constant.ViewMode
 import com.fadhil.challenge.data.HeroesData

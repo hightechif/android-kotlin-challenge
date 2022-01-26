@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/defaultMargin"
-    tools:context=".StudentActivity">
+    tools:context=".activity.StudentActivity">
 
     <LinearLayout
         android:id="@+id/fieldNames"
@@ -46,7 +46,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_item_detail"
+            android:id="@+id/tv_item_gpa"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

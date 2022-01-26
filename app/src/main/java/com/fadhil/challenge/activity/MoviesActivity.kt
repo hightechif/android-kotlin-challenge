@@ -1,4 +1,4 @@
-package com.fadhil.challenge
+package com.fadhil.challenge.activity
 
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fadhil.challenge.R
 import com.fadhil.challenge.adapter.MovieCallbackInterface
 import com.fadhil.challenge.adapter.MovieCardViewAdapter
 import com.fadhil.challenge.adapter.MovieGridAdapter

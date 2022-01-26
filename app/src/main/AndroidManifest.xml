@@ -21,23 +21,23 @@
         android:theme="@style/Theme.Challenge"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".StudentActivity"
+            android:name=".activity.StudentActivity"
             android:exported="true"
             android:label="Student Data Management"/>
         <activity
-            android:name=".MoviesActivity"
+            android:name=".activity.MoviesActivity"
             android:exported="true"
             android:label="Movies App" />
         <activity
-            android:name=".HeroesActivity"
+            android:name=".activity.HeroesActivity"
             android:exported="true"
             android:label="Heroes App" />
         <activity
-            android:name=".MyViewActivity"
+            android:name=".activity.MyViewActivity"
             android:exported="true"
             android:label="My View App" />
         <activity
-            android:name=".BarCalculatorActivity"
+            android:name=".activity.BarCalculatorActivity"
             android:exported="true"
             android:label="Bar Calculator" />
         <activity

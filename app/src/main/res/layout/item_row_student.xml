@@ -32,7 +32,7 @@
         tools:text="@string/student_gender" />
 
     <TextView
-        android:id="@+id/tv_item_detail"
+        android:id="@+id/tv_item_gpa"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"

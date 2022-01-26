@@ -40,7 +40,7 @@ class HeroListViewAdapter(private val context: Context, private val heroList: Ar
             rowView = inflater.inflate(R.layout.item_row_hero, parent, false)
         }
         val tvName: TextView = rowView!!.findViewById(R.id.tv_item_name)
-        val tvDetail: TextView = rowView.findViewById(R.id.tv_item_detail)
+        val tvDetail: TextView = rowView.findViewById(R.id.tv_item_gpa)
         val imgPhoto: ImageView = rowView.findViewById(R.id.img_item_photo)
         tvName.text = hero.name
         tvDetail.text = hero.detail

@@ -39,7 +39,7 @@
             tools:text="@string/heroes_name" />
 
         <TextView
-            android:id="@+id/tv_item_detail"
+            android:id="@+id/tv_item_gpa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/layout_button"
