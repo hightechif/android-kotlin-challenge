@@ -67,4 +67,5 @@
     <string name="btn_update_student">Update student</string>
     <string name="btn_delete_all_students">Delete all</string>
     <string name="delete">delete</string>
+    <string name="action">Action</string>
 </resources>

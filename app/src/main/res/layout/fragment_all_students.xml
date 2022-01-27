@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/tv_item_gender"
-            android:layout_width="70dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:ellipsize="end"
@@ -47,12 +47,24 @@
 
         <TextView
             android:id="@+id/tv_item_gpa"
-            android:layout_width="70dp"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@string/student_gpa"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_item_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/action"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -69,7 +81,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_student"
