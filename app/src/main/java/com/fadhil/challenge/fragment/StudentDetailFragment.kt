@@ -26,7 +26,7 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var spinner: Spinner
     private lateinit var selectedGender: Gender
     private var genderOption = arrayOf(Gender.MALE, Gender.FEMALE)
-    private var studentDto: StudentDto? = null
+    private lateinit var studentDto: StudentDto
 
     private val viewModel: StudentViewModel by activityViewModels {
         StudentViewModelFactory(
@@ -46,9 +46,8 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
             arguments?.getSerializable("student_gender") as Gender,
             arguments?.getFloat("student_gpa")!!,
         )
-        selectedGender = arguments?.getSerializable("student_gender") as Gender
         binding.studentDto = studentDto
-        binding.selected = genderOption.indexOf(studentDto?.gender!!)
+        binding.selected = genderOption.indexOf(studentDto.gender)
         spinner = binding.spnStudentGender
         spinner.onItemSelectedListener = this
         val spinnerAdapter = ArrayAdapter.createFromResource(
@@ -71,7 +70,7 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun isEntryValid(): Boolean {
         return viewModel.isEntryValid(
             binding.etStudentName.text.toString(),
-            binding.spnStudentGender.selectedItemPosition.toString(),
+            genderOption[binding.spnStudentGender.selectedItemPosition].toString(),
             binding.etStudentGpa.text.toString()
         )
     }
@@ -79,9 +78,9 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun updateStudent() {
         if (isEntryValid()) {
             viewModel.updateStudent(
-                studentDto?.id!!,
+                studentDto.id,
                 binding.etStudentName.text.toString(),
-                selectedGender,
+                genderOption[binding.spnStudentGender.selectedItemPosition],
                 binding.etStudentGpa.text.toString().toFloat(),
             )
         }
