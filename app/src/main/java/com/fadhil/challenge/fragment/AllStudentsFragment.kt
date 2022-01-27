@@ -38,12 +38,6 @@ class AllStudentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAllStudentsBinding.inflate(inflater, container, false)
-
-        binding.btnAddStudent.setOnClickListener {
-            val toast = Toast.makeText(context?.applicationContext, "Button Clicked", Toast.LENGTH_SHORT)
-            toast.show()
-        }
-
         return binding.root
     }
 
@@ -54,6 +48,13 @@ class AllStudentsFragment : Fragment() {
             val action = AllStudentsFragmentDirections.actionAllStudentsFragmentToAddStudentFragment()
             view.findNavController().navigate(action)
         }
+
+        binding.btnDeleteAllStudents.setOnClickListener {
+            lifecycle.coroutineScope.launch {
+                viewModel.deleteAll()
+            }
+        }
+
         recyclerView = binding.rvStudent
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 

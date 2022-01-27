@@ -1,6 +1,7 @@
 package com.fadhil.challenge.data.room.student
 
 import androidx.room.*
+import com.fadhil.challenge.model.StudentDto
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -13,15 +14,18 @@ interface StudentDao {
     fun getAll(): Flow<List<Student>>
 
     @Query("SELECT * FROM student WHERE id = :id ORDER BY id ASC")
-    fun getStudent(id: Int): Flow<Student>
+    fun getStudentById(id: Int): Flow<Student>
 
     @Query("SELECT * FROM student WHERE gpa >= 3.00 ORDER BY gpa DESC")
     fun getSmartStudents(): Flow<List<Student>>
 
-    @Update
-    suspend fun update(student: Student)
+    @Update(entity = Student::class)
+    suspend fun update(studentDto: StudentDto)
 
-    @Delete
-    suspend fun delete(student: Student)
+    @Delete(entity = Student::class)
+    suspend fun delete(studentDto: StudentDto)
+
+    @Query("DELETE FROM student")
+    suspend fun deleteAll()
 
 }

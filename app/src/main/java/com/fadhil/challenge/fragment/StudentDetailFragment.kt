@@ -46,6 +46,7 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
             arguments?.getSerializable("student_gender") as Gender,
             arguments?.getFloat("student_gpa")!!,
         )
+        selectedGender = arguments?.getSerializable("student_gender") as Gender
         binding.studentDto = studentDto
         binding.selected = genderOption.indexOf(studentDto?.gender!!)
         spinner = binding.spnStudentGender
@@ -70,7 +71,7 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun isEntryValid(): Boolean {
         return viewModel.isEntryValid(
             binding.etStudentName.text.toString(),
-            selectedGender.toString(),
+            binding.spnStudentGender.selectedItemPosition.toString(),
             binding.etStudentGpa.text.toString()
         )
     }
@@ -78,6 +79,7 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun updateStudent() {
         if (isEntryValid()) {
             viewModel.updateStudent(
+                studentDto?.id!!,
                 binding.etStudentName.text.toString(),
                 selectedGender,
                 binding.etStudentGpa.text.toString().toFloat(),
@@ -92,8 +94,7 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        val gender = arguments?.getSerializable("student_gender") as Gender
-        selectedGender = gender
+        selectedGender = arguments?.getSerializable("student_gender") as Gender
     }
 
     override fun onDestroyView() {

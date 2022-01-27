@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.fadhil.challenge.constant.Gender
 import com.fadhil.challenge.data.room.student.Student
 import com.fadhil.challenge.data.room.student.StudentDao
+import com.fadhil.challenge.model.StudentDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -18,12 +19,16 @@ class StudentViewModel(private val studentDao: StudentDao) : ViewModel() {
 
     fun allStudents(): Flow<List<Student>> = studentDao.getAll()
 
-    fun updateStudent(name: String, gender: Gender, gpa: Float) {
-        val updatedStudent = getNewStudentEntry(name, gender, gpa)
+    fun getStudentById(id: Int): Flow<Student> = studentDao.getStudentById(id)
+
+    fun updateStudent(id: Int,name: String, gender: Gender, gpa: Float) {
+        val updatedStudent = StudentDto(id, name, gender, gpa)
         viewModelScope.launch {
             studentDao.update(updatedStudent)
         }
     }
+
+    suspend fun deleteAll() = studentDao.deleteAll()
 
     private fun getNewStudentEntry(name: String, gender: Gender, gpa: Float): Student {
         return Student(
