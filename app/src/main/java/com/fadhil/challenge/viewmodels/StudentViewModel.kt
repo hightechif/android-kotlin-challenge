@@ -28,6 +28,8 @@ class StudentViewModel(private val studentDao: StudentDao) : ViewModel() {
         }
     }
 
+    suspend fun deleteOne(student: Student) = studentDao.delete(student)
+
     suspend fun deleteAll() = studentDao.deleteAll()
 
     private fun getNewStudentEntry(name: String, gender: Gender, gpa: Float): Student {

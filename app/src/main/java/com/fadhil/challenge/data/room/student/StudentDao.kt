@@ -23,7 +23,7 @@ interface StudentDao {
     suspend fun update(studentDto: StudentDto)
 
     @Delete(entity = Student::class)
-    suspend fun delete(studentDto: StudentDto)
+    suspend fun delete(student: Student)
 
     @Query("DELETE FROM student")
     suspend fun deleteAll()

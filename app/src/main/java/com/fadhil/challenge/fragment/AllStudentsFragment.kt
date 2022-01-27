@@ -8,13 +8,18 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.MainApplication
 import com.fadhil.challenge.adapter.StudentAdapter
+import com.fadhil.challenge.adapter.StudentOnDeleteOne
+import com.fadhil.challenge.data.room.student.Student
 import com.fadhil.challenge.databinding.FragmentAllStudentsBinding
+import com.fadhil.challenge.databinding.ItemRowStudentBinding
+import com.fadhil.challenge.model.Movie
 import com.fadhil.challenge.viewmodels.StudentViewModel
 import com.fadhil.challenge.viewmodels.StudentViewModelFactory
 import kotlinx.coroutines.flow.collect
@@ -25,6 +30,7 @@ class AllStudentsFragment : Fragment() {
 
     private var _binding: FragmentAllStudentsBinding? = null
     private val binding get() = _binding!!
+    private var list: MutableList<Student> = mutableListOf()
     private lateinit var recyclerView: RecyclerView
 
     private val viewModel: StudentViewModel by activityViewModels {
@@ -36,7 +42,7 @@ class AllStudentsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAllStudentsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -58,16 +64,16 @@ class AllStudentsFragment : Fragment() {
         recyclerView = binding.rvStudent
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val studentAdapter = StudentAdapter {
-            val bundle = Bundle()
-            bundle.putInt("student_id", it.id)
-            bundle.putString("student_name", it.name)
-            bundle.putSerializable("student_gender", it.gender)
-            bundle.putFloat("student_gpa", it.gpa)
-            val action = AllStudentsFragmentDirections.actionAllStudentsFragmentToStudentDetailFragment()
-            view.findNavController().navigate(action.actionId, bundle)
-        }
+        val studentAdapter = StudentAdapter(this::onItemViewClicked, list)
         recyclerView.adapter = studentAdapter
+        studentAdapter.setOnDeleteCallback(object: StudentOnDeleteOne {
+            override fun onItemClicked(data: Student) {
+                lifecycle.coroutineScope.launch {
+                    viewModel.deleteOne(data)
+                }
+            }
+
+        })
 
         // submitList() is a call that accesses the database. To prevent the
         // call from potentially locking the UI, you should use a
@@ -76,8 +82,19 @@ class AllStudentsFragment : Fragment() {
         lifecycle.coroutineScope.launch {
             viewModel.allStudents().collect() {
                 studentAdapter.submitList(it)
+                list.addAll(it)
             }
         }
+    }
+
+    private fun onItemViewClicked(it: Student) {
+        val bundle = Bundle()
+        bundle.putInt("student_id", it.id)
+        bundle.putString("student_name", it.name)
+        bundle.putSerializable("student_gender", it.gender)
+        bundle.putFloat("student_gpa", it.gpa)
+        val action = AllStudentsFragmentDirections.actionAllStudentsFragmentToStudentDetailFragment()
+        view?.findNavController()?.navigate(action.actionId, bundle)
     }
 
     override fun onDestroyView() {

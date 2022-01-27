@@ -38,7 +38,7 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_student_detail, container, false)
         studentDto = StudentDto(
             arguments?.getInt("student_id")!!,
