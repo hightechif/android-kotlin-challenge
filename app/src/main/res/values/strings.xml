@@ -44,11 +44,11 @@
     <!-- Heroes App -->
     <string name="heroes_name">Nama Pahlawan</string>
     <string name="heroes_detail">Detail Pahlawan</string>
-    <string name="list">List</string>
-    <string name="grid">Grid</string>
+    <string name="list">RV List</string>
+    <string name="grid">RV Grid</string>
+    <string name="cardView">RV CardView</string>
     <string name="listView">ListView</string>
     <string name="gridView">GridView</string>
-    <string name="cardView">CardView</string>
 
     <!-- Movies App-->
     <string name="responseCode">Response Code</string>
@@ -68,4 +68,9 @@
     <string name="btn_delete_all_students">Delete all</string>
     <string name="delete">delete</string>
     <string name="action">Action</string>
+    <string name="img_poster">poster</string>
+
+    <!-- Detail Screen -->
+    <string name="detail_title">Detail Title</string>
+    <string name="detail_description">Description</string>
 </resources>

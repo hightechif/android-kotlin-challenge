@@ -4,17 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:paddingBottom="@dimen/size_16_dp">
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp">
+        android:layout_marginEnd="@dimen/size_16_dp">
 
         <ImageView
             android:id="@+id/img_item_poster"
             android:layout_width="165dp"
             android:layout_height="250dp"
+            android:contentDescription="@string/img_poster"
             android:scaleType="fitXY"
             tools:src="@tools:sample/avatars" />
 
@@ -51,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_18_sp"
             android:textStyle="bold"
             tools:text="@string/movies_title" />
 
@@ -60,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:textSize="@dimen/text_16_sp"
             tools:text="@string/release_date" />
 
         <TextView
@@ -67,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:maxLines="10"
             android:textSize="@dimen/text_12_sp"
             tools:text="@string/movies_overview" />
 

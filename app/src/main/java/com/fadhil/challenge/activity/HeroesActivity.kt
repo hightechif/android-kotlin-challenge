@@ -1,5 +1,6 @@
 package com.fadhil.challenge.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -28,10 +29,9 @@ class HeroesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHeroesBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-        setActionBarTitle(title)
+        setContentView(binding.root)
 
+        setActionBarTitle(title)
         binding.rvHeroes.setHasFixedSize(true)
 
         list.addAll(HeroesData.listData)
@@ -46,7 +46,7 @@ class HeroesActivity : AppCompatActivity() {
         binding.rvHeroes.adapter = heroListAdapter
         heroListAdapter.setOnClickedCallback(object : HeroCallbackInterface {
             override fun onItemClicked(data: Hero) {
-                showSelectedHero(data)
+                showHeroesDetailPage(data)
             }
         })
     }
@@ -66,10 +66,6 @@ class HeroesActivity : AppCompatActivity() {
                 binding.gvHeroes.visibility = View.VISIBLE
             }
         }
-    }
-
-    private fun showSelectedHero(hero: Hero) {
-        Toast.makeText(this, "Kamu memilih " + hero.name, Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -110,21 +106,19 @@ class HeroesActivity : AppCompatActivity() {
 
     private fun showRecyclerGrid() {
         setVisibility(ViewMode.RECYCLE_VIEW)
-
         binding.rvHeroes.layoutManager = GridLayoutManager(this, 2)
         val heroGridAdapter = HeroGridAdapter(list)
         binding.rvHeroes.adapter = heroGridAdapter
 
         heroGridAdapter.setOnClickedCallback(object : HeroCallbackInterface {
             override fun onItemClicked(data: Hero) {
-                showSelectedHero(data)
+                showHeroesDetailPage(data)
             }
         })
     }
 
     private fun showRecyclerCardView() {
         setVisibility(ViewMode.RECYCLE_VIEW)
-
         binding.rvHeroes.layoutManager = LinearLayoutManager(this)
         val heroCardViewAdapter = HeroCardViewAdapter(list)
         binding.rvHeroes.adapter = heroCardViewAdapter
@@ -138,7 +132,7 @@ class HeroesActivity : AppCompatActivity() {
 
         heroListViewAdapter.setOnClickedCallback(object : HeroCallbackInterface {
             override fun onItemClicked(data: Hero) {
-                showSelectedHero(data)
+                showHeroesDetailPage(data)
             }
         })
     }
@@ -152,12 +146,21 @@ class HeroesActivity : AppCompatActivity() {
 
         heroGridViewAdapter.setOnClickedCallback(object : HeroCallbackInterface {
             override fun onItemClicked(data: Hero) {
-                showSelectedHero(data)
+                showHeroesDetailPage(data)
             }
         })
     }
 
     private fun setActionBarTitle(title: String) {
         supportActionBar?.title = title
+    }
+
+    private fun showHeroesDetailPage(hero: Hero) {
+        Toast.makeText(this, "Kamu memilih " + hero.name, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("HERO_NAME", hero?.name)
+        intent.putExtra("HERO_DETAIL", hero?.detail)
+        intent.putExtra("HERO_PHOTO", hero?.photo)
+        startActivity(intent)
     }
 }

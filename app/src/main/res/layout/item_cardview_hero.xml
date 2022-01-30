@@ -44,8 +44,8 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/layout_button"
             android:layout_below="@id/tv_item_name"
-            android:layout_marginLeft="@dimen/defaultMargin"
-            android:layout_marginRight="@dimen/defaultMargin"
+            android:layout_marginLeft="@dimen/size_16_dp"
+            android:layout_marginRight="@dimen/size_16_dp"
             android:layout_toEndOf="@id/img_item_photo"
             android:ellipsize="end"
             android:maxLines="5"
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="@dimen/defaultMargin"
+            android:layout_marginStart="@dimen/size_16_dp"
             android:layout_toEndOf="@id/img_item_photo"
             android:orientation="horizontal">
 

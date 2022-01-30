@@ -20,7 +20,5 @@ abstract class HeroRVAdapter<VH : RecyclerView.ViewHolder>(private val heroList:
         super.bindViewHolder(holder, position)
     }
 
-    override fun getItemCount(): Int {
-        return heroList.size
-    }
+    override fun getItemCount(): Int = heroList.size
 }

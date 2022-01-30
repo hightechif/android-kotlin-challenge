@@ -1,4 +1,4 @@
-package com.fadhil.challenge.data.room.student
+package com.fadhil.challenge.data.source.local.entity
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo

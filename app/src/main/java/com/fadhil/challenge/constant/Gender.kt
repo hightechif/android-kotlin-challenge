@@ -1,6 +1,6 @@
 package com.fadhil.challenge.constant
 
-enum class Gender() {
+enum class Gender {
     MALE,
     FEMALE
 }

@@ -1,6 +1,5 @@
-package com.fadhil.challenge.network
+package com.fadhil.challenge.data.source.remote.network
 
-import com.fadhil.challenge.service.MoviesApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

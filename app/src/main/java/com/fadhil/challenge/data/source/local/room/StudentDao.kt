@@ -1,6 +1,7 @@
-package com.fadhil.challenge.data.room.student
+package com.fadhil.challenge.data.source.local.room
 
 import androidx.room.*
+import com.fadhil.challenge.data.source.local.entity.Student
 import com.fadhil.challenge.model.StudentDto
 import kotlinx.coroutines.flow.Flow
 

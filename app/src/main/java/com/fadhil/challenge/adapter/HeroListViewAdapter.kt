@@ -20,9 +20,7 @@ class HeroListViewAdapter(private val context: Context, private val heroList: Ar
         this.onItemClickedCallback = callback
     }
 
-    override fun getCount(): Int {
-        return heroList.size
-    }
+    override fun getCount(): Int = heroList.size
 
     override fun getItem(position: Int): Any {
         return heroList[position]

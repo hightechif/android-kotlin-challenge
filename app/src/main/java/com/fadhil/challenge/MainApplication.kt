@@ -1,12 +1,12 @@
 package com.fadhil.challenge
 
 import android.app.Application
-import com.fadhil.challenge.data.room.AppDatabase
+import com.fadhil.challenge.data.source.local.room.StudentDatabase
 import timber.log.Timber
 
 class MainApplication: Application() {
 
-    val database: AppDatabase by lazy { AppDatabase.getDatabase(this) }
+    val database: StudentDatabase by lazy { StudentDatabase.getDatabase(this) }
 
     override fun onCreate() {
         super.onCreate()

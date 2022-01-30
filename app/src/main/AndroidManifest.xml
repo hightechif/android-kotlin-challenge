@@ -21,9 +21,12 @@
         android:theme="@style/Theme.Challenge"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.DetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.StudentActivity"
             android:exported="true"
-            android:label="Student Data Management"/>
+            android:label="Student Data Management" />
         <activity
             android:name=".activity.MoviesActivity"
             android:exported="true"

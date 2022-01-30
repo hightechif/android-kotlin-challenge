@@ -16,9 +16,9 @@ import com.fadhil.challenge.adapter.MovieGridAdapter
 import com.fadhil.challenge.adapter.MovieListAdapter
 import com.fadhil.challenge.constant.RequestStatus
 import com.fadhil.challenge.databinding.ActivityMoviesBinding
-import com.fadhil.challenge.model.BaseResponse
+import com.fadhil.challenge.data.source.remote.response.BaseResponse
 import com.fadhil.challenge.model.Movie
-import com.fadhil.challenge.network.MoviesApi
+import com.fadhil.challenge.data.source.remote.network.MoviesApi
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,23 +39,22 @@ class MoviesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMoviesBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-        setActionBarTitle(title)
+        setContentView(binding.root)
 
+        setActionBarTitle(title)
         binding.rvMovies.setHasFixedSize(true)
         lifecycle.coroutineScope.launch {
-                fetchMovieList()
+            fetchMovieList()
         }
         showMoviesRecyclerList()
     }
 
     private fun fetchMovieList() {
         MoviesApi.instance.getMovieList(page, API_KEY)
-            .enqueue(object : Callback<BaseResponse> {
+            .enqueue(object : Callback<BaseResponse<Movie>> {
                 override fun onResponse(
-                    call: Call<BaseResponse>,
-                    response: Response<BaseResponse>
+                    call: Call<BaseResponse<Movie>>,
+                    response: Response<BaseResponse<Movie>>
                 ) {
                     setVisibility(RequestStatus.SUCCESS)
                     val responseBody = response.body()
@@ -63,7 +62,7 @@ class MoviesActivity : AppCompatActivity() {
                     responseBody?.results?.let { list.addAll(it) }
                 }
 
-                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                override fun onFailure(call: Call<BaseResponse<Movie>>, t: Throwable) {
                     setVisibility(RequestStatus.ERROR)
                     binding.tvErrorMessage.text = t.message
                 }

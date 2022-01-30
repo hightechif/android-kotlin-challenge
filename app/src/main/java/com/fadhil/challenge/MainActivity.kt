@@ -3,9 +3,11 @@ package com.fadhil.challenge
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.fadhil.challenge.activity.*
 import com.fadhil.challenge.databinding.ActivityMainBinding
+import com.fadhil.challenge.activity.StudentActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,55 +16,42 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
-        binding.btnCalculatorCTA.setOnClickListener{
-            openCalculator()
-        }
-        binding.btnCameraCTA.setOnClickListener {
-            openCamera()
-        }
-        binding.btnMyViewAppCTA.setOnClickListener {
-            openMyViewApp()
-        }
-        binding.btnHeroesCTA.setOnClickListener {
-            openHeroesApp()
-        }
-        binding.btnMoviesCTA.setOnClickListener {
-            openMoviesApp()
-        }
-        binding.btnStudentCTA.setOnClickListener {
-            openStudentApp()
-        }
+        binding.btnCalculatorCTA.setOnClickListener(this::openCalculator)
+        binding.btnCameraCTA.setOnClickListener(this::openCamera)
+        binding.btnMyViewAppCTA.setOnClickListener(this::openMyViewApp)
+        binding.btnHeroesCTA.setOnClickListener(this::openHeroesApp)
+        binding.btnMoviesCTA.setOnClickListener(this::openMoviesApp)
+        binding.btnStudentCTA.setOnClickListener(this::openStudentApp)
     }
 
-    private fun openCalculator() {
-        val activityIntent = Intent(this, BarCalculatorActivity::class.java)
-        startActivity(activityIntent)
+    private fun openCalculator(v: View?) {
+        val calculatorIntent = Intent(this, BarCalculatorActivity::class.java)
+        startActivity(calculatorIntent)
     }
 
-    private fun openCamera() {
+    private fun openCamera(v: View?) {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivity(takePictureIntent)
     }
 
-    private fun openMyViewApp() {
+    private fun openMyViewApp(v: View?) {
         val myViewIntent = Intent(this, MyViewActivity::class.java)
         startActivity(myViewIntent)
     }
 
-    private fun openHeroesApp() {
+    private fun openHeroesApp(v: View?) {
         val heroesIntent = Intent(this, HeroesActivity::class.java)
         startActivity(heroesIntent)
     }
 
-    private fun openMoviesApp() {
+    private fun openMoviesApp(v: View?) {
         val moviesIntent = Intent(this, MoviesActivity::class.java)
         startActivity(moviesIntent)
     }
 
-    private fun openStudentApp() {
+    private fun openStudentApp(v: View?) {
         val studentIntent = Intent(this, StudentActivity::class.java)
         startActivity(studentIntent)
     }

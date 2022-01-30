@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,15 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.MainApplication
 import com.fadhil.challenge.adapter.StudentAdapter
 import com.fadhil.challenge.adapter.StudentOnDeleteOne
-import com.fadhil.challenge.data.room.student.Student
+import com.fadhil.challenge.data.source.local.entity.Student
 import com.fadhil.challenge.databinding.FragmentAllStudentsBinding
-import com.fadhil.challenge.databinding.ItemRowStudentBinding
-import com.fadhil.challenge.model.Movie
 import com.fadhil.challenge.viewmodels.StudentViewModel
 import com.fadhil.challenge.viewmodels.StudentViewModelFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class AllStudentsFragment : Fragment() {
 

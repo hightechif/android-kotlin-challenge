@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.fadhil.challenge.MainApplication
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
-import com.fadhil.challenge.data.room.student.Student
+import com.fadhil.challenge.data.source.local.entity.Student
 import com.fadhil.challenge.databinding.FragmentAddStudentBinding
 import com.fadhil.challenge.viewmodels.StudentViewModel
 import com.fadhil.challenge.viewmodels.StudentViewModelFactory
@@ -39,7 +38,7 @@ class AddStudentFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAddStudentBinding.inflate(inflater, container, false)
         spinner = binding.spnStudentGender
         spinner.onItemSelectedListener = this

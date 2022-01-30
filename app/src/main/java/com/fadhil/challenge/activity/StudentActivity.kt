@@ -10,12 +10,12 @@ import com.fadhil.challenge.databinding.ActivityStudentBinding
 
 class StudentActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityStudentBinding
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val binding = ActivityStudentBinding.inflate(layoutInflater)
+        binding = ActivityStudentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager
