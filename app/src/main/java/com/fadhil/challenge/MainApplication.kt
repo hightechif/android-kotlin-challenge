@@ -1,12 +1,16 @@
 package com.fadhil.challenge
 
 import android.app.Application
-import com.fadhil.challenge.data.source.local.room.StudentDatabase
+import com.bumptech.glide.annotation.GlideModule
+import com.fadhil.challenge.data.local.room.AppDatabase
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+@HiltAndroidApp
+@GlideModule
 class MainApplication: Application() {
 
-    val database: StudentDatabase by lazy { StudentDatabase.getDatabase(this) }
+    val database: AppDatabase by lazy { AppDatabase.getDatabase(this) }
 
     override fun onCreate() {
         super.onCreate()

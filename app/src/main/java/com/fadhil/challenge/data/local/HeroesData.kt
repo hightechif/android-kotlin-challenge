@@ -1,7 +1,7 @@
-package com.fadhil.challenge.data
+package com.fadhil.challenge.data.local
 
 import com.fadhil.challenge.R
-import com.fadhil.challenge.model.Hero
+import com.fadhil.challenge.data.entities.Hero
 
 object HeroesData {
     private val heroNames = arrayOf("Ahmad Dahlan",

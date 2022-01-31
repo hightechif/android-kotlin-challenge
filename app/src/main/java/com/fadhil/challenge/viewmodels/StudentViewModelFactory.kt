@@ -2,7 +2,7 @@ package com.fadhil.challenge.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.fadhil.challenge.data.source.local.room.StudentDao
+import com.fadhil.challenge.data.local.room.StudentDao
 
 class StudentViewModelFactory(private val studentDao: StudentDao) : ViewModelProvider.Factory {
 

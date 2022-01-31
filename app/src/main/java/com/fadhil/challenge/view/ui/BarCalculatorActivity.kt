@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.fadhil.challenge.R
 import com.fadhil.challenge.databinding.ActivityBarCalculatorBinding
-import com.fadhil.challenge.model.Bar
+import com.fadhil.challenge.data.entities.Bar
 
 class BarCalculatorActivity : AppCompatActivity(), View.OnClickListener {
 

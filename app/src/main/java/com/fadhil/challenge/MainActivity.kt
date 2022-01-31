@@ -7,7 +7,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.fadhil.challenge.databinding.ActivityMainBinding
 import com.fadhil.challenge.view.ui.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

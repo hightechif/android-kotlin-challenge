@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.R
 import com.fadhil.challenge.view.adapter.*
 import com.fadhil.challenge.constant.ViewMode
-import com.fadhil.challenge.data.HeroesData
+import com.fadhil.challenge.data.local.HeroesData
 import com.fadhil.challenge.databinding.ActivityHeroesBinding
-import com.fadhil.challenge.model.Hero
+import com.fadhil.challenge.data.entities.Hero
 import com.fadhil.challenge.view.callback.HeroCallback
 
 class HeroesActivity : AppCompatActivity() {

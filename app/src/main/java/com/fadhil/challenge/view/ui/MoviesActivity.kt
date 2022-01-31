@@ -12,49 +12,23 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.RequestStatus
-import com.fadhil.challenge.data.source.MovieRepository
-import com.fadhil.challenge.data.source.remote.RemoteDataSource
-import com.fadhil.challenge.data.source.remote.network.MoviesApi
-import com.fadhil.challenge.data.source.remote.network.MoviesService
-import com.fadhil.challenge.data.source.remote.response.BaseResponse
+import com.fadhil.challenge.data.Resource
+import com.fadhil.challenge.data.entities.Movie
 import com.fadhil.challenge.databinding.ActivityMoviesBinding
-import com.fadhil.challenge.model.Movie
 import com.fadhil.challenge.view.adapter.MovieCardViewAdapter
 import com.fadhil.challenge.view.adapter.MovieGridAdapter
 import com.fadhil.challenge.view.adapter.MovieListAdapter
 import com.fadhil.challenge.view.callback.MovieCallback
-import com.fadhil.challenge.viewmodels.MovieViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
+import com.fadhil.challenge.viewmodels.MoviesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MoviesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMoviesBinding
     private var list: ArrayList<Movie> = arrayListOf()
     private var title: String = "Movies App: Mode List"
-    inner class MoviesServiceImpl: MoviesService {
-        override fun getMovieList(page: Int, apiKey: String): Call<BaseResponse<Movie>> {
-            // override method
-        }
-
-    }
-    private val moviesServiceImpl: MoviesServiceImpl = MoviesServiceImpl()
-    private val remoteDataSource: RemoteDataSource by lazy {
-        RemoteDataSource(moviesServiceImpl)
-    }
-    private val movieRepository: MovieRepository by lazy {
-        MovieRepository(remoteDataSource)
-    }
-    private val model: MovieViewModel by lazy {
-        MovieViewModel(movieRepository)
-    }
-    private var page: Int = 1
-
-    companion object {
-        private const val API_KEY: String = "31bcf72a6584461df2daa00c58f75514"
-    }
+    private val viewModel: MoviesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,35 +38,30 @@ class MoviesActivity : AppCompatActivity() {
         setActionBarTitle(title)
         binding.rvMovies.setHasFixedSize(true)
 
-        val movieObserver = Observer<List<Movie>> {
-            list.addAll(it)
-        }
-
-        model.getMovies().observe(this, movieObserver)
-//        lifecycleScope.launch {
-//            fetchMovieList()
-//        }
+        setupObserver()
         showMoviesRecyclerList()
     }
 
-    private fun fetchMovieList() {
-        MoviesApi.instance.getMovieList(page, API_KEY)
-            .enqueue(object : Callback<BaseResponse<Movie>> {
-                override fun onResponse(
-                    call: Call<BaseResponse<Movie>>,
-                    response: Response<BaseResponse<Movie>>
-                ) {
+    private fun setupObserver() {
+        val movieObserver = Observer<Resource<List<Movie>>> {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
                     setVisibility(RequestStatus.SUCCESS)
-                    val responseBody = response.body()
-                    Timber.i("HTTP Response: $response")
-                    responseBody?.results?.let { list.addAll(it) }
+                    if (!it.data.isNullOrEmpty()) {
+                        list.addAll(it.data)
+                    }
                 }
-
-                override fun onFailure(call: Call<BaseResponse<Movie>>, t: Throwable) {
+                Resource.Status.ERROR -> {
                     setVisibility(RequestStatus.ERROR)
-                    binding.tvErrorMessage.text = t.message
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                    binding.tvErrorMessage.text = it.message
                 }
-            })
+                Resource.Status.LOADING -> {
+                    Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        viewModel.movies.observe(this, movieObserver)
     }
 
     private fun showMoviesRecyclerList() {

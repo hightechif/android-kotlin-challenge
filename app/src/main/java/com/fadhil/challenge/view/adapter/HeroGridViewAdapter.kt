@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import com.fadhil.challenge.R
-import com.fadhil.challenge.model.Hero
+import com.fadhil.challenge.data.entities.Hero
 import com.fadhil.challenge.view.callback.HeroCallback
 import timber.log.Timber
 

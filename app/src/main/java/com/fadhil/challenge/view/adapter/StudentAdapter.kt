@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.fadhil.challenge.data.source.local.entity.Student
+import com.fadhil.challenge.data.entities.Student
 import com.fadhil.challenge.databinding.ItemRowStudentBinding
 import com.fadhil.challenge.view.callback.StudentDeleteOneCallback
 

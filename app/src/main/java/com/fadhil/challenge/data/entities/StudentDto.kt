@@ -1,4 +1,4 @@
-package com.fadhil.challenge.model
+package com.fadhil.challenge.data.entities
 
 import com.fadhil.challenge.constant.Gender
 

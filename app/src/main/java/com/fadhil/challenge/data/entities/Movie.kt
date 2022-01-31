@@ -1,8 +1,12 @@
-package com.fadhil.challenge.model
+package com.fadhil.challenge.data.entities
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "movies")
 data class Movie (
+    @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
     var title: String = "",
     @SerializedName("release_date")

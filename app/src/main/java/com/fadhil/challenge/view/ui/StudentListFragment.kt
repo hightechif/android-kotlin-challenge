@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.MainApplication
 import com.fadhil.challenge.view.adapter.StudentAdapter
 import com.fadhil.challenge.view.callback.StudentDeleteOneCallback
-import com.fadhil.challenge.data.source.local.entity.Student
+import com.fadhil.challenge.data.entities.Student
 import com.fadhil.challenge.databinding.FragmentStudentListBinding
 import com.fadhil.challenge.viewmodels.StudentViewModel
 import com.fadhil.challenge.viewmodels.StudentViewModelFactory

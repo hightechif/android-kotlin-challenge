@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.fadhil.challenge.MainApplication
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
-import com.fadhil.challenge.data.source.local.entity.Student
+import com.fadhil.challenge.data.entities.Student
 import com.fadhil.challenge.databinding.FragmentStudentInsertionBinding
 import com.fadhil.challenge.viewmodels.StudentViewModel
 import com.fadhil.challenge.viewmodels.StudentViewModelFactory

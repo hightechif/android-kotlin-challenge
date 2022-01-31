@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
-import com.fadhil.challenge.model.Hero
+import com.fadhil.challenge.data.entities.Hero
 import timber.log.Timber
 
 class HeroCardViewAdapter(private val heroList: ArrayList<Hero>) : HeroRVAdapter<HeroCardViewAdapter.CardViewHolder>(heroList) {

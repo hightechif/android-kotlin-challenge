@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
-import com.fadhil.challenge.model.Movie
+import com.fadhil.challenge.data.entities.Movie
 
 class MovieGridAdapter(private val movieList: ArrayList<Movie>) : MovieRVAdapter<MovieGridAdapter.GridViewHolder>(movieList) {
 

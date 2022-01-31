@@ -3,9 +3,9 @@ package com.fadhil.challenge.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fadhil.challenge.constant.Gender
-import com.fadhil.challenge.data.source.local.entity.Student
-import com.fadhil.challenge.data.source.local.room.StudentDao
-import com.fadhil.challenge.model.StudentDto
+import com.fadhil.challenge.data.entities.Student
+import com.fadhil.challenge.data.local.room.StudentDao
+import com.fadhil.challenge.data.entities.StudentDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 

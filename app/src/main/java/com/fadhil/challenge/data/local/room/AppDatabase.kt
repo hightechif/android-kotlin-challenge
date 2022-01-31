@@ -1,23 +1,24 @@
-package com.fadhil.challenge.data.source.local.room
+package com.fadhil.challenge.data.local.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.fadhil.challenge.data.source.local.entity.Student
+import com.fadhil.challenge.data.entities.Movie
+import com.fadhil.challenge.data.entities.Student
 
-@Database(entities = [Student::class], version = 1, exportSchema = false)
-abstract class StudentDatabase: RoomDatabase() {
+@Database(entities = [Student::class, Movie::class], version = 2, exportSchema = false)
+abstract class AppDatabase: RoomDatabase() {
 
     companion object {
         @Volatile
-        private var INSTANCE: StudentDatabase? = null
+        private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): StudentDatabase {
+        fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    StudentDatabase::class.java,
+                    AppDatabase::class.java,
                     "app_database")
                     .fallbackToDestructiveMigration()
                     .build()
@@ -28,5 +29,7 @@ abstract class StudentDatabase: RoomDatabase() {
     }
 
     abstract fun studentDao(): StudentDao
+
+    abstract fun moviesDao(): MoviesDao
 
 }

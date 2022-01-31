@@ -1,8 +1,8 @@
-package com.fadhil.challenge.data.source.local.room
+package com.fadhil.challenge.data.local.room
 
 import androidx.room.*
-import com.fadhil.challenge.data.source.local.entity.Student
-import com.fadhil.challenge.model.StudentDto
+import com.fadhil.challenge.data.entities.Student
+import com.fadhil.challenge.data.entities.StudentDto
 import kotlinx.coroutines.flow.Flow
 
 @Dao

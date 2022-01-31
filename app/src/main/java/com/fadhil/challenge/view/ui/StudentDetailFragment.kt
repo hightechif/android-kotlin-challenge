@@ -15,7 +15,7 @@ import com.fadhil.challenge.MainApplication
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
 import com.fadhil.challenge.databinding.FragmentStudentDetailBinding
-import com.fadhil.challenge.model.StudentDto
+import com.fadhil.challenge.data.entities.StudentDto
 import com.fadhil.challenge.viewmodels.StudentViewModel
 import com.fadhil.challenge.viewmodels.StudentViewModelFactory
 
