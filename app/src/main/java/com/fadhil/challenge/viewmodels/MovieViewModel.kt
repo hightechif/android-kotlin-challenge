@@ -3,19 +3,33 @@ package com.fadhil.challenge.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import com.fadhil.challenge.data.source.MovieRepository
-import com.fadhil.challenge.data.source.remote.response.BaseResponse
 import com.fadhil.challenge.model.Movie
-import kotlinx.coroutines.Dispatchers
-import retrofit2.Call
+
 
 class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel() {
 
-    val movieList : LiveData<Call<BaseResponse<Movie>>> = liveData(Dispatchers.IO) {
-        loading.postValue(true)
-        emit(movieRepository.getMovieList(1, ""))
+    private val movieListObservable: MutableLiveData<List<Movie>> by lazy {
+        MutableLiveData<List<Movie>>().also {
+            loadMovies()
+        }
     }
 
-    private val loading = MutableLiveData<Boolean>()
+    companion object {
+        var page: Int = 1
+        const val API_KEY: String = "31bcf72a6584461df2daa00c58f75514"
+    }
+
+    /**
+     * Expose the LiveData Projects query so the UI can observe it.
+     */
+    fun getMovies(): LiveData<List<Movie>> {
+        return movieListObservable
+    }
+
+    private fun loadMovies(): MutableLiveData<List<Movie>> {
+        // If any transformation is needed, this can be simply done by Transformations class ...
+        return movieRepository.getMovieList(page, API_KEY)
+    }
+
 }

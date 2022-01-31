@@ -1,14 +1,15 @@
-package com.fadhil.challenge.adapter
+package com.fadhil.challenge.view.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.model.Movie
+import com.fadhil.challenge.view.callback.MovieCallback
 
 abstract class MovieRVAdapter<VH : RecyclerView.ViewHolder>(private val movieList: ArrayList<Movie>) : RecyclerView.Adapter<VH>() {
 
-    lateinit var onItemClickedCallback: MovieCallbackInterface
+    lateinit var onItemClickedCallback: MovieCallback
 
-    fun setOnClickedCallback(callback: MovieCallbackInterface) {
+    fun setOnClickedCallback(callback: MovieCallback) {
         this.onItemClickedCallback = callback
     }
 

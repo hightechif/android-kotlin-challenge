@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/allStudentsFragment"
-        android:name="com.fadhil.challenge.fragment.AllStudentsFragment"
+        android:name="com.fadhil.challenge.view.ui.StudentListFragment"
         android:label="Student Data Management"
-        tools:layout="@layout/fragment_all_students">
+        tools:layout="@layout/fragment_student_list">
         <action
             android:id="@+id/action_allStudentsFragment_to_addStudentFragment"
             app:destination="@id/addStudentFragment" />
@@ -19,16 +19,16 @@
     </fragment>
     <fragment
         android:id="@+id/addStudentFragment"
-        android:name="com.fadhil.challenge.fragment.AddStudentFragment"
+        android:name="com.fadhil.challenge.view.ui.StudentInsertionFragment"
         android:label="Insert new student"
-        tools:layout="@layout/fragment_add_student" >
+        tools:layout="@layout/fragment_student_insertion" >
         <action
             android:id="@+id/action_addStudentFragment_to_allStudentsFragment"
             app:destination="@id/allStudentsFragment" />
     </fragment>
     <fragment
         android:id="@+id/studentDetailFragment"
-        android:name="com.fadhil.challenge.fragment.StudentDetailFragment"
+        android:name="com.fadhil.challenge.view.ui.StudentDetailFragment"
         android:label="Student detail"
         tools:layout="@layout/fragment_student_detail" >
         <action

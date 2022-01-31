@@ -1,4 +1,4 @@
-package com.fadhil.challenge.activity
+package com.fadhil.challenge.view.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

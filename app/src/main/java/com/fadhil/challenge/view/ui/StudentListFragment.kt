@@ -1,4 +1,4 @@
-package com.fadhil.challenge.fragment
+package com.fadhil.challenge.view.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,18 +11,18 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.MainApplication
-import com.fadhil.challenge.adapter.StudentAdapter
-import com.fadhil.challenge.adapter.StudentOnDeleteOne
+import com.fadhil.challenge.view.adapter.StudentAdapter
+import com.fadhil.challenge.view.callback.StudentDeleteOneCallback
 import com.fadhil.challenge.data.source.local.entity.Student
-import com.fadhil.challenge.databinding.FragmentAllStudentsBinding
+import com.fadhil.challenge.databinding.FragmentStudentListBinding
 import com.fadhil.challenge.viewmodels.StudentViewModel
 import com.fadhil.challenge.viewmodels.StudentViewModelFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class AllStudentsFragment : Fragment() {
+class StudentListFragment : Fragment() {
 
-    private var _binding: FragmentAllStudentsBinding? = null
+    private var _binding: FragmentStudentListBinding? = null
     private val binding get() = _binding!!
     private var list: MutableList<Student> = mutableListOf()
     private lateinit var recyclerView: RecyclerView
@@ -37,7 +37,7 @@ class AllStudentsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAllStudentsBinding.inflate(inflater, container, false)
+        _binding = FragmentStudentListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,7 +45,7 @@ class AllStudentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnAddStudent.setOnClickListener {
-            val action = AllStudentsFragmentDirections.actionAllStudentsFragmentToAddStudentFragment()
+            val action = StudentListFragmentDirections.actionAllStudentsFragmentToAddStudentFragment()
             view.findNavController().navigate(action)
         }
 
@@ -60,7 +60,7 @@ class AllStudentsFragment : Fragment() {
 
         val studentAdapter = StudentAdapter(this::onItemViewClicked, list)
         recyclerView.adapter = studentAdapter
-        studentAdapter.setOnDeleteCallback(object: StudentOnDeleteOne {
+        studentAdapter.setOnDeleteCallback(object: StudentDeleteOneCallback {
             override fun onItemClicked(data: Student) {
                 lifecycle.coroutineScope.launch {
                     viewModel.deleteOne(data)
@@ -87,7 +87,7 @@ class AllStudentsFragment : Fragment() {
         bundle.putString("student_name", it.name)
         bundle.putSerializable("student_gender", it.gender)
         bundle.putFloat("student_gpa", it.gpa)
-        val action = AllStudentsFragmentDirections.actionAllStudentsFragmentToStudentDetailFragment()
+        val action = StudentListFragmentDirections.actionAllStudentsFragmentToStudentDetailFragment()
         view?.findNavController()?.navigate(action.actionId, bundle)
     }
 

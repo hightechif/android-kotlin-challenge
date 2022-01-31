@@ -1,4 +1,4 @@
-package com.fadhil.challenge.adapter
+package com.fadhil.challenge.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,4 +1,4 @@
-package com.fadhil.challenge.activity
+package com.fadhil.challenge.view.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,11 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.R
-import com.fadhil.challenge.adapter.*
+import com.fadhil.challenge.view.adapter.*
 import com.fadhil.challenge.constant.ViewMode
 import com.fadhil.challenge.data.HeroesData
 import com.fadhil.challenge.databinding.ActivityHeroesBinding
 import com.fadhil.challenge.model.Hero
+import com.fadhil.challenge.view.callback.HeroCallback
 
 class HeroesActivity : AppCompatActivity() {
 
@@ -44,7 +45,7 @@ class HeroesActivity : AppCompatActivity() {
 
         val heroListAdapter = HeroListAdapter(list)
         binding.rvHeroes.adapter = heroListAdapter
-        heroListAdapter.setOnClickedCallback(object : HeroCallbackInterface {
+        heroListAdapter.setOnClickedCallback(object : HeroCallback {
             override fun onItemClicked(data: Hero) {
                 showHeroesDetailPage(data)
             }
@@ -110,7 +111,7 @@ class HeroesActivity : AppCompatActivity() {
         val heroGridAdapter = HeroGridAdapter(list)
         binding.rvHeroes.adapter = heroGridAdapter
 
-        heroGridAdapter.setOnClickedCallback(object : HeroCallbackInterface {
+        heroGridAdapter.setOnClickedCallback(object : HeroCallback {
             override fun onItemClicked(data: Hero) {
                 showHeroesDetailPage(data)
             }
@@ -130,7 +131,7 @@ class HeroesActivity : AppCompatActivity() {
         val heroListViewAdapter = HeroListViewAdapter(this, list)
         listView.adapter = heroListViewAdapter
 
-        heroListViewAdapter.setOnClickedCallback(object : HeroCallbackInterface {
+        heroListViewAdapter.setOnClickedCallback(object : HeroCallback {
             override fun onItemClicked(data: Hero) {
                 showHeroesDetailPage(data)
             }
@@ -144,7 +145,7 @@ class HeroesActivity : AppCompatActivity() {
         val heroGridViewAdapter = HeroGridViewAdapter(this, list)
         gridView.adapter = heroGridViewAdapter
 
-        heroGridViewAdapter.setOnClickedCallback(object : HeroCallbackInterface {
+        heroGridViewAdapter.setOnClickedCallback(object : HeroCallback {
             override fun onItemClicked(data: Hero) {
                 showHeroesDetailPage(data)
             }
@@ -158,9 +159,9 @@ class HeroesActivity : AppCompatActivity() {
     private fun showHeroesDetailPage(hero: Hero) {
         Toast.makeText(this, "Kamu memilih " + hero.name, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra("HERO_NAME", hero?.name)
-        intent.putExtra("HERO_DETAIL", hero?.detail)
-        intent.putExtra("HERO_PHOTO", hero?.photo)
+        intent.putExtra("HERO_NAME", hero.name)
+        intent.putExtra("HERO_DETAIL", hero.detail)
+        intent.putExtra("HERO_PHOTO", hero.photo)
         startActivity(intent)
     }
 }

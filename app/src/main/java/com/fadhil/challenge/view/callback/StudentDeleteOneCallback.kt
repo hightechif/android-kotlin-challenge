@@ -1,7 +1,7 @@
-package com.fadhil.challenge.adapter
+package com.fadhil.challenge.view.callback
 
 import com.fadhil.challenge.data.source.local.entity.Student
 
-interface StudentOnDeleteOne {
+interface StudentDeleteOneCallback {
     fun onItemClicked(data: Student)
 }

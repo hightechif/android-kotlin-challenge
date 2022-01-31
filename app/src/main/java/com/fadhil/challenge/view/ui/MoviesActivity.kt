@@ -1,25 +1,29 @@
-package com.fadhil.challenge.activity
+package com.fadhil.challenge.view.ui
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.R
-import com.fadhil.challenge.adapter.MovieCallbackInterface
-import com.fadhil.challenge.adapter.MovieCardViewAdapter
-import com.fadhil.challenge.adapter.MovieGridAdapter
-import com.fadhil.challenge.adapter.MovieListAdapter
 import com.fadhil.challenge.constant.RequestStatus
-import com.fadhil.challenge.databinding.ActivityMoviesBinding
-import com.fadhil.challenge.data.source.remote.response.BaseResponse
-import com.fadhil.challenge.model.Movie
+import com.fadhil.challenge.data.source.MovieRepository
+import com.fadhil.challenge.data.source.remote.RemoteDataSource
 import com.fadhil.challenge.data.source.remote.network.MoviesApi
-import kotlinx.coroutines.*
+import com.fadhil.challenge.data.source.remote.network.MoviesService
+import com.fadhil.challenge.data.source.remote.response.BaseResponse
+import com.fadhil.challenge.databinding.ActivityMoviesBinding
+import com.fadhil.challenge.model.Movie
+import com.fadhil.challenge.view.adapter.MovieCardViewAdapter
+import com.fadhil.challenge.view.adapter.MovieGridAdapter
+import com.fadhil.challenge.view.adapter.MovieListAdapter
+import com.fadhil.challenge.view.callback.MovieCallback
+import com.fadhil.challenge.viewmodels.MovieViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +34,22 @@ class MoviesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMoviesBinding
     private var list: ArrayList<Movie> = arrayListOf()
     private var title: String = "Movies App: Mode List"
+    inner class MoviesServiceImpl: MoviesService {
+        override fun getMovieList(page: Int, apiKey: String): Call<BaseResponse<Movie>> {
+            // override method
+        }
+
+    }
+    private val moviesServiceImpl: MoviesServiceImpl = MoviesServiceImpl()
+    private val remoteDataSource: RemoteDataSource by lazy {
+        RemoteDataSource(moviesServiceImpl)
+    }
+    private val movieRepository: MovieRepository by lazy {
+        MovieRepository(remoteDataSource)
+    }
+    private val model: MovieViewModel by lazy {
+        MovieViewModel(movieRepository)
+    }
     private var page: Int = 1
 
     companion object {
@@ -43,9 +63,15 @@ class MoviesActivity : AppCompatActivity() {
 
         setActionBarTitle(title)
         binding.rvMovies.setHasFixedSize(true)
-        lifecycle.coroutineScope.launch {
-            fetchMovieList()
+
+        val movieObserver = Observer<List<Movie>> {
+            list.addAll(it)
         }
+
+        model.getMovies().observe(this, movieObserver)
+//        lifecycleScope.launch {
+//            fetchMovieList()
+//        }
         showMoviesRecyclerList()
     }
 
@@ -73,7 +99,7 @@ class MoviesActivity : AppCompatActivity() {
         binding.rvMovies.layoutManager = LinearLayoutManager(this)
         val movieListAdapter = MovieListAdapter(list)
         binding.rvMovies.adapter = movieListAdapter
-        movieListAdapter.setOnClickedCallback(object : MovieCallbackInterface {
+        movieListAdapter.setOnClickedCallback(object : MovieCallback {
             override fun onItemClicked(data: Movie) {
                 showSelectedHero(data)
             }
@@ -116,7 +142,7 @@ class MoviesActivity : AppCompatActivity() {
         binding.rvMovies.layoutManager = GridLayoutManager(this, 2)
         val movieGridAdapter = MovieGridAdapter(list)
         binding.rvMovies.adapter = movieGridAdapter
-        movieGridAdapter.setOnClickedCallback(object : MovieCallbackInterface {
+        movieGridAdapter.setOnClickedCallback(object : MovieCallback {
             override fun onItemClicked(data: Movie) {
                 showSelectedHero(data)
             }

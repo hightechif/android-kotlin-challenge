@@ -1,4 +1,4 @@
-package com.fadhil.challenge.adapter
+package com.fadhil.challenge.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.data.source.local.entity.Student
 import com.fadhil.challenge.databinding.ItemRowStudentBinding
+import com.fadhil.challenge.view.callback.StudentDeleteOneCallback
 
 class StudentAdapter(private val onItemClicked: (Student) -> Unit, private val studentList: MutableList<Student>) : ListAdapter<Student, StudentAdapter.StudentViewHolder>(DiffCallback) {
 
-    lateinit var onDeleteOneClicked: StudentOnDeleteOne
+    lateinit var onDeleteOneClicked: StudentDeleteOneCallback
 
-    fun setOnDeleteCallback(callback: StudentOnDeleteOne) {
+    fun setOnDeleteCallback(callback: StudentDeleteOneCallback) {
         this.onDeleteOneClicked = callback
     }
 

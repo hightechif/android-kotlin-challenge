@@ -12,7 +12,7 @@ object MoviesApi {
         .baseUrl(BASE_URL)
         .build()
 
-    val instance: MoviesApiService by lazy {
-        retrofit.create(MoviesApiService::class.java)
+    val instance: MoviesService by lazy {
+        retrofit.create(MoviesService::class.java)
     }
 }

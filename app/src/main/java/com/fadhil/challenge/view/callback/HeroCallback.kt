@@ -1,7 +1,7 @@
-package com.fadhil.challenge.adapter
+package com.fadhil.challenge.view.callback
 
 import com.fadhil.challenge.model.Hero
 
-interface HeroCallbackInterface {
+interface HeroCallback {
     fun onItemClicked(data: Hero)
 }

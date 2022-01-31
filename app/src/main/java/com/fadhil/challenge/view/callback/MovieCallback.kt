@@ -1,7 +1,7 @@
-package com.fadhil.challenge.adapter
+package com.fadhil.challenge.view.callback
 
 import com.fadhil.challenge.model.Movie
 
-interface MovieCallbackInterface {
+interface MovieCallback {
     fun onItemClicked(data: Movie)
 }

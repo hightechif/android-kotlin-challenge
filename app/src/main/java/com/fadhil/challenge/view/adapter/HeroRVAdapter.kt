@@ -1,14 +1,15 @@
-package com.fadhil.challenge.adapter
+package com.fadhil.challenge.view.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.model.Hero
+import com.fadhil.challenge.view.callback.HeroCallback
 
 abstract class HeroRVAdapter<VH : RecyclerView.ViewHolder>(private val heroList: ArrayList<Hero>) : RecyclerView.Adapter<VH>() {
 
-    lateinit var onItemClickedCallback: HeroCallbackInterface
+    lateinit var onItemClickedCallback: HeroCallback
 
-    fun setOnClickedCallback(callback: HeroCallbackInterface) {
+    fun setOnClickedCallback(callback: HeroCallback) {
         this.onItemClickedCallback = callback
     }
 

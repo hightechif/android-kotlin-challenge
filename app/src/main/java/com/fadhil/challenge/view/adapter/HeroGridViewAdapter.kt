@@ -1,4 +1,4 @@
-package com.fadhil.challenge.adapter
+package com.fadhil.challenge.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,14 +8,15 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import com.fadhil.challenge.R
 import com.fadhil.challenge.model.Hero
+import com.fadhil.challenge.view.callback.HeroCallback
 import timber.log.Timber
 
 class HeroGridViewAdapter(private val context: Context, private val heroList: ArrayList<Hero>) : BaseAdapter() {
 
     private val inflater : LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    lateinit var onItemClickedCallback: HeroCallbackInterface
+    lateinit var onItemClickedCallback: HeroCallback
 
-    fun setOnClickedCallback(callback: HeroCallbackInterface) {
+    fun setOnClickedCallback(callback: HeroCallback) {
         this.onItemClickedCallback = callback
     }
 
