@@ -7,7 +7,6 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-@GlideModule
 class MainApplication: Application() {
 
     val database: AppDatabase by lazy { AppDatabase.getDatabase(this) }

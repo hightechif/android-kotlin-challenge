@@ -5,14 +5,15 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.fadhil.challenge.data.Resource
 import com.fadhil.challenge.data.entities.Movie
-import com.fadhil.challenge.data.local.room.MoviesDao
+import com.fadhil.challenge.data.local.LocalDataSource
 import com.fadhil.challenge.data.remote.RemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
-class MovieRepository @Inject constructor(
+class MovieRepository @Inject
+constructor(
     private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: MoviesDao
+    private val localDataSource: LocalDataSource
 ) {
 
     companion object {
@@ -22,15 +23,17 @@ class MovieRepository @Inject constructor(
     fun getMovies(page: Int): LiveData<Resource<List<Movie>>> = performGetOperation(
         databaseQuery = { localDataSource.getAllMovies() },
         networkCall = { remoteDataSource.getMovies(page, API_KEY) },
-        saveCallResult = { localDataSource.insertAll(it.results) }
+        saveCallResult = { localDataSource.insertAllMovies(it.results) }
     )
 
     /**
      * Data Access Strategy
      * */
-    private fun <T, A> performGetOperation(databaseQuery: () -> LiveData<T>,
-                                           networkCall: suspend () -> Resource<A>,
-                                           saveCallResult: suspend (A) -> Unit): LiveData<Resource<T>> =
+    private fun <T, A> performGetOperation(
+        databaseQuery: () -> LiveData<T>,
+        networkCall: suspend () -> Resource<A>,
+        saveCallResult: suspend (A) -> Unit
+    ): LiveData<Resource<T>> =
         liveData(Dispatchers.IO) {
             emit(Resource.loading())
             val source = databaseQuery.invoke().map { Resource.success(it) }

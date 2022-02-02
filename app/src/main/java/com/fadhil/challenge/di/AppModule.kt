@@ -1,11 +1,12 @@
 package com.fadhil.challenge.di
 
 import android.content.Context
-import com.fadhil.challenge.data.repository.MovieRepository
+import com.fadhil.challenge.data.local.LocalDataSource
 import com.fadhil.challenge.data.local.room.AppDatabase
 import com.fadhil.challenge.data.local.room.MoviesDao
 import com.fadhil.challenge.data.remote.RemoteDataSource
 import com.fadhil.challenge.data.remote.service.MoviesService
+import com.fadhil.challenge.data.repository.MovieRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -34,11 +35,16 @@ object AppModule {
     fun provideGson(): Gson = GsonBuilder().create()
 
     @Provides
-    fun provideMoviesService(retrofit: Retrofit): MoviesService = retrofit.create(MoviesService::class.java)
+    fun provideMoviesService(retrofit: Retrofit): MoviesService =
+        retrofit.create(MoviesService::class.java)
 
     @Singleton
     @Provides
     fun provideRemoteDataSource(moviesService: MoviesService) = RemoteDataSource(moviesService)
+
+    @Singleton
+    @Provides
+    fun provideLocalDataSource(moviesDao: MoviesDao) = LocalDataSource(moviesDao)
 
     @Singleton
     @Provides
@@ -52,6 +58,6 @@ object AppModule {
     @Provides
     fun provideRepository(
         remoteDataSource: RemoteDataSource,
-        localDataSource: MoviesDao
+        localDataSource: LocalDataSource
     ) = MovieRepository(remoteDataSource, localDataSource)
 }

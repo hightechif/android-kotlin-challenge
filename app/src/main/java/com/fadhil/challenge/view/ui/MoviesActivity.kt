@@ -61,7 +61,7 @@ class MoviesActivity : AppCompatActivity() {
                 }
             }
         }
-        viewModel.movies.observe(this, movieObserver)
+        viewModel.getMovies().observe(this, movieObserver)
     }
 
     private fun showMoviesRecyclerList() {
