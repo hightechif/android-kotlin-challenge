@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Font Size -->
     <dimen name="text_24_sp">24sp</dimen>
     <dimen name="text_20_sp">20sp</dimen>
     <dimen name="text_18_sp">18sp</dimen>
@@ -7,8 +8,10 @@
     <dimen name="text_14_sp">14sp</dimen>
     <dimen name="text_12_sp">12sp</dimen>
     <dimen name="text_10_sp">10sp</dimen>
+    <!-- Unit Size -->
     <dimen name="size_48_dp">48dp</dimen>
     <dimen name="size_16_dp">16dp</dimen>
     <dimen name="size_8_dp">8dp</dimen>
     <dimen name="size_5_dp">5dp</dimen>
+    <dimen name="size_4_dp">4dp</dimen>
 </resources>

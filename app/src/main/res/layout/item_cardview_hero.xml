@@ -6,22 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginLeft="8dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginBottom="4dp"
-    card_view:cardCornerRadius="4dp">
+    android:layout_marginLeft="@dimen/size_8_dp"
+    android:layout_marginTop="@dimen/size_4_dp"
+    android:layout_marginRight="@dimen/size_8_dp"
+    android:layout_marginBottom="@dimen/size_4_dp"
+    card_view:cardCornerRadius="@dimen/size_4_dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:padding="8dp">
+        android:padding="@dimen/size_8_dp">
 
         <ImageView
             android:id="@+id/img_item_photo"
             android:layout_width="150dp"
             android:layout_height="220dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="@dimen/size_4_dp"
             android:scaleType="centerCrop"
             tools:src="@tools:sample/avatars" />
 
@@ -29,10 +29,10 @@
             android:id="@+id/tv_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="@dimen/size_16_dp"
+            android:layout_marginTop="@dimen/size_16_dp"
+            android:layout_marginRight="@dimen/size_16_dp"
+            android:layout_marginBottom="@dimen/size_8_dp"
             android:layout_toEndOf="@id/img_item_photo"
             android:textSize="@dimen/text_16_sp"
             android:textStyle="bold"
