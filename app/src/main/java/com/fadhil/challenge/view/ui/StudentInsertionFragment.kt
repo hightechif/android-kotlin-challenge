@@ -10,7 +10,7 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.fadhil.challenge.MainApplication
+import com.fadhil.challenge.App
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
 import com.fadhil.challenge.data.entities.Student
@@ -28,7 +28,7 @@ class StudentInsertionFragment : Fragment(), AdapterView.OnItemSelectedListener 
 
     private val viewModel: StudentViewModel by activityViewModels {
         StudentViewModelFactory(
-            (activity?.application as MainApplication).database
+            (activity?.application as App).database
                 .studentDao()
         )
     }

@@ -10,7 +10,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fadhil.challenge.MainApplication
+import com.fadhil.challenge.App
 import com.fadhil.challenge.view.adapter.StudentAdapter
 import com.fadhil.challenge.view.callback.StudentDeleteOneCallback
 import com.fadhil.challenge.data.entities.Student
@@ -29,7 +29,7 @@ class StudentListFragment : Fragment() {
 
     private val viewModel: StudentViewModel by activityViewModels {
         StudentViewModelFactory(
-            (activity?.application as MainApplication).database.studentDao()
+            (activity?.application as App).database.studentDao()
         )
     }
 
