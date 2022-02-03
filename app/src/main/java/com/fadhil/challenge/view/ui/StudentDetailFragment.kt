@@ -1,7 +1,6 @@
 package com.fadhil.challenge.view.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,16 +8,17 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.fadhil.challenge.App
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
+import com.fadhil.challenge.data.entities.Student
 import com.fadhil.challenge.databinding.FragmentStudentDetailBinding
-import com.fadhil.challenge.data.entities.StudentDto
 import com.fadhil.challenge.viewmodels.StudentViewModel
-import com.fadhil.challenge.viewmodels.StudentViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var _binding: FragmentStudentDetailBinding? = null
@@ -26,28 +26,23 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var spinner: Spinner
     private lateinit var selectedGender: Gender
     private var genderOption = arrayOf(Gender.MALE, Gender.FEMALE)
-    private lateinit var studentDto: StudentDto
-
-    private val viewModel: StudentViewModel by activityViewModels {
-        StudentViewModelFactory(
-            (activity?.application as App).database
-                .studentDao()
-        )
-    }
+    private lateinit var student: Student
+    private val viewModel: StudentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_student_detail, container, false)
-        studentDto = StudentDto(
+        _binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_student_detail, container, false)
+        student = Student(
             arguments?.getInt("student_id")!!,
             arguments?.getString("student_name")!!,
             arguments?.getSerializable("student_gender") as Gender,
             arguments?.getFloat("student_gpa")!!,
         )
-        binding.studentDto = studentDto
-        binding.selected = genderOption.indexOf(studentDto.gender)
+        binding.student = student
+        binding.selected = genderOption.indexOf(student.gender)
         spinner = binding.spnStudentGender
         spinner.onItemSelectedListener = this
         val spinnerAdapter = ArrayAdapter.createFromResource(
@@ -78,13 +73,14 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun updateStudent() {
         if (isEntryValid()) {
             viewModel.updateStudent(
-                studentDto.id,
+                student.id,
                 binding.etStudentName.text.toString(),
                 genderOption[binding.spnStudentGender.selectedItemPosition],
                 binding.etStudentGpa.text.toString().toFloat(),
             )
         }
-        val action = StudentDetailFragmentDirections.actionStudentDetailFragmentToAllStudentsFragment()
+        val action =
+            StudentDetailFragmentDirections.actionStudentDetailFragmentToAllStudentsFragment()
         findNavController().navigate(action)
     }
 

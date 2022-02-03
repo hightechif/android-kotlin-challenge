@@ -1,36 +1,53 @@
 package com.fadhil.challenge.viewmodels
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.fadhil.challenge.constant.Gender
+import com.fadhil.challenge.data.Resource
 import com.fadhil.challenge.data.entities.Student
-import com.fadhil.challenge.data.local.room.StudentDao
-import com.fadhil.challenge.data.entities.StudentDto
-import kotlinx.coroutines.flow.Flow
+import com.fadhil.challenge.data.repository.StudentRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class StudentViewModel(private val studentDao: StudentDao) : ViewModel() {
+@HiltViewModel
+class StudentViewModel @Inject
+constructor(private val studentRepository: StudentRepository) : ViewModel() {
+
+    private lateinit var students: LiveData<Resource<List<Student>>>
 
     private fun insertStudent(student: Student) {
         viewModelScope.launch {
-            studentDao.insert(student)
+            studentRepository.insert(student)
         }
     }
 
-    fun allStudents(): Flow<List<Student>> = studentDao.getAll()
+    fun getStudents(): LiveData<Resource<List<Student>>> {
+        students = loadStudents()
+        return students
+    }
 
-    fun getStudentById(id: Int): Flow<Student> = studentDao.getStudentById(id)
+    private fun loadStudents(): LiveData<Resource<List<Student>>> {
+        // If any transformation is needed, this can be simply done by Transformations class ...
+        return studentRepository.getAll().asLiveData().map { student -> Resource.success(student) }
+    }
 
-    fun updateStudent(id: Int,name: String, gender: Gender, gpa: Float) {
-        val updatedStudent = StudentDto(id, name, gender, gpa)
+    fun getStudentById(id: Int): LiveData<Student> =
+        studentRepository.getStudentById(id).asLiveData()
+
+    fun updateStudent(id: Int, name: String, gender: Gender, gpa: Float) {
+        val updatedStudent = Student(id, name, gender, gpa)
         viewModelScope.launch {
-            studentDao.update(updatedStudent)
+            studentRepository.update(updatedStudent)
         }
     }
 
-    suspend fun deleteOne(student: Student) = studentDao.delete(student)
+    suspend fun deleteOne(student: Student) = studentRepository.delete(student)
 
-    suspend fun deleteAll() = studentDao.deleteAll()
+    suspend fun deleteAll() {
+        viewModelScope.launch {
+            studentRepository.deleteAll()
+        }
+    }
 
     private fun getNewStudentEntry(name: String, gender: Gender, gpa: Float): Student {
         return Student(

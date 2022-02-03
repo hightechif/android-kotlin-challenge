@@ -2,7 +2,6 @@ package com.fadhil.challenge.data.local.room
 
 import androidx.room.*
 import com.fadhil.challenge.data.entities.Student
-import com.fadhil.challenge.data.entities.StudentDto
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -21,7 +20,7 @@ interface StudentDao {
     fun getSmartStudents(): Flow<List<Student>>
 
     @Update(entity = Student::class)
-    suspend fun update(studentDto: StudentDto)
+    suspend fun update(student: Student)
 
     @Delete(entity = Student::class)
     suspend fun delete(student: Student)

@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="studentDto"
-            type="com.fadhil.challenge.data.entities.StudentDto" />
+            name="student"
+            type="com.fadhil.challenge.data.entities.Student" />
         <variable
             name="selected"
             type="int" />
@@ -38,7 +38,7 @@
                     android:layout_height="match_parent"
                     android:inputType="textAutoComplete|textCapWords"
                     android:singleLine="true"
-                    android:text='@{(studentDto.name == null || studentDto.name == "") ? "" : studentDto.name}' />
+                    android:text='@{(student.name == null || student.name == "") ? "" : student.name}' />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
@@ -69,7 +69,7 @@
                     android:layout_height="match_parent"
                     android:inputType="number|numberDecimal"
                     android:singleLine="true"
-                    android:text='@{(studentDto.gpa == 0F) ? "" : Float.toString(studentDto.gpa)}' />
+                    android:text='@{(student.gpa == 0F) ? "" : Float.toString(student.gpa)}' />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

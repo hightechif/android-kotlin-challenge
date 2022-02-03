@@ -8,16 +8,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.fadhil.challenge.App
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
 import com.fadhil.challenge.data.entities.Student
 import com.fadhil.challenge.databinding.FragmentStudentInsertionBinding
 import com.fadhil.challenge.viewmodels.StudentViewModel
-import com.fadhil.challenge.viewmodels.StudentViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StudentInsertionFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var _binding: FragmentStudentInsertionBinding? = null
@@ -25,14 +25,7 @@ class StudentInsertionFragment : Fragment(), AdapterView.OnItemSelectedListener 
     private lateinit var spinner: Spinner
     private lateinit var selectedGender: Gender
     private var genderOption = arrayOf(Gender.MALE, Gender.FEMALE)
-
-    private val viewModel: StudentViewModel by activityViewModels {
-        StudentViewModelFactory(
-            (activity?.application as App).database
-                .studentDao()
-        )
-    }
-
+    private val viewModel: StudentViewModel by viewModels()
     lateinit var student: Student
 
     override fun onCreateView(
@@ -75,7 +68,8 @@ class StudentInsertionFragment : Fragment(), AdapterView.OnItemSelectedListener 
                 binding.etStudentGpa.text.toString().toFloat(),
             )
         }
-        val action = StudentInsertionFragmentDirections.actionAddStudentFragmentToAllStudentsFragment()
+        val action =
+            StudentInsertionFragmentDirections.actionAddStudentFragmentToAllStudentsFragment()
         findNavController().navigate(action)
     }
 

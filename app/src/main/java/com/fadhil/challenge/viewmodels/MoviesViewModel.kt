@@ -1,12 +1,11 @@
 package com.fadhil.challenge.viewmodels
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.fadhil.challenge.data.Resource
 import com.fadhil.challenge.data.entities.Movie
 import com.fadhil.challenge.data.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel

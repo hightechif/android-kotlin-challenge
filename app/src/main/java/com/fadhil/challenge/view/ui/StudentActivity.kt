@@ -7,7 +7,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.fadhil.challenge.R
 import com.fadhil.challenge.databinding.ActivityStudentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StudentActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStudentBinding

@@ -26,33 +26,33 @@ class MainActivity : AppCompatActivity() {
         binding.btnStudentCTA.setOnClickListener(this::openStudentApp)
     }
 
-    private fun openCalculator(v: View?) {
-        val calculatorIntent = Intent(this, BarCalculatorActivity::class.java)
+    private fun openCalculator(view: View?) {
+        val calculatorIntent = Intent(view?.context, BarCalculatorActivity::class.java)
         startActivity(calculatorIntent)
     }
 
-    private fun openCamera(v: View?) {
+    private fun openCamera(view: View?) {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivity(takePictureIntent)
     }
 
-    private fun openMyViewApp(v: View?) {
-        val myViewIntent = Intent(this, MyViewActivity::class.java)
+    private fun openMyViewApp(view: View?) {
+        val myViewIntent = Intent(view?.context, MyViewActivity::class.java)
         startActivity(myViewIntent)
     }
 
-    private fun openHeroesApp(v: View?) {
-        val heroesIntent = Intent(this, HeroesActivity::class.java)
+    private fun openHeroesApp(view: View?) {
+        val heroesIntent = Intent(view?.context, HeroesActivity::class.java)
         startActivity(heroesIntent)
     }
 
-    private fun openMoviesApp(v: View?) {
-        val moviesIntent = Intent(this, MoviesActivity::class.java)
+    private fun openMoviesApp(view: View?) {
+        val moviesIntent = Intent(view?.context, MoviesActivity::class.java)
         startActivity(moviesIntent)
     }
 
-    private fun openStudentApp(v: View?) {
-        val studentIntent = Intent(this, StudentActivity::class.java)
+    private fun openStudentApp(view: View?) {
+        val studentIntent = Intent(view?.context, StudentActivity::class.java)
         startActivity(studentIntent)
     }
 

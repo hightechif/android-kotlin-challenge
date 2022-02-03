@@ -4,9 +4,11 @@ import android.content.Context
 import com.fadhil.challenge.data.local.LocalDataSource
 import com.fadhil.challenge.data.local.room.AppDatabase
 import com.fadhil.challenge.data.local.room.MoviesDao
+import com.fadhil.challenge.data.local.room.StudentDao
 import com.fadhil.challenge.data.remote.RemoteDataSource
 import com.fadhil.challenge.data.remote.service.MoviesService
 import com.fadhil.challenge.data.repository.MovieRepository
+import com.fadhil.challenge.data.repository.StudentRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -44,7 +46,10 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideLocalDataSource(moviesDao: MoviesDao) = LocalDataSource(moviesDao)
+    fun provideLocalDataSource(
+        moviesDao: MoviesDao,
+        studentDao: StudentDao
+    ) = LocalDataSource(moviesDao, studentDao)
 
     @Singleton
     @Provides
@@ -56,8 +61,20 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(
+    fun provideStudentDao(db: AppDatabase) = db.studentDao()
+
+    @Singleton
+    @Provides
+    fun provideMovieRepository(
         remoteDataSource: RemoteDataSource,
         localDataSource: LocalDataSource
     ) = MovieRepository(remoteDataSource, localDataSource)
+
+    @Singleton
+    @Provides
+    fun provideStudentRepository(
+        remoteDataSource: RemoteDataSource,
+        localDataSource: LocalDataSource
+    ) = StudentRepository(remoteDataSource, localDataSource)
+
 }
