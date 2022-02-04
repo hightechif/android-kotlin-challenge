@@ -3,36 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/allStudentsFragment">
+    app:startDestination="@id/studentListFragment">
 
     <fragment
-        android:id="@+id/allStudentsFragment"
+        android:id="@+id/studentListFragment"
         android:name="com.fadhil.challenge.view.ui.StudentListFragment"
         android:label="Student Data Management"
         tools:layout="@layout/fragment_student_list">
         <action
-            android:id="@+id/action_allStudentsFragment_to_addStudentFragment"
-            app:destination="@id/addStudentFragment" />
+            android:id="@+id/action_studentListFragment_to_studentInsertionFragment"
+            app:destination="@id/studentInsertionFragment" />
         <action
-            android:id="@+id/action_allStudentsFragment_to_studentDetailFragment"
-            app:destination="@id/studentDetailFragment" />
+            android:id="@+id/action_studentListFragment_to_studentEditFragment"
+            app:destination="@id/studentEditFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addStudentFragment"
+        android:id="@+id/studentInsertionFragment"
         android:name="com.fadhil.challenge.view.ui.StudentInsertionFragment"
         android:label="Insert new student"
-        tools:layout="@layout/fragment_student_insertion" >
-        <action
-            android:id="@+id/action_addStudentFragment_to_allStudentsFragment"
-            app:destination="@id/allStudentsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_student_insertion" />
     <fragment
-        android:id="@+id/studentDetailFragment"
-        android:name="com.fadhil.challenge.view.ui.StudentDetailFragment"
+        android:id="@+id/studentEditFragment"
+        android:name="com.fadhil.challenge.view.ui.StudentEditFragment"
         android:label="Student detail"
-        tools:layout="@layout/fragment_student_detail" >
-        <action
-            android:id="@+id/action_studentDetailFragment_to_allStudentsFragment"
-            app:destination="@id/allStudentsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_student_edit" />
 </navigation>

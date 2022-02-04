@@ -20,6 +20,7 @@
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/fragment_add_student.xml" value="0.1" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/fragment_all_students.xml" value="0.213768115942029" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/fragment_student_detail.xml" value="0.1953125" />
+        <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/fragment_student_insertion.xml" value="0.1911231884057971" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/item_cardview_hero.xml" value="0.4" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/item_cardview_movie.xml" value="0.38697916666666665" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/item_grid_hero.xml" value="0.15520833333333334" />
@@ -27,7 +28,7 @@
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/item_post.xml" value="0.234375" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/item_row_hero.xml" value="0.27447916666666666" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/item_row_movie.xml" value="0.25" />
-        <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/item_row_student.xml" value="0.27447916666666666" />
+        <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/item_row_student.xml" value="0.10597826086956522" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/layout/item_sample_api.xml" value="0.36141304347826086" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/menu/main_menu.xml" value="0.38697916666666665" />
         <entry key="..\:/TMT-Q4-Mobile/android-kotlin-challenge/app/src/main/res/menu/overflow_menu.xml" value="0.27447916666666666" />

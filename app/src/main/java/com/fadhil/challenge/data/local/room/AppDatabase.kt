@@ -13,13 +13,14 @@ abstract class AppDatabase: RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
+        private const val DATABASE_NAME = "app_database"
 
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "app_database")
+                    DATABASE_NAME)
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance

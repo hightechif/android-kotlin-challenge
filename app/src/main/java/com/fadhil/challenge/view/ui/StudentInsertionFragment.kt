@@ -14,7 +14,7 @@ import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
 import com.fadhil.challenge.data.entities.Student
 import com.fadhil.challenge.databinding.FragmentStudentInsertionBinding
-import com.fadhil.challenge.viewmodels.StudentViewModel
+import com.fadhil.challenge.viewmodels.StudentInsertionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,14 +25,16 @@ class StudentInsertionFragment : Fragment(), AdapterView.OnItemSelectedListener 
     private lateinit var spinner: Spinner
     private lateinit var selectedGender: Gender
     private var genderOption = arrayOf(Gender.MALE, Gender.FEMALE)
-    private val viewModel: StudentViewModel by viewModels()
+    private val viewModel: StudentInsertionViewModel by viewModels()
     lateinit var student: Student
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentStudentInsertionBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         spinner = binding.spnStudentGender
         spinner.onItemSelectedListener = this
         val spinnerAdapter = ArrayAdapter.createFromResource(
@@ -42,11 +44,7 @@ class StudentInsertionFragment : Fragment(), AdapterView.OnItemSelectedListener 
         )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = spinnerAdapter
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         binding.btnSaveStudent.setOnClickListener {
             addNewStudent()
         }
@@ -68,9 +66,7 @@ class StudentInsertionFragment : Fragment(), AdapterView.OnItemSelectedListener 
                 binding.etStudentGpa.text.toString().toFloat(),
             )
         }
-        val action =
-            StudentInsertionFragmentDirections.actionAddStudentFragmentToAllStudentsFragment()
-        findNavController().navigate(action)
+        findNavController().navigateUp()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

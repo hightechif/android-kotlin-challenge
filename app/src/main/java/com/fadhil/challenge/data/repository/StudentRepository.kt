@@ -12,13 +12,14 @@ constructor(
     private val localDataSource: LocalDataSource
 ) {
 
-    suspend fun insert(student: Student) = localDataSource.insertStudent(student)
-
-    fun getAll(): Flow<List<Student>> = localDataSource.getAllStudents()
-
-    fun getStudentById(id: Int): Flow<Student> = localDataSource.getStudentById(id)
+    val studentsFlow: Flow<List<Student>>
+        get() = localDataSource.getStudentsFlow()
 
     fun getSmartStudents(): Flow<List<Student>> = localDataSource.getSmartStudents()
+
+    suspend fun getStudentById(id: Int): Student? = localDataSource.getStudentById(id)
+
+    suspend fun insert(student: Student) = localDataSource.insertStudent(student)
 
     suspend fun update(student: Student) = localDataSource.updateStudent(student)
 

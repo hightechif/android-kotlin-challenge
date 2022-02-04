@@ -36,7 +36,7 @@ class StudentAdapter(private val onItemClicked: (Student) -> Unit, private val s
             binding.tvItemGender.text = student.gender.toString()
             binding.tvItemGpa.text = student.gpa.toString()
             binding.btnDeleteStudent.setOnClickListener {
-                onDeleteOneClicked.onItemClicked(studentList[position])
+                onDeleteOneClicked.onItemClicked(getItem(position))
             }
         }
     }

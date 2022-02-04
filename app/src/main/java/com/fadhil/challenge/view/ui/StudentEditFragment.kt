@@ -14,27 +14,28 @@ import androidx.navigation.fragment.findNavController
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
 import com.fadhil.challenge.data.entities.Student
-import com.fadhil.challenge.databinding.FragmentStudentDetailBinding
-import com.fadhil.challenge.viewmodels.StudentViewModel
+import com.fadhil.challenge.databinding.FragmentStudentEditBinding
+import com.fadhil.challenge.viewmodels.StudentEditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class StudentEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private var _binding: FragmentStudentDetailBinding? = null
+    private var _binding: FragmentStudentEditBinding? = null
     private val binding get() = _binding!!
     private lateinit var spinner: Spinner
     private lateinit var selectedGender: Gender
     private var genderOption = arrayOf(Gender.MALE, Gender.FEMALE)
+    private val viewModel: StudentEditViewModel by viewModels()
     private lateinit var student: Student
-    private val viewModel: StudentViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_student_detail, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_student_edit, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         student = Student(
             arguments?.getInt("student_id")!!,
             arguments?.getString("student_name")!!,
@@ -52,11 +53,6 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = spinnerAdapter
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         binding.btnUpdateStudent.setOnClickListener {
             updateStudent()
         }
@@ -79,9 +75,7 @@ class StudentDetailFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 binding.etStudentGpa.text.toString().toFloat(),
             )
         }
-        val action =
-            StudentDetailFragmentDirections.actionStudentDetailFragmentToAllStudentsFragment()
-        findNavController().navigate(action)
+        findNavController().navigateUp()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
