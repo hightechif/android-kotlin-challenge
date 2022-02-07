@@ -13,39 +13,31 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.Gender
-import com.fadhil.challenge.data.entities.Student
-import com.fadhil.challenge.databinding.FragmentStudentEditBinding
-import com.fadhil.challenge.viewmodels.StudentEditViewModel
+import com.fadhil.challenge.databinding.FragmentStudentAddEditBinding
+import com.fadhil.challenge.view.event.StudentEvent
+import com.fadhil.challenge.viewmodels.StudentAddEditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class StudentEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class StudentAddEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private var _binding: FragmentStudentEditBinding? = null
+    private var _binding: FragmentStudentAddEditBinding? = null
     private val binding get() = _binding!!
     private lateinit var spinner: Spinner
     private lateinit var selectedGender: Gender
     private var genderOption = arrayOf(Gender.MALE, Gender.FEMALE)
-    private val viewModel: StudentEditViewModel by viewModels()
-    private lateinit var student: Student
+    private val viewModel: StudentAddEditViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_student_edit, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_student_add_edit, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        student = Student(
-            arguments?.getInt("student_id")!!,
-            arguments?.getString("student_name")!!,
-            arguments?.getSerializable("student_gender") as Gender,
-            arguments?.getFloat("student_gpa")!!,
-        )
-        binding.student = student
-        binding.selected = genderOption.indexOf(student.gender)
         spinner = binding.spnStudentGender
         spinner.onItemSelectedListener = this
+
         val spinnerAdapter = ArrayAdapter.createFromResource(
             requireContext(),
             R.array.gender_array,
@@ -53,8 +45,35 @@ class StudentEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = spinnerAdapter
-        binding.btnUpdateStudent.setOnClickListener {
-            updateStudent()
+
+        val studentEvent = arguments?.getString("student_event")!!
+        onEvent(studentEvent)
+    }
+
+    private fun onEvent(event: String) {
+        when (event) {
+            StudentEvent.ADD_NEW_STUDENT -> {
+                binding.btnSaveStudent.visibility = View.VISIBLE
+                binding.btnUpdateStudent.visibility = View.GONE
+                binding.btnSaveStudent.setOnClickListener {
+                    addNewStudent()
+                }
+            }
+            StudentEvent.EDIT_STUDENT -> {
+                binding.btnSaveStudent.visibility = View.GONE
+                binding.btnUpdateStudent.visibility = View.VISIBLE
+                val id = arguments?.getInt("student_id")!!
+                viewModel.getStudent(id).observe(viewLifecycleOwner) {
+                    binding.student = it
+                    binding.selected = genderOption.indexOf(binding.student?.gender)
+                }
+                binding.btnUpdateStudent.setOnClickListener {
+                    updateStudent(id)
+                }
+            }
+            else -> {
+
+            }
         }
     }
 
@@ -66,10 +85,21 @@ class StudentEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
     }
 
-    private fun updateStudent() {
+    private fun addNewStudent() {
+        if (isEntryValid()) {
+            viewModel.addNewStudent(
+                binding.etStudentName.text.toString(),
+                genderOption[binding.spnStudentGender.selectedItemPosition],
+                binding.etStudentGpa.text.toString().toFloat(),
+            )
+        }
+        findNavController().navigateUp()
+    }
+
+    private fun updateStudent(id: Int) {
         if (isEntryValid()) {
             viewModel.updateStudent(
-                student.id,
+                id,
                 binding.etStudentName.text.toString(),
                 genderOption[binding.spnStudentGender.selectedItemPosition],
                 binding.etStudentGpa.text.toString().toFloat(),
@@ -83,11 +113,12 @@ class StudentEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-        selectedGender = arguments?.getSerializable("student_gender") as Gender
+        selectedGender = Gender.MALE
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

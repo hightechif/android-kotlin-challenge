@@ -13,8 +13,8 @@ interface StudentDao {
     @Query("SELECT * FROM student WHERE gpa >= 3.00 ORDER BY gpa DESC")
     fun getSmartStudents(): Flow<List<Student>>
 
-    @Query("SELECT * FROM student WHERE id = :id ORDER BY id ASC")
-    suspend fun getStudentById(id: Int): Student?
+    @Query("SELECT * FROM student WHERE id = :id")
+    fun getStudentById(id: Int): Flow<Student>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(student: Student)

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,9 +13,9 @@ import com.fadhil.challenge.data.entities.Student
 import com.fadhil.challenge.databinding.FragmentStudentListBinding
 import com.fadhil.challenge.view.adapter.StudentAdapter
 import com.fadhil.challenge.view.callback.StudentDeleteOneCallback
+import com.fadhil.challenge.view.event.StudentEvent
 import com.fadhil.challenge.viewmodels.StudentListViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class StudentListFragment : Fragment() {
@@ -34,10 +33,11 @@ class StudentListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.btnAddStudent.setOnClickListener {
-            val action = StudentListFragmentDirections.actionStudentListFragmentToStudentInsertionFragment()
-            view.findNavController().navigate(action)
+            val bundle = Bundle()
+            bundle.putString("student_event", StudentEvent.ADD_NEW_STUDENT)
+            val action = StudentListFragmentDirections.actionStudentListFragmentToStudentAddEditFragment()
+            view.findNavController().navigate(action.actionId, bundle)
         }
 
         binding.btnDeleteAllStudents.setOnClickListener {
@@ -61,24 +61,16 @@ class StudentListFragment : Fragment() {
         // call from potentially locking the UI, you should use a
         // coroutine scope to launch the function. Using GlobalScope is not
         // best practice, and in the next step we'll see how to improve this.
-        lifecycle.coroutineScope.launch {
-            subscribeUi(studentAdapter)
-        }
-    }
-
-    private fun subscribeUi(adapter: StudentAdapter) {
         viewModel.studentsLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+            studentAdapter.submitList(it)
         }
     }
 
     private fun onItemViewClicked(it: Student) {
         val bundle = Bundle()
+        bundle.putString("student_event", StudentEvent.EDIT_STUDENT)
         bundle.putInt("student_id", it.id)
-        bundle.putString("student_name", it.name)
-        bundle.putSerializable("student_gender", it.gender)
-        bundle.putFloat("student_gpa", it.gpa)
-        val action = StudentListFragmentDirections.actionStudentListFragmentToStudentEditFragment()
+        val action = StudentListFragmentDirections.actionStudentListFragmentToStudentAddEditFragment()
         view?.findNavController()?.navigate(action.actionId, bundle)
     }
 

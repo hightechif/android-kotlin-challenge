@@ -1,6 +1,8 @@
 package com.fadhil.challenge.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.fadhil.challenge.constant.Gender
 import com.fadhil.challenge.data.entities.Student
@@ -10,12 +12,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class StudentInsertionViewModel @Inject
+class StudentAddEditViewModel @Inject
 constructor(private val studentRepository: StudentRepository) : ViewModel() {
+
+    private lateinit var student: LiveData<Student>
+
+    fun getStudent(id: Int): LiveData<Student> {
+        student = studentRepository.getStudentById(id).asLiveData()
+        return student
+    }
 
     private fun insertStudent(student: Student) {
         viewModelScope.launch {
             studentRepository.insert(student)
+        }
+    }
+
+    fun updateStudent(id: Int, name: String, gender: Gender, gpa: Float) {
+        val updatedStudent = Student(id, name, gender, gpa)
+        viewModelScope.launch {
+            studentRepository.update(updatedStudent)
         }
     }
 

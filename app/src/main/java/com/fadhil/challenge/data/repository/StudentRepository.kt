@@ -17,7 +17,7 @@ constructor(
 
     fun getSmartStudents(): Flow<List<Student>> = localDataSource.getSmartStudents()
 
-    suspend fun getStudentById(id: Int): Student? = localDataSource.getStudentById(id)
+    fun getStudentById(id: Int): Flow<Student> = localDataSource.getStudentById(id)
 
     suspend fun insert(student: Student) = localDataSource.insertStudent(student)
 

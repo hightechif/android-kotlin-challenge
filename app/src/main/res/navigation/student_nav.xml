@@ -11,20 +11,13 @@
         android:label="Student Data Management"
         tools:layout="@layout/fragment_student_list">
         <action
-            android:id="@+id/action_studentListFragment_to_studentInsertionFragment"
-            app:destination="@id/studentInsertionFragment" />
-        <action
-            android:id="@+id/action_studentListFragment_to_studentEditFragment"
-            app:destination="@id/studentEditFragment" />
+            android:id="@+id/action_studentListFragment_to_studentAddEditFragment"
+            app:destination="@id/studentAddEditFragment"/>
     </fragment>
     <fragment
-        android:id="@+id/studentInsertionFragment"
-        android:name="com.fadhil.challenge.view.ui.StudentInsertionFragment"
-        android:label="Insert new student"
-        tools:layout="@layout/fragment_student_insertion" />
-    <fragment
-        android:id="@+id/studentEditFragment"
-        android:name="com.fadhil.challenge.view.ui.StudentEditFragment"
-        android:label="Student detail"
-        tools:layout="@layout/fragment_student_edit" />
+        android:id="@+id/studentAddEditFragment"
+        android:name="com.fadhil.challenge.view.ui.StudentAddEditFragment"
+        android:label="Insert or Update Student"
+        tools:layout="@layout/fragment_student_add_edit">
+    </fragment>
 </navigation>

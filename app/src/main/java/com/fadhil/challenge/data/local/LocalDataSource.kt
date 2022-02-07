@@ -18,7 +18,7 @@ constructor(
 
     fun getSmartStudents(): Flow<List<Student>> = studentDao.getSmartStudents()
 
-    suspend fun getStudentById(id: Int): Student? = studentDao.getStudentById(id)
+    fun getStudentById(id: Int): Flow<Student> = studentDao.getStudentById(id)
 
     suspend fun insertAllMovies(movies: List<Movie>) = moviesDao.insertAll(movies)
 
