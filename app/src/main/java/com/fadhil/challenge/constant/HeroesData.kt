@@ -42,7 +42,8 @@ object HeroesData {
         get() {
             val list = arrayListOf<Hero>()
             for (position in heroNames.indices) {
-                val hero = Hero()
+                val hero = Hero(null, null, null, null)
+                hero.id = position.toLong()
                 hero.name = heroNames[position]
                 hero.detail = heroDetails[position]
                 hero.photo = heroesImages[position]

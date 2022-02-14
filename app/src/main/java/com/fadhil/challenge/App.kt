@@ -9,8 +9,6 @@ import timber.log.Timber
 @HiltAndroidApp
 class App : Application() {
 
-    val database: AppDatabase by lazy { AppDatabase.getDatabase(this) }
-
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())

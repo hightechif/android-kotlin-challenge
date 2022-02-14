@@ -1,15 +1,16 @@
 package com.fadhil.challenge.data.source.local.room
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
+//import android.content.Context
+//import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.fadhil.challenge.data.source.local.entity.Movie
-import com.fadhil.challenge.data.source.local.entity.Student
+import com.fadhil.challenge.data.source.local.entity.MovieEntity
+import com.fadhil.challenge.data.source.local.entity.StudentEntity
 
-@Database(entities = [Student::class, Movie::class], version = 2, exportSchema = false)
+@Database(entities = [StudentEntity::class, MovieEntity::class], version = 3, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
+    /**
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
@@ -28,6 +29,7 @@ abstract class AppDatabase: RoomDatabase() {
             }
         }
     }
+    */
 
     abstract fun studentDao(): StudentDao
 

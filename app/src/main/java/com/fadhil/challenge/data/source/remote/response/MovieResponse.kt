@@ -3,13 +3,16 @@ package com.fadhil.challenge.data.source.remote.response
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse (
+    @SerializedName("id")
     var id: Long?,
+    @SerializedName("title")
     var title: String?,
-    @field:SerializedName("release_date")
+    @SerializedName("release_date")
     var release: String?,
-    @field:SerializedName("poster_path")
+    @SerializedName("poster_path")
     var poster: String?,
-    @field:SerializedName("vote_average")
+    @SerializedName("vote_average")
     var rating: Float?,
+    @SerializedName("overview")
     var overview: String?
 )

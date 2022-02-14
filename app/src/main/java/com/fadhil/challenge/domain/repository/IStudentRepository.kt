@@ -1,0 +1,23 @@
+package com.fadhil.challenge.domain.repository
+
+import com.fadhil.challenge.domain.model.Student
+import com.fadhil.challenge.domain.model.StudentCreate
+import kotlinx.coroutines.flow.Flow
+
+interface IStudentRepository {
+
+    fun getStudentsFlow(): Flow<List<Student>>
+
+    fun getSmartStudents(): Flow<List<Student>>
+
+    fun getStudentById(id: Long): Flow<Student>
+
+    suspend fun insert(student: StudentCreate)
+
+    suspend fun update(student: Student)
+
+    suspend fun delete(student: Student)
+
+    suspend fun deleteAll()
+
+}

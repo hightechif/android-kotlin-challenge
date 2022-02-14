@@ -1,21 +1,19 @@
 package com.fadhil.challenge.di
 
-import android.content.Context
+import com.fadhil.challenge.data.source.MovieRepository
+import com.fadhil.challenge.data.source.StudentRepository
 import com.fadhil.challenge.data.source.local.MovieLocalDataSource
+import com.fadhil.challenge.data.source.local.StudentLocalDataSource
 import com.fadhil.challenge.data.source.local.room.AppDatabase
 import com.fadhil.challenge.data.source.local.room.MoviesDao
 import com.fadhil.challenge.data.source.local.room.StudentDao
 import com.fadhil.challenge.data.source.remote.MovieRemoteDataSource
 import com.fadhil.challenge.data.source.remote.network.MoviesService
-import com.fadhil.challenge.data.source.MovieRepository
-import com.fadhil.challenge.data.source.StudentRepository
-import com.fadhil.challenge.data.source.local.StudentLocalDataSource
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -58,10 +56,6 @@ object AppModule {
     fun provideStudentLocalDataSource(
         studentDao: StudentDao
     ) = StudentLocalDataSource(studentDao)
-
-    @Singleton
-    @Provides
-    fun provideDatabase(@ApplicationContext appContext: Context) = AppDatabase.getDatabase(appContext)
 
     @Singleton
     @Provides

@@ -1,28 +1,30 @@
 package com.fadhil.challenge.data.source.local.room
 
 import androidx.room.*
-import com.fadhil.challenge.data.source.local.entity.Student
+import com.fadhil.challenge.data.source.local.entity.StudentEntity
+import com.fadhil.challenge.domain.model.Student
+import com.fadhil.challenge.domain.model.StudentCreate
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StudentDao {
 
     @Query("SELECT * FROM student ORDER BY id ASC")
-    fun getStudentsFlow(): Flow<List<Student>>
+    fun getStudentsFlow(): Flow<List<StudentEntity>>
 
     @Query("SELECT * FROM student WHERE gpa >= 3.00 ORDER BY gpa DESC")
-    fun getSmartStudents(): Flow<List<Student>>
+    fun getSmartStudents(): Flow<List<StudentEntity>>
 
     @Query("SELECT * FROM student WHERE id = :id")
-    fun getStudentById(id: Int): Flow<Student>
+    fun getStudentById(id: Long): Flow<StudentEntity>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(student: Student)
+    @Insert(entity = StudentEntity::class, onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(student: StudentCreate)
 
-    @Update(entity = Student::class)
+    @Update(entity = StudentEntity::class)
     suspend fun update(student: Student)
 
-    @Delete(entity = Student::class)
+    @Delete(entity = StudentEntity::class)
     suspend fun delete(student: Student)
 
     @Query("DELETE FROM student")

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.fadhil.challenge.ui.movies.MoviesViewModel" />
+            type="com.fadhil.challenge.presentation.movies.MoviesViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.movies.MoviesActivity">
+        tools:context=".presentation.movies.MoviesActivity">
 
         <TextView
             android:id="@+id/tvErrorMessage"
