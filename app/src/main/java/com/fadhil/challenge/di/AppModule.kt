@@ -1,14 +1,15 @@
 package com.fadhil.challenge.di
 
 import android.content.Context
-import com.fadhil.challenge.data.local.LocalDataSource
-import com.fadhil.challenge.data.local.room.AppDatabase
-import com.fadhil.challenge.data.local.room.MoviesDao
-import com.fadhil.challenge.data.local.room.StudentDao
-import com.fadhil.challenge.data.remote.RemoteDataSource
-import com.fadhil.challenge.data.remote.service.MoviesService
-import com.fadhil.challenge.data.repository.MovieRepository
-import com.fadhil.challenge.data.repository.StudentRepository
+import com.fadhil.challenge.data.source.local.MovieLocalDataSource
+import com.fadhil.challenge.data.source.local.room.AppDatabase
+import com.fadhil.challenge.data.source.local.room.MoviesDao
+import com.fadhil.challenge.data.source.local.room.StudentDao
+import com.fadhil.challenge.data.source.remote.MovieRemoteDataSource
+import com.fadhil.challenge.data.source.remote.network.MoviesService
+import com.fadhil.challenge.data.source.MovieRepository
+import com.fadhil.challenge.data.source.StudentRepository
+import com.fadhil.challenge.data.source.local.StudentLocalDataSource
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -42,14 +43,21 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRemoteDataSource(moviesService: MoviesService) = RemoteDataSource(moviesService)
+    fun provideMovieRemoteDataSource(
+        moviesService: MoviesService
+    ) = MovieRemoteDataSource(moviesService)
 
     @Singleton
     @Provides
-    fun provideLocalDataSource(
-        moviesDao: MoviesDao,
+    fun provideMovieLocalDataSource(
+        moviesDao: MoviesDao
+    ) = MovieLocalDataSource(moviesDao)
+
+    @Singleton
+    @Provides
+    fun provideStudentLocalDataSource(
         studentDao: StudentDao
-    ) = LocalDataSource(moviesDao, studentDao)
+    ) = StudentLocalDataSource(studentDao)
 
     @Singleton
     @Provides
@@ -66,15 +74,14 @@ object AppModule {
     @Singleton
     @Provides
     fun provideMovieRepository(
-        remoteDataSource: RemoteDataSource,
-        localDataSource: LocalDataSource
-    ) = MovieRepository(remoteDataSource, localDataSource)
+        movieRemoteDataSource: MovieRemoteDataSource,
+        movieLocalDataSource: MovieLocalDataSource
+    ) = MovieRepository(movieRemoteDataSource, movieLocalDataSource)
 
     @Singleton
     @Provides
     fun provideStudentRepository(
-        remoteDataSource: RemoteDataSource,
-        localDataSource: LocalDataSource
-    ) = StudentRepository(remoteDataSource, localDataSource)
+        studentLocalDataSource: StudentLocalDataSource
+    ) = StudentRepository(studentLocalDataSource)
 
 }

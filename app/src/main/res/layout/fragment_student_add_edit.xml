@@ -7,7 +7,7 @@
 
         <variable
             name="student"
-            type="com.fadhil.challenge.data.entities.Student" />
+            type="com.fadhil.challenge.data.source.local.entity.Student" />
 
         <variable
             name="selected"
@@ -17,7 +17,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.ui.StudentAddEditFragment">
+        tools:context=".ui.student.addedit.StudentAddEditFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

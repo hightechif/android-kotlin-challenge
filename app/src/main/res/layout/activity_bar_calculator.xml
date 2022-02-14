@@ -7,7 +7,7 @@
 
         <variable
             name="bar"
-            type="com.fadhil.challenge.data.entities.Bar" />
+            type="com.fadhil.challenge.domain.model.Bar" />
     </data>
 
     <ScrollView

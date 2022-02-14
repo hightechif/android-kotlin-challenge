@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/studentListFragment"
-        android:name="com.fadhil.challenge.view.ui.StudentListFragment"
+        android:name="com.fadhil.challenge.ui.student.list.StudentListFragment"
         android:label="Student Data Management"
         tools:layout="@layout/fragment_student_list">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/studentAddEditFragment"
-        android:name="com.fadhil.challenge.view.ui.StudentAddEditFragment"
+        android:name="com.fadhil.challenge.ui.student.addedit.StudentAddEditFragment"
         android:label="Insert or Update Student"
         tools:layout="@layout/fragment_student_add_edit">
     </fragment>

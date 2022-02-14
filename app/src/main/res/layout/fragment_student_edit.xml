@@ -6,7 +6,7 @@
     <data>
         <variable
             name="student"
-            type="com.fadhil.challenge.data.entities.Student" />
+            type="com.fadhil.challenge.data.source.local.entity.Student" />
         <variable
             name="selected"
             type="int" />
