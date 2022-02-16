@@ -1,11 +1,11 @@
 package com.fadhil.challenge.utils
 
-import com.fadhil.challenge.data.source.local.entity.MovieEntity
+import com.fadhil.challenge.data.source.remote.response.MovieResponse
 import com.fadhil.challenge.domain.model.Movie
 
 object DataMapperMovie {
 
-    fun mapMovieToDomain(input: MovieEntity) =
+    fun mapMovieToDomain(input: MovieResponse) =
         Movie(
             id = input.id,
             title = input.title,
@@ -15,7 +15,7 @@ object DataMapperMovie {
             overview = input.overview
         )
 
-    fun mapMoviesToDomain(input: List<MovieEntity>) =
+    fun mapMoviesToDomain(input: List<MovieResponse>) =
         input.map {
             mapMovieToDomain(it)
         }

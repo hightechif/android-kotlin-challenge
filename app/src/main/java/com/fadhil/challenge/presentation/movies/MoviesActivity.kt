@@ -13,15 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.R
 import com.fadhil.challenge.constant.RequestStatus
 import com.fadhil.challenge.data.Result
-import com.fadhil.challenge.data.source.local.entity.MovieEntity
 import com.fadhil.challenge.databinding.ActivityMoviesBinding
+import com.fadhil.challenge.domain.model.Movie
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MoviesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMoviesBinding
-    private var list: ArrayList<MovieEntity> = arrayListOf()
+    private var list: MutableList<Movie> = mutableListOf()
     private var title: String = "Movies App: Mode List"
     private val viewModel: MoviesViewModel by viewModels()
 
@@ -38,7 +38,7 @@ class MoviesActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        val movieObserver = Observer<Result<List<MovieEntity>>> {
+        val movieObserver = Observer<Result<List<Movie>?>> {
             when (it.status) {
                 Result.Status.SUCCESS -> {
                     setVisibility(RequestStatus.SUCCESS)
@@ -67,14 +67,14 @@ class MoviesActivity : AppCompatActivity() {
         val movieListAdapter = MovieListAdapter(list)
         binding.rvMovies.adapter = movieListAdapter
         movieListAdapter.setOnClickedCallback(object : MovieCallback {
-            override fun onItemClicked(data: MovieEntity) {
+            override fun onItemClicked(data: Movie) {
                 showSelectedHero(data)
             }
         })
     }
 
-    private fun showSelectedHero(movieEntity: MovieEntity) {
-        Toast.makeText(this, "You click " + movieEntity.title, Toast.LENGTH_SHORT).show()
+    private fun showSelectedHero(movie: Movie) {
+        Toast.makeText(this, "You click " + movie.title, Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -110,7 +110,7 @@ class MoviesActivity : AppCompatActivity() {
         val movieGridAdapter = MovieGridAdapter(list)
         binding.rvMovies.adapter = movieGridAdapter
         movieGridAdapter.setOnClickedCallback(object : MovieCallback {
-            override fun onItemClicked(data: MovieEntity) {
+            override fun onItemClicked(data: Movie) {
                 showSelectedHero(data)
             }
         })

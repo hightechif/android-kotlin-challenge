@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
-import com.fadhil.challenge.data.source.local.entity.MovieEntity
+import com.fadhil.challenge.domain.model.Movie
 
-class MovieListAdapter(private val movieEntityList: ArrayList<MovieEntity>) : MovieRVAdapter<MovieListAdapter.ListViewHolder>(movieEntityList) {
+class MovieListAdapter(private val movieList: MutableList<Movie>) : MovieRVAdapter<MovieListAdapter.ListViewHolder>(movieList) {
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tv_item_title)
@@ -22,12 +22,13 @@ class MovieListAdapter(private val movieEntityList: ArrayList<MovieEntity>) : Mo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_row_movie, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_row_movie, parent, false)
         return ListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val movie = movieEntityList[position]
+        val movie = movieList[position]
         holder.tvTitle.text = movie.title
         holder.tvRelease.text = movie.release
         /**
@@ -43,7 +44,7 @@ class MovieListAdapter(private val movieEntityList: ArrayList<MovieEntity>) : Mo
         holder.tvRating.text = movie.rating.toString()
         holder.tvOverview.text = movie.overview
         holder.itemView.setOnClickListener {
-            onItemClickedCallback.onItemClicked(movieEntityList[holder.bindingAdapterPosition])
+            onItemClickedCallback.onItemClicked(movieList[holder.bindingAdapterPosition])
         }
     }
 }

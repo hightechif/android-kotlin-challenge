@@ -22,6 +22,8 @@ constructor(private val studentLocalDataSource: StudentLocalDataSource) : IStude
             DataMapperStudent.mapStudentsToDomain(it)
         }
 
+    override fun isStudentExist(id: Long): Flow<Boolean> = studentLocalDataSource.isStudentExist(id)
+
     override fun getStudentById(id: Long): Flow<Student> =
         studentLocalDataSource.getStudentById(id).map {
             DataMapperStudent.mapStudentToDomain(it)
@@ -31,7 +33,10 @@ constructor(private val studentLocalDataSource: StudentLocalDataSource) : IStude
 
     override suspend fun update(student: Student) = studentLocalDataSource.updateStudent(student)
 
-    override suspend fun delete(student: Student) = studentLocalDataSource.deleteStudent(student)
+    override suspend fun delete(student: Student) {
+        val studentEntity = DataMapperStudent.mapStudentToEntity(student)
+        studentLocalDataSource.deleteStudent(studentEntity)
+    }
 
     override suspend fun deleteAll() = studentLocalDataSource.deleteAllStudents()
 

@@ -15,6 +15,9 @@ interface StudentDao {
     @Query("SELECT * FROM student WHERE gpa >= 3.00 ORDER BY gpa DESC")
     fun getSmartStudents(): Flow<List<StudentEntity>>
 
+    @Query("SELECT EXISTS(SELECT * FROM student WHERE id = :id)")
+    fun isStudentExist(id: Long): Flow<Boolean>
+
     @Query("SELECT * FROM student WHERE id = :id")
     fun getStudentById(id: Long): Flow<StudentEntity>
 
@@ -25,7 +28,7 @@ interface StudentDao {
     suspend fun update(student: Student)
 
     @Delete(entity = StudentEntity::class)
-    suspend fun delete(student: Student)
+    suspend fun delete(student: StudentEntity)
 
     @Query("DELETE FROM student")
     suspend fun deleteAll()

@@ -10,6 +10,8 @@ interface IStudentRepository {
 
     fun getSmartStudents(): Flow<List<Student>>
 
+    fun isStudentExist(id: Long): Flow<Boolean>
+
     fun getStudentById(id: Long): Flow<Student>
 
     suspend fun insert(student: StudentCreate)

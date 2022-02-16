@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,13 +17,13 @@ import com.fadhil.challenge.presentation.student.StudentAdapter
 import com.fadhil.challenge.presentation.student.StudentDeleteOneCallback
 import com.fadhil.challenge.presentation.student.StudentEvent
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class StudentListFragment : Fragment() {
 
     private var _binding: FragmentStudentListBinding? = null
     private val binding get() = _binding!!
-    private var list: MutableList<Student> = mutableListOf()
     private lateinit var recyclerView: RecyclerView
     private val viewModel: StudentListViewModel by viewModels()
 
@@ -60,8 +62,10 @@ class StudentListFragment : Fragment() {
         // call from potentially locking the UI, you should use a
         // coroutine scope to launch the function. Using GlobalScope is not
         // best practice, and in the next step we'll see how to improve this.
-        viewModel.studentsLiveData.observe(viewLifecycleOwner) {
-            studentAdapter.submitList(it)
+        lifecycleScope.launch {
+            viewModel.studentsLiveData.observe(viewLifecycleOwner) {
+                studentAdapter.submitList(it)
+            }
         }
     }
 

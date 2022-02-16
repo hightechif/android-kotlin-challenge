@@ -18,4 +18,12 @@ object DataMapperStudent {
             mapStudentToDomain(it)
         }
 
+    fun mapStudentToEntity(input: Student) =
+        StudentEntity(
+            id = input.id,
+            name = input.name,
+            gender = input.gender,
+            gpa = input.gpa
+        )
+
 }

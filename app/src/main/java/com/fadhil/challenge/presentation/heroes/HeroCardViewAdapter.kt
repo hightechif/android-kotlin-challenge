@@ -1,5 +1,6 @@
 package com.fadhil.challenge.presentation.heroes
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,7 @@ class HeroCardViewAdapter(private val heroList: ArrayList<Hero>) : HeroRVAdapter
         }
 
         holder.btnShare.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Share " + heroList[holder.bindingAdapterPosition].name, Toast.LENGTH_SHORT).show()
+            onItemClickedCallback.onItemClicked(heroList[holder.bindingAdapterPosition])
         }
     }
 }

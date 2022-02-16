@@ -42,6 +42,7 @@ class HeroesActivity : AppCompatActivity() {
         binding.rvHeroes.layoutManager = LinearLayoutManager(this)
 
         val heroListAdapter = HeroListAdapter(list)
+
         binding.rvHeroes.adapter = heroListAdapter
         heroListAdapter.setOnClickedCallback(object : HeroCallback {
             override fun onItemClicked(data: Hero) {
@@ -121,6 +122,16 @@ class HeroesActivity : AppCompatActivity() {
         binding.rvHeroes.layoutManager = LinearLayoutManager(this)
         val heroCardViewAdapter = HeroCardViewAdapter(list)
         binding.rvHeroes.adapter = heroCardViewAdapter
+
+        heroCardViewAdapter.setOnClickedCallback(object : HeroCallback {
+            override fun onItemClicked(data: Hero) {
+                val sharingIntent = Intent(Intent.ACTION_SEND)
+                sharingIntent.type = "text/plain"
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, "${data.name}: ${data.detail}")
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "${data.name}")
+                startActivity(Intent.createChooser(sharingIntent, "Share hero"))
+            }
+        })
     }
 
     private fun showListView() {

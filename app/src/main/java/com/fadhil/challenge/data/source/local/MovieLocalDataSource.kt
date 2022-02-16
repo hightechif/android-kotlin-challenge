@@ -1,21 +1,16 @@
 package com.fadhil.challenge.data.source.local
 
-import com.fadhil.challenge.data.source.local.entity.MovieEntity
-import com.fadhil.challenge.data.source.local.room.MoviesDao
+import android.content.SharedPreferences
 import com.fadhil.challenge.domain.model.Movie
-import com.fadhil.challenge.utils.DataMapperMovie
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import javax.inject.Inject
 
-class MovieLocalDataSource @Inject
-constructor(private val moviesDao: MoviesDao) {
+class MovieLocalDataSource(
+    sharedPreferences: SharedPreferences
+) : LocalDataSource<List<Movie>>(sharedPreferences) {
 
-    fun getAllMovies(): Flow<List<Movie>> =
-        moviesDao.getAllMovies().map {
-            DataMapperMovie.mapMoviesToDomain(it)
-        }
-
-    suspend fun insertAllMovies(movieEntities: List<MovieEntity>) = moviesDao.insertAll(movieEntities)
+    override fun getKeyName() = "movieList"
+    override fun getValue(json: String): List<Movie> = Gson().fromJson(json, object : TypeToken<List<Movie>>() {}.type)
 
 }

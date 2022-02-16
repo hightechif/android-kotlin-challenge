@@ -18,9 +18,12 @@ constructor(private val studentRepository: StudentRepository) : ViewModel() {
 
     private lateinit var student: LiveData<Student>
 
+    fun isStudentExist(id: Long): LiveData<Boolean> {
+        return studentRepository.isStudentExist(id).asLiveData()
+    }
+
     fun getStudent(id: Long): LiveData<Student> {
-        student = studentRepository.getStudentById(id).asLiveData()
-        return student
+        return studentRepository.getStudentById(id).asLiveData()
     }
 
     private fun insertStudent(student: StudentCreate) {

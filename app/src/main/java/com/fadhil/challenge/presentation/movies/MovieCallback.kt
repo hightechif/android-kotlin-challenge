@@ -1,7 +1,7 @@
 package com.fadhil.challenge.presentation.movies
 
-import com.fadhil.challenge.data.source.local.entity.MovieEntity
+import com.fadhil.challenge.domain.model.Movie
 
 interface MovieCallback {
-    fun onItemClicked(data: MovieEntity)
+    fun onItemClicked(data: Movie)
 }

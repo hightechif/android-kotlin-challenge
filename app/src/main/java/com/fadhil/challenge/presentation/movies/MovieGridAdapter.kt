@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
-import com.fadhil.challenge.data.source.local.entity.MovieEntity
+import com.fadhil.challenge.domain.model.Movie
 
-class MovieGridAdapter(private val movieEntityList: ArrayList<MovieEntity>) : MovieRVAdapter<MovieGridAdapter.GridViewHolder>(movieEntityList) {
+class MovieGridAdapter(private val movieEntityList: MutableList<Movie>) : MovieRVAdapter<MovieGridAdapter.GridViewHolder>(movieEntityList) {
 
     inner class GridViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgPoster: ImageView = itemView.findViewById(R.id.img_item_poster)

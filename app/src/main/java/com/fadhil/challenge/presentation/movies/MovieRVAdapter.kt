@@ -2,9 +2,9 @@ package com.fadhil.challenge.presentation.movies
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.fadhil.challenge.data.source.local.entity.MovieEntity
+import com.fadhil.challenge.domain.model.Movie
 
-abstract class MovieRVAdapter<VH : RecyclerView.ViewHolder>(private val movieEntityList: ArrayList<MovieEntity>) : RecyclerView.Adapter<VH>() {
+abstract class MovieRVAdapter<VH : RecyclerView.ViewHolder>(private val movieEntityList: MutableList<Movie>) : RecyclerView.Adapter<VH>() {
 
     lateinit var onItemClickedCallback: MovieCallback
 

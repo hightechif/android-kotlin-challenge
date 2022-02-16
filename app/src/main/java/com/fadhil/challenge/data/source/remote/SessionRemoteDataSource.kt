@@ -6,19 +6,19 @@ import com.fadhil.challenge.data.source.remote.request.LogoutRequest
 import com.fadhil.challenge.data.source.remote.request.RefreshTokenRequest
 
 class SessionRemoteDataSource(
-    private val apiService: AuthService
+    private val authService: AuthService
 ) : BaseDataSource() {
 
     suspend fun login(nik: String?, password: String?, deviceId: String?) =
         getResult {
-            apiService.login(
+            authService.login(
                 LoginRequest(nik, password, deviceId)
             )
         }
 
     suspend fun logout(deviceId: String?) =
         getResult {
-            apiService.logout(
+            authService.logout(
                 LogoutRequest(
                     deviceId
                 )
@@ -27,7 +27,7 @@ class SessionRemoteDataSource(
 
     suspend fun refreshToken(refreshToken: String) =
         getResult {
-            apiService.refreshToken(
+            authService.refreshToken(
                 RefreshTokenRequest(refreshToken)
             )
         }

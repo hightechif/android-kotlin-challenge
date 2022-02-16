@@ -14,13 +14,16 @@ constructor(val studentDao: StudentDao) {
 
     fun getSmartStudents(): Flow<List<StudentEntity>> = studentDao.getSmartStudents()
 
+    fun isStudentExist(id: Long): Flow<Boolean> = studentDao.isStudentExist(id)
+
     fun getStudentById(id: Long): Flow<StudentEntity> = studentDao.getStudentById(id)
 
     suspend fun insertStudent(student: StudentCreate) = studentDao.insert(student)
 
     suspend fun updateStudent(student: Student) = studentDao.update(student)
 
-    suspend fun deleteStudent(student: Student) = studentDao.delete(student)
+    suspend fun deleteStudent(student: StudentEntity) = studentDao.delete(student)
 
     suspend fun deleteAllStudents() = studentDao.deleteAll()
+
 }

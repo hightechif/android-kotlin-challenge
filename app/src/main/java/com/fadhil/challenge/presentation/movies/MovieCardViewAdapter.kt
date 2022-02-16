@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
-import com.fadhil.challenge.data.source.local.entity.MovieEntity
+import com.fadhil.challenge.domain.model.Movie
 
-class MovieCardViewAdapter(private val movieEntityList: ArrayList<MovieEntity>) : MovieRVAdapter<MovieCardViewAdapter.CardViewHolder>(movieEntityList) {
+class MovieCardViewAdapter(private val movieEntityList: MutableList<Movie>) : MovieRVAdapter<MovieCardViewAdapter.CardViewHolder>(movieEntityList) {
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tv_item_title)

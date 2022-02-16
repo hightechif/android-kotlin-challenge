@@ -62,9 +62,13 @@ class StudentAddEditFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 binding.btnSaveStudent.visibility = View.GONE
                 binding.btnUpdateStudent.visibility = View.VISIBLE
                 val id = arguments?.getLong("student_id")!!
-                viewModel.getStudent(id).observe(viewLifecycleOwner) {
-                    binding.student = it
-                    binding.selected = genderOption.indexOf(binding.student?.gender)
+                viewModel.isStudentExist(id).observe(viewLifecycleOwner) { isExist ->
+                    if(isExist) {
+                        viewModel.getStudent(id).observe(viewLifecycleOwner) { student ->
+                            binding.student = student
+                            binding.selected = genderOption.indexOf(binding.student?.gender)
+                        }
+                    }
                 }
                 binding.btnUpdateStudent.setOnClickListener {
                     updateStudent(id)

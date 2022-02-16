@@ -20,6 +20,14 @@ object DatabaseModule {
 
     @Singleton
     @Provides
+    fun provideMoviesDao(db: AppDatabase) = db.moviesDao()
+
+    @Singleton
+    @Provides
+    fun provideStudentDao(db: AppDatabase) = db.studentDao()
+
+    @Singleton
+    @Provides
     fun provideDatabase(@ApplicationContext appContext: Context): AppDatabase =
         Room.databaseBuilder(
             appContext.applicationContext,
