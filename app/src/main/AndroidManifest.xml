@@ -42,7 +42,7 @@
         <activity
             android:name=".presentation.barcalculator.BarCalculatorActivity"
             android:exported="true"
-            android:label="Bar Calculator" />
+            android:label="Bar Volume Calculator" />
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true"

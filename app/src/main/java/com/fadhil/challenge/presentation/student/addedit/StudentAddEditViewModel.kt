@@ -5,11 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.fadhil.challenge.constant.Gender
-import com.fadhil.challenge.data.source.StudentRepository
 import com.fadhil.challenge.domain.model.Student
 import com.fadhil.challenge.domain.model.StudentCreate
 import com.fadhil.challenge.domain.usecase.StudentInteractor
-import com.fadhil.challenge.domain.usecase.StudentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,13 +16,18 @@ import javax.inject.Inject
 class StudentAddEditViewModel @Inject
 constructor(private val studentInteractor: StudentInteractor) : ViewModel() {
 
-    private lateinit var student: LiveData<Student>
+    private lateinit var student: LiveData<Student?>
 
     fun isStudentExist(id: Long): LiveData<Boolean> {
         return studentInteractor.isStudentExist(id).asLiveData()
     }
 
     fun getStudent(id: Long): LiveData<Student?> {
+        student = loadStudent(id)
+        return student
+    }
+
+    private fun loadStudent(id: Long): LiveData<Student?> {
         return studentInteractor.getStudentById(id).asLiveData()
     }
 

@@ -1,10 +1,11 @@
 package com.fadhil.challenge.presentation.student.list
 
-import androidx.lifecycle.*
-import com.fadhil.challenge.data.source.StudentRepository
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.fadhil.challenge.domain.model.Student
 import com.fadhil.challenge.domain.usecase.StudentInteractor
-import com.fadhil.challenge.domain.usecase.StudentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,6 +22,7 @@ constructor(private val studentInteractor: StudentInteractor) : ViewModel() {
     }
 
     private fun loadStudents(): LiveData<List<Student>?> {
+        // If any transformation is needed, this can be simply done by Transformations class ...
         return studentInteractor.getStudentsFlow().asLiveData()
     }
 

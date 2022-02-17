@@ -19,21 +19,6 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tvCalculatorTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/roboto"
-                android:text="@string/calculatorTitle"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/tvLength"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,20 +28,24 @@
                 android:text="@string/length"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvCalculatorTitle" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/etLength"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/size_16_dp"
+                android:layout_marginTop="@dimen/size_16_dp"
+                android:layout_marginEnd="@dimen/size_16_dp"
+                android:autofillHints=""
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:hint="@string/lengthHint"
                 android:inputType="number|numberDecimal"
                 android:text='@{(bar.length == null || bar.length == 0.0) ? "" : Double.toString(bar.length)}'
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLength"
                 tools:ignore="TextContrastCheck" />
@@ -76,16 +65,20 @@
             <EditText
                 android:id="@+id/etWidth"
                 style="@style/calculatorStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/size_16_dp"
+                android:layout_marginTop="@dimen/size_16_dp"
+                android:layout_marginEnd="@dimen/size_16_dp"
+                android:autofillHints=""
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:hint="@string/widthHint"
                 android:inputType="number|numberDecimal"
                 android:text='@{(bar.width == null || bar.width == 0.0) ? "" : Double.toString(bar.width)}'
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvWidth" />
 
@@ -103,16 +96,20 @@
 
             <EditText
                 android:id="@+id/etDepth"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/size_16_dp"
+                android:layout_marginTop="@dimen/size_16_dp"
+                android:layout_marginEnd="@dimen/size_16_dp"
+                android:autofillHints=""
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:hint="@string/depthHint"
                 android:inputType="number|numberDecimal"
                 android:text='@{(bar.depth == null || bar.depth == 0.0) ? "" : Double.toString(bar.depth)}'
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvDepth" />
 
@@ -148,7 +145,6 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:text='@{(bar.volume == null) || bar.volume == 0.0 ? "" : Double.toString(bar.volume)}'
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
