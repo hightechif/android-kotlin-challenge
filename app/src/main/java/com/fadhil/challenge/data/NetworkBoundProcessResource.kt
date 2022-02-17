@@ -1,6 +1,5 @@
-package com.fadhil.challenge.data.source
+package com.fadhil.challenge.data
 
-import com.fadhil.challenge.data.Result
 import com.fadhil.challenge.data.source.local.SessionLocalDataSource
 import com.fadhil.challenge.data.source.remote.SessionRemoteDataSource
 import kotlinx.coroutines.flow.Flow

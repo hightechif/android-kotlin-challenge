@@ -20,24 +20,24 @@ class StudentAdapter(private val onItemClicked: (Student) -> Unit) : ListAdapter
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Student>() {
-            override fun areItemsTheSame(oldItem: Student, newItem: Student): Boolean {
-                return oldItem.id == newItem.id
+            override fun areItemsTheSame(oldStudent: Student, newStudent: Student): Boolean {
+                return oldStudent.id == newStudent.id
             }
 
-            override fun areContentsTheSame(oldItem: Student, newItem: Student): Boolean {
-                return oldItem == newItem
+            override fun areContentsTheSame(oldStudent: Student, newStudent: Student): Boolean {
+                return oldStudent == newStudent
             }
         }
     }
 
     inner class StudentViewHolder(private var binding: ItemRowStudentBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(student: Student, position: Int) {
+        fun bind(student: Student) {
             binding.tvItemId.text = student.id.toString()
             binding.tvItemName.text = student.name
             binding.tvItemGender.text = student.gender.toString()
             binding.tvItemGpa.text = student.gpa.toString()
             binding.btnDeleteStudent.setOnClickListener {
-                onDeleteOneClicked.onItemClicked(getItem(position))
+                onDeleteOneClicked.onItemClicked(student)
             }
         }
     }
@@ -58,7 +58,7 @@ class StudentAdapter(private val onItemClicked: (Student) -> Unit) : ListAdapter
     }
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
-        holder.bind(getItem(position), position)
+        holder.bind(getItem(position))
     }
 
 }

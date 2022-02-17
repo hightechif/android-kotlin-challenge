@@ -1,5 +1,6 @@
 package com.fadhil.challenge.data.source
 
+import com.fadhil.challenge.data.NetworkBoundResource
 import com.fadhil.challenge.data.Result
 import com.fadhil.challenge.data.source.local.MovieLocalDataSource
 import com.fadhil.challenge.data.source.local.SessionLocalDataSource
@@ -21,10 +22,6 @@ constructor(
     private val movieLocalDataSource: MovieLocalDataSource
 ) : IMovieRepository {
 
-    companion object {
-        const val API_KEY = "31bcf72a6584461df2daa00c58f75514"
-    }
-
     override fun getMovies(page: Int): Flow<Result<List<Movie>?>> =
         object : NetworkBoundResource<List<Movie>?, PageableData<MovieResponse>>(
             sessionLocalDataSource, sessionRemoteDataSource
@@ -35,7 +32,7 @@ constructor(
             override fun shouldFetch(data: List<Movie>?) = true
 
             override suspend fun createCall(): Result<PageableData<MovieResponse>> {
-                    return movieRemoteDataSource.getMovies(page, API_KEY)
+                    return movieRemoteDataSource.getMovies(page)
             }
 
             override suspend fun saveCallResult(data: PageableData<MovieResponse>) {

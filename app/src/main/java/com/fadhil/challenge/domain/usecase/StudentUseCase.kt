@@ -1,10 +1,10 @@
-package com.fadhil.challenge.domain.repository
+package com.fadhil.challenge.domain.usecase
 
 import com.fadhil.challenge.domain.model.Student
 import com.fadhil.challenge.domain.model.StudentCreate
 import kotlinx.coroutines.flow.Flow
 
-interface IStudentRepository {
+interface StudentUseCase {
 
     fun getStudentsFlow(): Flow<List<Student>?>
 

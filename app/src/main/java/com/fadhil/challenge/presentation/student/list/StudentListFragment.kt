@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,9 +40,6 @@ class StudentListFragment : Fragment() {
             view.findNavController().navigate(action.actionId, bundle)
         }
 
-        binding.btnDeleteAllStudents.setOnClickListener {
-            viewModel.deleteAll()
-        }
 
         recyclerView = binding.rvStudent
         recyclerView.setHasFixedSize(false)
@@ -52,20 +48,27 @@ class StudentListFragment : Fragment() {
         val studentAdapter = StudentAdapter(this::onItemViewClicked)
         recyclerView.adapter = studentAdapter
 
+        loadData(studentAdapter)
+
         studentAdapter.setOnDeleteCallback(object : StudentDeleteOneCallback {
             override fun onItemClicked(data: Student) {
-                viewModel.deleteOne(data)
+                loadData(studentAdapter)
+                viewModel.deleteOne(data.id)
             }
         })
 
+        binding.btnDeleteAllStudents.setOnClickListener {
+            viewModel.deleteAll()
+        }
+    }
+
+    private fun loadData(adapter: StudentAdapter) {
         // submitList() is a call that accesses the database. To prevent the
         // call from potentially locking the UI, you should use a
         // coroutine scope to launch the function. Using GlobalScope is not
         // best practice, and in the next step we'll see how to improve this.
-        lifecycleScope.launch {
-            viewModel.studentsLiveData.observe(viewLifecycleOwner) {
-                studentAdapter.submitList(it)
-            }
+        viewModel.getStudents().observe(viewLifecycleOwner) {
+            adapter.submitList(it ?: mutableListOf())
         }
     }
 

@@ -12,31 +12,30 @@ import javax.inject.Inject
 class StudentRepository @Inject
 constructor(private val studentLocalDataSource: StudentLocalDataSource) : IStudentRepository {
 
-    override fun getStudentsFlow(): Flow<List<Student>> =
-        studentLocalDataSource.getStudentsFlow().map {
+    override fun getStudentsFlow(): Flow<List<Student>?> {
+        return studentLocalDataSource.getStudentsFlow().map {
             DataMapperStudent.mapStudentsToDomain(it)
         }
+    }
 
-    override fun getSmartStudents(): Flow<List<Student>> =
+    override fun getSmartStudents(): Flow<List<Student>?> =
         studentLocalDataSource.getSmartStudents().map {
             DataMapperStudent.mapStudentsToDomain(it)
         }
 
     override fun isStudentExist(id: Long): Flow<Boolean> = studentLocalDataSource.isStudentExist(id)
 
-    override fun getStudentById(id: Long): Flow<Student> =
-        studentLocalDataSource.getStudentById(id).map {
+    override fun getStudentById(id: Long): Flow<Student?> {
+        return studentLocalDataSource.getStudentById(id).map {
             DataMapperStudent.mapStudentToDomain(it)
         }
+    }
 
     override suspend fun insert(student: StudentCreate) = studentLocalDataSource.insertStudent(student)
 
     override suspend fun update(student: Student) = studentLocalDataSource.updateStudent(student)
 
-    override suspend fun delete(student: Student) {
-        val studentEntity = DataMapperStudent.mapStudentToEntity(student)
-        studentLocalDataSource.deleteStudent(studentEntity)
-    }
+    override suspend fun delete(id: Long) = studentLocalDataSource.deleteStudent(id)
 
     override suspend fun deleteAll() = studentLocalDataSource.deleteAllStudents()
 

@@ -8,34 +8,36 @@ import com.fadhil.challenge.constant.Gender
 import com.fadhil.challenge.data.source.StudentRepository
 import com.fadhil.challenge.domain.model.Student
 import com.fadhil.challenge.domain.model.StudentCreate
+import com.fadhil.challenge.domain.usecase.StudentInteractor
+import com.fadhil.challenge.domain.usecase.StudentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class StudentAddEditViewModel @Inject
-constructor(private val studentRepository: StudentRepository) : ViewModel() {
+constructor(private val studentInteractor: StudentInteractor) : ViewModel() {
 
     private lateinit var student: LiveData<Student>
 
     fun isStudentExist(id: Long): LiveData<Boolean> {
-        return studentRepository.isStudentExist(id).asLiveData()
+        return studentInteractor.isStudentExist(id).asLiveData()
     }
 
-    fun getStudent(id: Long): LiveData<Student> {
-        return studentRepository.getStudentById(id).asLiveData()
+    fun getStudent(id: Long): LiveData<Student?> {
+        return studentInteractor.getStudentById(id).asLiveData()
     }
 
     private fun insertStudent(student: StudentCreate) {
         viewModelScope.launch {
-            studentRepository.insert(student)
+            studentInteractor.insert(student)
         }
     }
 
     fun updateStudent(id: Long, name: String, gender: Gender, gpa: Float) {
         val updatedStudent = Student(id, name, gender, gpa)
         viewModelScope.launch {
-            studentRepository.update(updatedStudent)
+            studentInteractor.update(updatedStudent)
         }
     }
 

@@ -22,7 +22,7 @@ constructor(val studentDao: StudentDao) {
 
     suspend fun updateStudent(student: Student) = studentDao.update(student)
 
-    suspend fun deleteStudent(student: StudentEntity) = studentDao.delete(student)
+    suspend fun deleteStudent(id: Long) = studentDao.delete(id)
 
     suspend fun deleteAllStudents() = studentDao.deleteAll()
 
