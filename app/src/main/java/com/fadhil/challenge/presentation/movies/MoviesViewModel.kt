@@ -32,4 +32,8 @@ constructor(private val movieInteractor: MovieInteractor) : ViewModel() {
         // If any transformation is needed, this can be simply done by Transformations class ...
         return movieInteractor.getMovies(page).asLiveData()
     }
+
+    fun increasePage() {
+        page += 1
+    }
 }

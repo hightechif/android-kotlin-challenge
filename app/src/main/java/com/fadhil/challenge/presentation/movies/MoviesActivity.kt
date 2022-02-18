@@ -1,5 +1,6 @@
 package com.fadhil.challenge.presentation.movies
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -15,6 +16,7 @@ import com.fadhil.challenge.constant.RequestStatus
 import com.fadhil.challenge.data.Result
 import com.fadhil.challenge.databinding.ActivityMoviesBinding
 import com.fadhil.challenge.domain.model.Movie
+import com.fadhil.challenge.presentation.heroes.HeroDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,12 +35,17 @@ class MoviesActivity : AppCompatActivity() {
         setActionBarTitle(title)
         binding.rvMovies.setHasFixedSize(true)
 
-        setupObserver()
+        loadData()
         showMoviesRecyclerList()
     }
 
-    private fun setupObserver() {
-        val movieObserver = Observer<Result<List<Movie>?>> {
+    private fun loadData() {
+        val movieObserver = setupObserver()
+        viewModel.getMovies().observe(this, movieObserver)
+    }
+
+    private fun setupObserver(): Observer<Result<List<Movie>?>> {
+        return Observer<Result<List<Movie>?>> {
             when (it.status) {
                 Result.Status.SUCCESS -> {
                     setVisibility(RequestStatus.SUCCESS)
@@ -59,7 +66,6 @@ class MoviesActivity : AppCompatActivity() {
                 }
             }
         }
-        viewModel.getMovies().observe(this, movieObserver)
     }
 
     private fun showMoviesRecyclerList() {
@@ -68,13 +74,9 @@ class MoviesActivity : AppCompatActivity() {
         binding.rvMovies.adapter = movieListAdapter
         movieListAdapter.setOnClickedCallback(object : MovieCallback {
             override fun onItemClicked(data: Movie) {
-                showSelectedHero(data)
+                showMovieDetailPage(data)
             }
         })
-    }
-
-    private fun showSelectedHero(movie: Movie) {
-        Toast.makeText(this, "You click " + movie.title, Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -111,7 +113,7 @@ class MoviesActivity : AppCompatActivity() {
         binding.rvMovies.adapter = movieGridAdapter
         movieGridAdapter.setOnClickedCallback(object : MovieCallback {
             override fun onItemClicked(data: Movie) {
-                showSelectedHero(data)
+                showMovieDetailPage(data)
             }
         })
     }
@@ -120,6 +122,21 @@ class MoviesActivity : AppCompatActivity() {
         binding.rvMovies.layoutManager = LinearLayoutManager(this)
         val movieCardViewAdapter = MovieCardViewAdapter(list)
         binding.rvMovies.adapter = movieCardViewAdapter
+        movieCardViewAdapter.setOnClickedCallback(object : MovieCallback {
+            override fun onItemClicked(data: Movie) {
+                showMovieDetailPage(data)
+            }
+        })
+        movieCardViewAdapter.setOnShareCallback(object: ShareCallback {
+            override fun onShare(data: Movie) {
+                val sharingIntent = Intent(Intent.ACTION_SEND)
+                sharingIntent.type = "text/plain"
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, "${data.title}: ${data.overview}")
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, data.title)
+                startActivity(Intent.createChooser(sharingIntent, "Share movie"))
+            }
+
+        })
     }
 
     private fun setActionBarTitle(title: String) {
@@ -137,5 +154,15 @@ class MoviesActivity : AppCompatActivity() {
                 binding.tvErrorMessage.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun showMovieDetailPage(movie: Movie) {
+        Toast.makeText(this, "Kamu memilih " + movie.title, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, MovieDetailActivity::class.java)
+        intent.putExtra("MOVIE_TITLE", movie.title)
+        intent.putExtra("MOVIE_RATING", movie.rating)
+        intent.putExtra("MOVIE_OVERVIEW", movie.overview)
+        intent.putExtra("MOVIE_POSTER", movie.poster)
+        startActivity(intent)
     }
 }

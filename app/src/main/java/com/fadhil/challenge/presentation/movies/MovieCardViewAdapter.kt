@@ -12,7 +12,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.fadhil.challenge.R
 import com.fadhil.challenge.domain.model.Movie
 
-class MovieCardViewAdapter(private val movieEntityList: MutableList<Movie>) : MovieRVAdapter<MovieCardViewAdapter.CardViewHolder>(movieEntityList) {
+class MovieCardViewAdapter(private val movieList: MutableList<Movie>) : MovieRVAdapter<MovieCardViewAdapter.CardViewHolder>(movieList) {
+
+    lateinit var onItemShareCallback: ShareCallback
+
+    fun setOnShareCallback(callback: ShareCallback) {
+        this.onItemShareCallback = callback
+    }
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tv_item_title)
@@ -31,7 +37,7 @@ class MovieCardViewAdapter(private val movieEntityList: MutableList<Movie>) : Mo
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val movie = movieEntityList[position]
+        val movie = movieList[position]
         holder.tvTitle.text = movie.title
         holder.tvRelease.text = movie.release
         holder.tvOverview.text = movie.overview
@@ -48,15 +54,15 @@ class MovieCardViewAdapter(private val movieEntityList: MutableList<Movie>) : Mo
         holder.tvRating.text = movie.rating.toString()
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Kamu memilih " + movieEntityList[holder.bindingAdapterPosition].title, Toast.LENGTH_SHORT).show()
+            onItemClickedCallback.onItemClicked(movieList[holder.bindingAdapterPosition])
         }
 
         holder.btnFavorite.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Favorite " + movieEntityList[holder.bindingAdapterPosition].title, Toast.LENGTH_SHORT).show()
+            Toast.makeText(holder.itemView.context, "Favorite " + movieList[holder.bindingAdapterPosition].title, Toast.LENGTH_SHORT).show()
         }
 
         holder.btnShare.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Share " + movieEntityList[holder.bindingAdapterPosition].title, Toast.LENGTH_SHORT).show()
+            onItemShareCallback.onShare(movieList[holder.bindingAdapterPosition])
         }
     }
 }

@@ -1,60 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingTop="@dimen/size_16_dp"
     android:paddingStart="@dimen/size_16_dp"
-    android:paddingEnd="@dimen/size_16_dp"
-    android:paddingBottom="@dimen/size_8_dp">
+    android:paddingTop="@dimen/size_16_dp"
+    android:paddingEnd="@dimen/size_16_dp">
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_16_dp">
 
-        <ImageView
-            android:id="@+id/img_item_poster"
-            android:layout_width="165dp"
-            android:layout_height="250dp"
-            android:contentDescription="@string/img_poster"
-            android:scaleType="fitXY"
-            tools:src="@tools:sample/avatars" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="@dimen/size_8_dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="27dp"
-            android:layout_height="27dp"
-            android:layout_margin="3dp"
-            android:src="@color/darkGreen" />
+            <ImageView
+                android:id="@+id/img_item_poster"
+                android:layout_width="165dp"
+                android:layout_height="250dp"
+                android:contentDescription="@string/img_poster"
+                android:scaleType="fitXY"
+                tools:src="@tools:sample/avatars" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:layout_margin="6dp"
-            android:src="@color/black" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_margin="3dp"
+                android:src="@color/darkGreen" />
 
-        <TextView
-            android:id="@+id/tv_item_rating"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_margin="8dp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_12_sp"
-            tools:text="@string/vote_average" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_margin="6dp"
+                android:src="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_item_rating"
+                android:layout_width="@dimen/size_20_dp"
+                android:layout_height="@dimen/size_20_dp"
+                android:layout_margin="@dimen/size_8_dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_12_sp"
+                tools:text="@string/vote_average" />
+
+        </androidx.cardview.widget.CardView>
 
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/size_8_dp"
             android:textSize="@dimen/text_18_sp"
             android:textStyle="bold"
             tools:text="@string/movies_title" />
@@ -63,17 +70,16 @@
             android:id="@+id/tv_item_release"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/size_8_dp"
             android:textSize="@dimen/text_16_sp"
             tools:text="@string/release_date" />
 
         <TextView
             android:id="@+id/tv_item_overview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:ellipsize="end"
-            android:maxLines="10"
-            android:textSize="@dimen/text_12_sp"
+            android:textSize="@dimen/text_14_sp"
             tools:text="@string/movies_overview" />
 
     </LinearLayout>

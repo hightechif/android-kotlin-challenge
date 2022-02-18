@@ -72,5 +72,6 @@
 
     <!-- Detail Screen -->
     <string name="detail_title">Detail Title</string>
+    <string name="detail_release">Release</string>
     <string name="detail_description">Description</string>
 </resources>

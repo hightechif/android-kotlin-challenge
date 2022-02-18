@@ -20,12 +20,11 @@ class HeroDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHeroDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.title = "Detail Page"
+        supportActionBar?.title = "Hero Detail"
 
         val bundle: Bundle? = intent.extras
         val title = bundle?.getString("HERO_NAME")
         val description = bundle?.getString("HERO_DETAIL")
-        Timber.i("$title $description")
         val photoId = bundle?.getInt("HERO_PHOTO")
 
         binding.tvDetailTitle.text = title

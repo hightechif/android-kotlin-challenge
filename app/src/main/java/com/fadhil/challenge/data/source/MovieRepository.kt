@@ -29,7 +29,7 @@ constructor(
             override fun loadFromDB(): List<Movie>? =
                 movieLocalDataSource.getCached()
 
-            override fun shouldFetch(data: List<Movie>?) = true
+            override fun shouldFetch(data: List<Movie>?) = data.isNullOrEmpty()
 
             override suspend fun createCall(): Result<PageableData<MovieResponse>> {
                     return movieRemoteDataSource.getMovies(page)

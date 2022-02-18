@@ -21,6 +21,9 @@
         android:theme="@style/Theme.Challenge"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.movies.MovieDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.heroes.HeroDetailActivity"
             android:exported="true" />
         <activity
