@@ -159,10 +159,11 @@ class MoviesActivity : AppCompatActivity() {
     private fun showMovieDetailPage(movie: Movie) {
         Toast.makeText(this, "Kamu memilih " + movie.title, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MovieDetailActivity::class.java)
-        intent.putExtra("MOVIE_TITLE", movie.title)
-        intent.putExtra("MOVIE_RATING", movie.rating)
-        intent.putExtra("MOVIE_OVERVIEW", movie.overview)
-        intent.putExtra("MOVIE_POSTER", movie.poster)
+        intent.putExtra(MovieDetailActivity.MOVIE_TITLE, movie.title)
+        intent.putExtra(MovieDetailActivity.MOVIE_RATING, movie.rating)
+        intent.putExtra(MovieDetailActivity.MOVIE_RELEASE, movie.release)
+        intent.putExtra(MovieDetailActivity.MOVIE_OVERVIEW, movie.overview)
+        intent.putExtra(MovieDetailActivity.MOVIE_POSTER, movie.poster)
         startActivity(intent)
     }
 }

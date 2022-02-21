@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.R
-import com.fadhil.challenge.constant.ViewMode
 import com.fadhil.challenge.constant.HeroesData
+import com.fadhil.challenge.constant.ViewMode
 import com.fadhil.challenge.databinding.ActivityHeroesBinding
 import com.fadhil.challenge.domain.model.Hero
 
@@ -168,9 +168,9 @@ class HeroesActivity : AppCompatActivity() {
     private fun showHeroesDetailPage(hero: Hero) {
         Toast.makeText(this, "Kamu memilih " + hero.name, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, HeroDetailActivity::class.java)
-        intent.putExtra("HERO_NAME", hero.name)
-        intent.putExtra("HERO_DETAIL", hero.detail)
-        intent.putExtra("HERO_PHOTO", hero.photo)
+        intent.putExtra(HeroDetailActivity.HERO_NAME, hero.name)
+        intent.putExtra(HeroDetailActivity.HERO_DESCRIPTION, hero.detail)
+        intent.putExtra(HeroDetailActivity.HERO_PHOTO, hero.photo)
         startActivity(intent)
     }
 }

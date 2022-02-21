@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.fadhil.challenge.R
 import com.fadhil.challenge.databinding.ActivityMainBinding
 import com.fadhil.challenge.presentation.barcalculator.BarCalculatorActivity
 import com.fadhil.challenge.presentation.heroes.HeroesActivity
@@ -18,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -29,12 +30,12 @@ class MainActivity : AppCompatActivity() {
 
         checkPlatformVersion()
 
-        binding.btnCalculatorCTA.setOnClickListener(this::openCalculator)
-        binding.btnCameraCTA.setOnClickListener(this::openCamera)
-        binding.btnMyViewAppCTA.setOnClickListener(this::openMyViewApp)
-        binding.btnHeroesCTA.setOnClickListener(this::openHeroesApp)
-        binding.btnMoviesCTA.setOnClickListener(this::openMoviesApp)
-        binding.btnStudentCTA.setOnClickListener(this::openStudentApp)
+        binding.btnCalculatorCTA.setOnClickListener(this)
+        binding.btnCameraCTA.setOnClickListener(this)
+        binding.btnMyViewAppCTA.setOnClickListener(this)
+        binding.btnHeroesCTA.setOnClickListener(this)
+        binding.btnMoviesCTA.setOnClickListener(this)
+        binding.btnStudentCTA.setOnClickListener(this)
     }
 
     private fun checkPlatformVersion() {
@@ -45,43 +46,51 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun openCalculator(view: View?) {
-        val calculatorIntent = Intent(view?.context, BarCalculatorActivity::class.java)
-        startActivity(calculatorIntent)
-    }
-
-    private fun openCamera(view: View?) {
-        val isCameraFeatureExist = checkCamera()
-        if (isCameraFeatureExist) {
-            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivity(takePictureIntent)
-        } else {
-            Toast.makeText(view?.context, "Your device doesn't have any camera", Toast.LENGTH_SHORT).show()
-        }
-    }
-
     private fun checkCamera(): Boolean {
         return packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)
     }
 
-    private fun openMyViewApp(view: View?) {
-        val myViewIntent = Intent(view?.context, MyViewActivity::class.java)
-        startActivity(myViewIntent)
-    }
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btnCalculatorCTA -> {
+                val calculatorIntent = Intent(this@MainActivity, BarCalculatorActivity::class.java)
+                startActivity(calculatorIntent)
+            }
 
-    private fun openHeroesApp(view: View?) {
-        val heroesIntent = Intent(view?.context, HeroesActivity::class.java)
-        startActivity(heroesIntent)
-    }
+            R.id.btnCameraCTA -> {
+                val isCameraFeatureExist = checkCamera()
+                if (isCameraFeatureExist) {
+                    val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    startActivity(takePictureIntent)
+                } else {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Your device doesn't have any camera",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
 
-    private fun openMoviesApp(view: View?) {
-        val moviesIntent = Intent(view?.context, MoviesActivity::class.java)
-        startActivity(moviesIntent)
-    }
+            R.id.btnMyViewAppCTA -> {
+                val myViewIntent = Intent(this@MainActivity, MyViewActivity::class.java)
+                startActivity(myViewIntent)
+            }
 
-    private fun openStudentApp(view: View?) {
-        val studentIntent = Intent(view?.context, StudentActivity::class.java)
-        startActivity(studentIntent)
+            R.id.btnHeroesCTA -> {
+                val heroesIntent = Intent(this@MainActivity, HeroesActivity::class.java)
+                startActivity(heroesIntent)
+            }
+
+            R.id.btnMoviesCTA -> {
+                val moviesIntent = Intent(this@MainActivity, MoviesActivity::class.java)
+                startActivity(moviesIntent)
+            }
+
+            R.id.btnStudentCTA -> {
+                val studentIntent = Intent(this@MainActivity, StudentActivity::class.java)
+                startActivity(studentIntent)
+            }
+        }
     }
 
 }
