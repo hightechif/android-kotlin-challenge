@@ -25,12 +25,12 @@ abstract class BaseDataSource {
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
-                    return Result.success(body)
+                    return Result.Success(body)
                 }
             }
             else {
                 if (code == 401 || code == 403) {
-                    return Result.unauthorized()
+                    return Result.Unauthorized()
                 } else
                     if (code == 400 || code == 500) {
                         @Suppress("BlockingMethodInNonBlockingContext")
@@ -66,7 +66,7 @@ abstract class BaseDataSource {
 
     private fun <T> error(message: String): Result<T> {
         Timber.e(message)
-        return Result.error("Network call has failed for a following reason: $message")
+        return Result.Error("Network call has failed for a following reason: $message")
     }
 
 }

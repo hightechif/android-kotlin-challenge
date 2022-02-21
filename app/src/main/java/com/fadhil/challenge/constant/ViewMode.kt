@@ -1,7 +1,7 @@
 package com.fadhil.challenge.constant
 
-enum class ViewMode {
-    RECYCLE_VIEW,
-    LIST_VIEW,
-    GRID_VIEW
+sealed class ViewMode {
+    object RECYCLERVIEW : ViewMode()
+    object LISTVIEW : ViewMode()
+    object GRIDVIEW : ViewMode()
 }

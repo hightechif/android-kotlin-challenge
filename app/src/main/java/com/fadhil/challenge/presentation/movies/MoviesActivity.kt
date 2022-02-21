@@ -12,11 +12,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.challenge.R
-import com.fadhil.challenge.constant.RequestStatus
 import com.fadhil.challenge.data.Result
 import com.fadhil.challenge.databinding.ActivityMoviesBinding
 import com.fadhil.challenge.domain.model.Movie
-import com.fadhil.challenge.presentation.heroes.HeroDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,13 +46,13 @@ class MoviesActivity : AppCompatActivity() {
         return Observer<Result<List<Movie>?>> {
             when (it.status) {
                 Result.Status.SUCCESS -> {
-                    setVisibility(RequestStatus.SUCCESS)
+                    setVisibility(Result.Status.SUCCESS)
                     if (!it.data.isNullOrEmpty()) {
                         list.addAll(it.data)
                     }
                 }
                 Result.Status.ERROR -> {
-                    setVisibility(RequestStatus.ERROR)
+                    setVisibility(Result.Status.ERROR)
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     binding.tvErrorMessage.text = it.message
                 }
@@ -127,7 +125,7 @@ class MoviesActivity : AppCompatActivity() {
                 showMovieDetailPage(data)
             }
         })
-        movieCardViewAdapter.setOnShareCallback(object: ShareCallback {
+        movieCardViewAdapter.setOnShareCallback(object : ShareCallback {
             override fun onShare(data: Movie) {
                 val sharingIntent = Intent(Intent.ACTION_SEND)
                 sharingIntent.type = "text/plain"
@@ -143,16 +141,17 @@ class MoviesActivity : AppCompatActivity() {
         supportActionBar?.title = title
     }
 
-    private fun setVisibility(status: RequestStatus) {
+    private fun setVisibility(status: Result.Status) {
         binding.rvMovies.visibility = View.GONE
         binding.tvErrorMessage.visibility = View.GONE
         when (status) {
-            RequestStatus.SUCCESS -> {
+            Result.Status.SUCCESS -> {
                 binding.rvMovies.visibility = View.VISIBLE
             }
-            RequestStatus.ERROR -> {
+            Result.Status.ERROR -> {
                 binding.tvErrorMessage.visibility = View.VISIBLE
             }
+            else -> {}
         }
     }
 

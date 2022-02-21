@@ -11,7 +11,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(
     private val sessionRemoteDataSource: SessionRemoteDataSource
 ) {
     private val result: Flow<Result<ResultType>> = flow {
-        emit(Result.loading())
+        emit(Result.Loading())
         val dbSource = loadFromDB()
         if (shouldFetch(dbSource)) {
             val response = createCall()
@@ -20,12 +20,12 @@ abstract class NetworkBoundResource<ResultType, RequestType>(
                     if (response.data != null) {
                         saveCallResult(response.data)
                         emit(
-                            Result.success(
+                            Result.Success(
                                 loadFromDB()
                             )
                         )
                     } else {
-                        Result.error(
+                        Result.Error(
                             response.message,
                             loadFromDB()
                         )
@@ -48,14 +48,14 @@ abstract class NetworkBoundResource<ResultType, RequestType>(
                                 emitAll(asFlow())
                             }
                             else -> {
-                                emit(Result.unauthorized<ResultType>())
+                                emit(Result.Unauthorized<ResultType>())
                             }
                         }
-                    } else emit(Result.unauthorized<ResultType>())
+                    } else emit(Result.Unauthorized<ResultType>())
                 }
                 else -> {
                     emit(
-                        Result.error(
+                        Result.Error(
                             response.message,
                             loadFromDB()
                         )
@@ -64,7 +64,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>(
             }
         } else {
             emit(
-                Result.success(
+                Result.Success(
                     loadFromDB()
                 )
             )

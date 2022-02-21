@@ -12,12 +12,12 @@ abstract class NetworkBoundProcessResource<ResultType, RequestType>(
 ) {
 
     private val result: Flow<Result<ResultType>> = flow {
-        emit(Result.loading())
+        emit(Result.Loading())
         val response = createCall()
         when (response.status) {
             Result.Status.SUCCESS -> {
                 val responseData = saveCallResult(response.data!!)
-                emit(Result.success(responseData))
+                emit(Result.Success(responseData))
             }
             Result.Status.UNAUTHORIZED -> {
                 val user = sessionLocalDataSource.getCached()
@@ -35,14 +35,14 @@ abstract class NetworkBoundProcessResource<ResultType, RequestType>(
                             emitAll(asFlow())
                         }
                         else -> {
-                            emit(Result.unauthorized<ResultType>())
+                            emit(Result.Unauthorized<ResultType>())
                         }
                     }
-                } else emit(Result.unauthorized<ResultType>())
+                } else emit(Result.Unauthorized<ResultType>())
             }
             else -> {
                 emit(
-                    Result.error(
+                    Result.Error(
                         response.message,
                         null
                     )

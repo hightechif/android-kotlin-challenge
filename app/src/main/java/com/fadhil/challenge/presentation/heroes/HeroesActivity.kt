@@ -38,7 +38,7 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerList() {
-        setVisibility(ViewMode.RECYCLE_VIEW)
+        setVisibility(ViewMode.RECYCLERVIEW)
         binding.rvHeroes.layoutManager = LinearLayoutManager(this)
 
         val heroListAdapter = HeroListAdapter(list)
@@ -56,13 +56,13 @@ class HeroesActivity : AppCompatActivity() {
         binding.lvHeroes.visibility = View.GONE
         binding.gvHeroes.visibility = View.GONE
         when (mode) {
-            ViewMode.RECYCLE_VIEW -> {
+            ViewMode.RECYCLERVIEW -> {
                 binding.rvHeroes.visibility = View.VISIBLE
             }
-            ViewMode.LIST_VIEW -> {
+            ViewMode.LISTVIEW -> {
                 binding.lvHeroes.visibility = View.VISIBLE
             }
-            ViewMode.GRID_VIEW -> {
+            ViewMode.GRIDVIEW -> {
                 binding.gvHeroes.visibility = View.VISIBLE
             }
         }
@@ -105,7 +105,7 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerGrid() {
-        setVisibility(ViewMode.RECYCLE_VIEW)
+        setVisibility(ViewMode.RECYCLERVIEW)
         binding.rvHeroes.layoutManager = GridLayoutManager(this, 2)
         val heroGridAdapter = HeroGridAdapter(list)
         binding.rvHeroes.adapter = heroGridAdapter
@@ -118,7 +118,7 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerCardView() {
-        setVisibility(ViewMode.RECYCLE_VIEW)
+        setVisibility(ViewMode.RECYCLERVIEW)
         binding.rvHeroes.layoutManager = LinearLayoutManager(this)
         val heroCardViewAdapter = HeroCardViewAdapter(list)
         binding.rvHeroes.adapter = heroCardViewAdapter
@@ -135,7 +135,7 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun showListView() {
-        setVisibility(ViewMode.LIST_VIEW)
+        setVisibility(ViewMode.LISTVIEW)
         listView = findViewById(R.id.lv_heroes)
         val heroListViewAdapter = HeroListViewAdapter(this, list)
         listView.adapter = heroListViewAdapter
@@ -148,7 +148,7 @@ class HeroesActivity : AppCompatActivity() {
     }
 
     private fun showGridView() {
-        setVisibility(ViewMode.GRID_VIEW)
+        setVisibility(ViewMode.GRIDVIEW)
         gridView = findViewById(R.id.gv_heroes)
         gridView.numColumns = 2
         val heroGridViewAdapter = HeroGridViewAdapter(this, list)

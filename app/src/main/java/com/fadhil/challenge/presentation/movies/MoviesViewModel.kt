@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.fadhil.challenge.data.Result
-import com.fadhil.challenge.data.source.MovieRepository
 import com.fadhil.challenge.domain.model.Movie
 import com.fadhil.challenge.domain.usecase.MovieInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel

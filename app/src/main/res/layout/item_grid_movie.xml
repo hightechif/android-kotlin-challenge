@@ -3,17 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
-    <FrameLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="1dp">
+        android:layout_margin="@dimen/size_4_dp"
+        app:cardCornerRadius="@dimen/size_8_dp">
 
         <ImageView
             android:id="@+id/img_item_poster"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:contentDescription="@string/img_poster"
             android:scaleType="centerCrop"
             tools:src="@tools:sample/avatars" />
 
@@ -38,5 +41,6 @@
             android:textSize="@dimen/text_12_sp"
             tools:text="@string/vote_average" />
 
-    </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>

@@ -38,8 +38,7 @@ class StudentListFragment : Fragment() {
         binding.btnAddStudent.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("student_event", StudentEvent.ADD_NEW_STUDENT)
-            val action =
-                StudentListFragmentDirections.actionStudentListFragmentToStudentAddEditFragment()
+            val action = StudentListFragmentDirections.actionStudentListFragmentToStudentAddEditFragment()
             view.findNavController().navigate(action.actionId, bundle)
         }
 
@@ -79,8 +78,7 @@ class StudentListFragment : Fragment() {
         val bundle = Bundle()
         bundle.putString("student_event", StudentEvent.EDIT_STUDENT)
         bundle.putLong("student_id", it.id)
-        val action =
-            StudentListFragmentDirections.actionStudentListFragmentToStudentAddEditFragment()
+        val action = StudentListFragmentDirections.actionStudentListFragmentToStudentAddEditFragment()
         view?.findNavController()?.navigate(action.actionId, bundle)
     }
 
