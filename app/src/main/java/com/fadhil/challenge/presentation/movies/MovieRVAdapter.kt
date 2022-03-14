@@ -6,9 +6,9 @@ import com.fadhil.challenge.domain.model.Movie
 
 abstract class MovieRVAdapter<VH : RecyclerView.ViewHolder>(private val movieEntityList: MutableList<Movie>) : RecyclerView.Adapter<VH>() {
 
-    lateinit var onItemClickedCallback: MovieCallback
+    lateinit var onItemClickedCallback: MovieAdapterDelegate
 
-    fun setOnClickedCallback(callback: MovieCallback) {
+    fun setOnClickedCallback(callback: MovieAdapterDelegate) {
         this.onItemClickedCallback = callback
     }
 

@@ -12,9 +12,9 @@ class StudentAdapter(private val onItemClicked: (Student) -> Unit) : ListAdapter
     DiffCallback
 ) {
 
-    lateinit var onDeleteOneClicked: StudentDeleteOneCallback
+    lateinit var onDeleteOneClicked: StudentAdapterDelegate
 
-    fun setOnDeleteCallback(callback: StudentDeleteOneCallback) {
+    fun setOnDeleteCallback(callback: StudentAdapterDelegate) {
         this.onDeleteOneClicked = callback
     }
 

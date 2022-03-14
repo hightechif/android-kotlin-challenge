@@ -52,45 +52,52 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.btnCalculatorCTA -> {
-                val calculatorIntent = Intent(this@MainActivity, BarCalculatorActivity::class.java)
-                startActivity(calculatorIntent)
-            }
-
-            R.id.btnCameraCTA -> {
-                val isCameraFeatureExist = checkCamera()
-                if (isCameraFeatureExist) {
-                    val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                    startActivity(takePictureIntent)
-                } else {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Your device doesn't have any camera",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-
-            R.id.btnMyViewAppCTA -> {
-                val myViewIntent = Intent(this@MainActivity, MyViewActivity::class.java)
-                startActivity(myViewIntent)
-            }
-
-            R.id.btnHeroesCTA -> {
-                val heroesIntent = Intent(this@MainActivity, HeroesActivity::class.java)
-                startActivity(heroesIntent)
-            }
-
-            R.id.btnMoviesCTA -> {
-                val moviesIntent = Intent(this@MainActivity, MoviesActivity::class.java)
-                startActivity(moviesIntent)
-            }
-
-            R.id.btnStudentCTA -> {
-                val studentIntent = Intent(this@MainActivity, StudentActivity::class.java)
-                startActivity(studentIntent)
-            }
+            R.id.btnCalculatorCTA -> openCalculator()
+            R.id.btnCameraCTA -> openCamera()
+            R.id.btnMyViewAppCTA -> openMyView()
+            R.id.btnHeroesCTA -> openHeroes()
+            R.id.btnMoviesCTA -> openMovies()
+            R.id.btnStudentCTA -> openStudent()
         }
+    }
+
+    private fun openCalculator() {
+        val calculatorIntent = Intent(this@MainActivity, BarCalculatorActivity::class.java)
+        startActivity(calculatorIntent)
+    }
+
+    private fun openCamera() {
+        val isCameraFeatureExist = checkCamera()
+        if (isCameraFeatureExist) {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivity(takePictureIntent)
+        } else {
+            Toast.makeText(
+                this@MainActivity,
+                "Your device doesn't have any camera",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun openMyView() {
+        val myViewIntent = Intent(this@MainActivity, MyViewActivity::class.java)
+        startActivity(myViewIntent)
+    }
+
+    private fun openHeroes() {
+        val heroesIntent = Intent(this@MainActivity, HeroesActivity::class.java)
+        startActivity(heroesIntent)
+    }
+
+    private fun openMovies() {
+        val moviesIntent = Intent(this@MainActivity, MoviesActivity::class.java)
+        startActivity(moviesIntent)
+    }
+
+    private fun openStudent() {
+        val studentIntent = Intent(this@MainActivity, StudentActivity::class.java)
+        startActivity(studentIntent)
     }
 
 }

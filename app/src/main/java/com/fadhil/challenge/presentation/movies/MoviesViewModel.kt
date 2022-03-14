@@ -13,26 +13,20 @@ import javax.inject.Inject
 class MoviesViewModel @Inject
 constructor(private val movieInteractor: MovieInteractor) : ViewModel() {
 
-    companion object {
-        var page: Int = 1
-    }
+    var defaultPage: Int = 1
 
     private lateinit var movies: LiveData<Result<List<Movie>?>>
 
     /**
      * Expose the LiveData Projects query so the UI can observe it.
      */
-    fun getMovies(): LiveData<Result<List<Movie>?>> {
-        movies = fetchMovies()
+    fun getMovies(page: Int = defaultPage): LiveData<Result<List<Movie>?>> {
+        movies = fetchMovies(page)
         return movies
     }
 
-    private fun fetchMovies(): LiveData<Result<List<Movie>?>> {
+    private fun fetchMovies(page: Int): LiveData<Result<List<Movie>?>> {
         // If any transformation is needed, this can be simply done by Transformations class ...
         return movieInteractor.getMovies(page).asLiveData()
-    }
-
-    fun increasePage() {
-        page += 1
     }
 }

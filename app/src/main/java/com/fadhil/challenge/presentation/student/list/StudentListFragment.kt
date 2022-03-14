@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fadhil.challenge.databinding.FragmentStudentListBinding
 import com.fadhil.challenge.domain.model.Student
 import com.fadhil.challenge.presentation.student.StudentAdapter
-import com.fadhil.challenge.presentation.student.StudentDeleteOneCallback
+import com.fadhil.challenge.presentation.student.StudentAdapterDelegate
 import com.fadhil.challenge.presentation.student.StudentEvent
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,7 +52,7 @@ class StudentListFragment : Fragment() {
 
         loadData(studentAdapter)
 
-        studentAdapter.setOnDeleteCallback(object : StudentDeleteOneCallback {
+        studentAdapter.setOnDeleteCallback(object : StudentAdapterDelegate {
             override fun onItemClicked(data: Student) {
                 loadData(studentAdapter)
                 viewModel.deleteOne(data.id)

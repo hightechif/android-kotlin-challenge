@@ -14,9 +14,9 @@ import com.fadhil.challenge.domain.model.Movie
 
 class MovieCardViewAdapter(private val movieList: MutableList<Movie>) : MovieRVAdapter<MovieCardViewAdapter.CardViewHolder>(movieList) {
 
-    lateinit var onItemShareCallback: ShareCallback
+    lateinit var onItemShareCallback: MovieAdapterDelegate
 
-    fun setOnShareCallback(callback: ShareCallback) {
+    fun setOnShareCallback(callback: MovieAdapterDelegate) {
         this.onItemShareCallback = callback
     }
 

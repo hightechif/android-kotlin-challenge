@@ -44,7 +44,7 @@ class HeroesActivity : AppCompatActivity() {
         val heroListAdapter = HeroListAdapter(list)
 
         binding.rvHeroes.adapter = heroListAdapter
-        heroListAdapter.setOnClickedCallback(object : HeroCallback {
+        heroListAdapter.setOnClickedCallback(object : HeroAdapterDelegate {
             override fun onItemClicked(data: Hero) {
                 showHeroesDetailPage(data)
             }
@@ -110,7 +110,7 @@ class HeroesActivity : AppCompatActivity() {
         val heroGridAdapter = HeroGridAdapter(list)
         binding.rvHeroes.adapter = heroGridAdapter
 
-        heroGridAdapter.setOnClickedCallback(object : HeroCallback {
+        heroGridAdapter.setOnClickedCallback(object : HeroAdapterDelegate {
             override fun onItemClicked(data: Hero) {
                 showHeroesDetailPage(data)
             }
@@ -123,7 +123,7 @@ class HeroesActivity : AppCompatActivity() {
         val heroCardViewAdapter = HeroCardViewAdapter(list)
         binding.rvHeroes.adapter = heroCardViewAdapter
 
-        heroCardViewAdapter.setOnClickedCallback(object : HeroCallback {
+        heroCardViewAdapter.setOnClickedCallback(object : HeroAdapterDelegate {
             override fun onItemClicked(data: Hero) {
                 val sharingIntent = Intent(Intent.ACTION_SEND)
                 sharingIntent.type = "text/plain"
@@ -140,7 +140,7 @@ class HeroesActivity : AppCompatActivity() {
         val heroListViewAdapter = HeroListViewAdapter(this, list)
         listView.adapter = heroListViewAdapter
 
-        heroListViewAdapter.setOnClickedCallback(object : HeroCallback {
+        heroListViewAdapter.setOnClickedCallback(object : HeroAdapterDelegate {
             override fun onItemClicked(data: Hero) {
                 showHeroesDetailPage(data)
             }
@@ -154,7 +154,7 @@ class HeroesActivity : AppCompatActivity() {
         val heroGridViewAdapter = HeroGridViewAdapter(this, list)
         gridView.adapter = heroGridViewAdapter
 
-        heroGridViewAdapter.setOnClickedCallback(object : HeroCallback {
+        heroGridViewAdapter.setOnClickedCallback(object : HeroAdapterDelegate {
             override fun onItemClicked(data: Hero) {
                 showHeroesDetailPage(data)
             }

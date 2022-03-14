@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface MoviesService {
 
-    @GET("/3/discover/movie")
+    @GET("/4/list/1")
     suspend fun getMovies(@Query("page") page: Int, @Query("api_key") apiKey: String): Response<PageableData<MovieResponse>>
 
 }

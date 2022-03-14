@@ -14,9 +14,9 @@ import timber.log.Timber
 class HeroListViewAdapter(private val context: Context, private val heroList: ArrayList<Hero>) : BaseAdapter() {
 
     private val inflater : LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    lateinit var onItemClickedCallback: HeroCallback
+    lateinit var onItemClickedCallback: HeroAdapterDelegate
 
-    fun setOnClickedCallback(callback: HeroCallback) {
+    fun setOnClickedCallback(callback: HeroAdapterDelegate) {
         this.onItemClickedCallback = callback
     }
 

@@ -2,6 +2,6 @@ package com.fadhil.challenge.presentation.heroes
 
 import com.fadhil.challenge.domain.model.Hero
 
-interface HeroCallback {
+interface HeroAdapterDelegate {
     fun onItemClicked(data: Hero)
 }
