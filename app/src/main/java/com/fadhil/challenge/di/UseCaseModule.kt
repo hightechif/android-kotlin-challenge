@@ -1,10 +1,12 @@
 package com.fadhil.challenge.di
 
 import com.fadhil.challenge.data.source.MovieRepository
+import com.fadhil.challenge.data.source.SessionRepository
 import com.fadhil.challenge.data.source.StudentRepository
 import com.fadhil.challenge.domain.usecase.MovieInteractor
 import com.fadhil.challenge.domain.usecase.StudentInteractor
 import com.fadhil.challenge.domain.usecase.StudentUseCase
+import com.fadhil.challenge.domain.usecase.session.SessionInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,4 +28,10 @@ object UseCaseModule {
     fun provideMovieInteractor(
         movieRepository: MovieRepository
     ) = MovieInteractor(movieRepository)
+
+    @Provides
+    @Singleton
+    fun provideSessionInteractor(
+        sessionRepository: SessionRepository
+    ) = SessionInteractor(sessionRepository)
 }

@@ -15,6 +15,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
     private const val BASE_URL = "https://api.themoviedb.org"
+//    private const val AUTH_URL = "https://fadhil-auth.herokuapp.com"
 
     @Singleton
     @Provides
@@ -22,6 +23,13 @@ object NetworkModule {
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
+
+//    @Singleton
+//    @Provides
+//    fun provideAuthRetrofit(gson: Gson): Retrofit = Retrofit.Builder()
+//        .baseUrl(AUTH_URL)
+//        .addConverterFactory(GsonConverterFactory.create(gson))
+//        .build()
 
     @Provides
     fun provideGson(): Gson = GsonBuilder().create()

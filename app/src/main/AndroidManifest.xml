@@ -21,33 +21,33 @@
         android:theme="@style/Theme.Challenge"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".presentation.movies.MovieDetailActivity"
+            android:name=".ui.movies.MovieDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.heroes.HeroDetailActivity"
+            android:name=".ui.heroes.HeroDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.student.StudentActivity"
+            android:name=".ui.student.StudentActivity"
             android:exported="true"
             android:label="Student Data Management" />
         <activity
-            android:name=".presentation.movies.MoviesActivity"
+            android:name=".ui.movies.MoviesActivity"
             android:exported="true"
             android:label="Movies App" />
         <activity
-            android:name=".presentation.heroes.HeroesActivity"
+            android:name=".ui.heroes.HeroesActivity"
             android:exported="true"
             android:label="Heroes App" />
         <activity
-            android:name=".presentation.myview.MyViewActivity"
+            android:name=".ui.myview.MyViewActivity"
             android:exported="true"
             android:label="My View App" />
         <activity
-            android:name=".presentation.barcalculator.BarCalculatorActivity"
+            android:name=".ui.barcalculator.BarCalculatorActivity"
             android:exported="true"
             android:label="Bar Volume Calculator" />
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:label="Challenge App by Fadhil">
             <intent-filter>

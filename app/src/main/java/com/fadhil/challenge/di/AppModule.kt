@@ -17,7 +17,7 @@ object AppModule {
         retrofit.create(MoviesService::class.java)
 
     @Provides
-    fun provideAuthService(retrofit: Retrofit): AuthService =
-        retrofit.create(AuthService::class.java)
+    fun provideAuthService(authRetrofit: Retrofit): AuthService =
+        authRetrofit.create(AuthService::class.java)
 
 }

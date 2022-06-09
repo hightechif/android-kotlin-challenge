@@ -4,24 +4,24 @@ import com.fadhil.challenge.data.source.remote.network.AuthService
 import com.fadhil.challenge.data.source.remote.request.LoginRequest
 import com.fadhil.challenge.data.source.remote.request.LogoutRequest
 import com.fadhil.challenge.data.source.remote.request.RefreshTokenRequest
+import javax.inject.Inject
 
-class SessionRemoteDataSource(
+class SessionRemoteDataSource @Inject
+constructor(
     private val authService: AuthService
 ) : BaseDataSource() {
 
-    suspend fun login(nik: String?, password: String?, deviceId: String?) =
+    suspend fun login(username: String, password: String) =
         getResult {
             authService.login(
-                LoginRequest(nik, password, deviceId)
+                LoginRequest(username, password)
             )
         }
 
     suspend fun logout(deviceId: String?) =
         getResult {
             authService.logout(
-                LogoutRequest(
-                    deviceId
-                )
+                LogoutRequest(deviceId)
             )
         }
 

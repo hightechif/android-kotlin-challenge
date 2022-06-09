@@ -2,7 +2,9 @@ package com.fadhil.challenge.di
 
 import android.content.SharedPreferences
 import com.fadhil.challenge.data.source.MovieRepository
+import com.fadhil.challenge.data.source.SessionRepository
 import com.fadhil.challenge.data.source.StudentRepository
+import com.fadhil.challenge.data.source.local.LoginStateLocalDataSource
 import com.fadhil.challenge.data.source.local.MovieLocalDataSource
 import com.fadhil.challenge.data.source.local.SessionLocalDataSource
 import com.fadhil.challenge.data.source.local.StudentLocalDataSource
@@ -47,6 +49,12 @@ object RepositoryModule {
 
     @Singleton
     @Provides
+    fun provideLoginStateLocalDataSource(
+        sharedPreferences: SharedPreferences
+    ) = LoginStateLocalDataSource(sharedPreferences)
+
+    @Singleton
+    @Provides
     fun provideStudentLocalDataSource(
         studentDao: StudentDao
     ) = StudentLocalDataSource(studentDao)
@@ -65,5 +73,13 @@ object RepositoryModule {
     fun provideStudentRepository(
         studentLocalDataSource: StudentLocalDataSource
     ) = StudentRepository(studentLocalDataSource)
+
+    @Singleton
+    @Provides
+    fun provideSessionRepository(
+        sessionRemoteDataSource: SessionRemoteDataSource,
+        sessionLocalDataSource: SessionLocalDataSource,
+        loginStateLocalDataSource: LoginStateLocalDataSource
+    ) = SessionRepository(sessionRemoteDataSource, sessionLocalDataSource, loginStateLocalDataSource)
 
 }
