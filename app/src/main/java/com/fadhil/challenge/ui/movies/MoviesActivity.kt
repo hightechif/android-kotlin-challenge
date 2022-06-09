@@ -25,7 +25,6 @@ class MoviesActivity : AppCompatActivity() {
     private var movieList: MutableList<Movie> = mutableListOf()
     private var title: String = "Movies App: Mode List"
     private val viewModel: MoviesViewModel by viewModels()
-    private var page = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,17 +34,17 @@ class MoviesActivity : AppCompatActivity() {
         setActionBarTitle(title)
         binding.rvMovies.setHasFixedSize(true)
 
-        loadData(page)
+        loadData()
         showMoviesRecyclerList()
         onScrollSetup()
     }
 
-    private fun loadData(page: Int) {
-        getMovieList(page)
+    private fun loadData() {
+        getMovieList()
     }
 
-    private fun getMovieList(page: Int) {
-        viewModel.getMovies(page).observe(this) {
+    private fun getMovieList() {
+        viewModel.getMovies().observe(this) {
             when (it.status) {
                 Result.Status.SUCCESS -> {
                     setVisibility(Result.Status.SUCCESS)

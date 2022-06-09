@@ -13,14 +13,14 @@ import javax.inject.Inject
 class MoviesViewModel @Inject
 constructor(private val movieInteractor: MovieInteractor) : ViewModel() {
 
-    var defaultPage: Int = 1
+    var page: Int = 1
 
     private lateinit var movies: LiveData<Result<List<Movie>?>>
 
     /**
      * Expose the LiveData Projects query so the UI can observe it.
      */
-    fun getMovies(page: Int = defaultPage): LiveData<Result<List<Movie>?>> {
+    fun getMovies(): LiveData<Result<List<Movie>?>> {
         movies = fetchMovies(page)
         return movies
     }
